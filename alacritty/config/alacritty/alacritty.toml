@@ -1,0 +1,52 @@
+live_config_reload = true
+import = [
+ # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
+ "~/.config/alacritty/themes/themes/tokyo-night.toml",
+ # "~/.config/alacritty/themes/themes/tokyo-night-storm.toml",
+ # "~/.config/alacritty/themes/themes/gruvbox_dark.toml",
+ # "~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml",
+ # "~/.config/alacritty/themes/themes/solarized_osaka.toml",
+ # "~/.config/alacritty/themes/themes/coolnight.toml",
+]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+# Blank space added around the window in pixels
+padding = { x = 10, y = 10 }
+dimensions = { columns = 120, lines = 50 }
+decorations = "Buttonless"
+opacity = 0.9
+# blur = true
+option_as_alt = "Both"
+
+[font]
+# normal.family="Hack Nerd Font Mono"
+# normal.family = "JetBrainsMonoNL Nerd Font"
+normal.family = "MesloLGM Nerd Font"
+size = 14
+
+[[hints.enabled]]
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+hyperlinks = true
+command = "open"
+post_processing = true
+
+[hints.enabled.mouse]
+enabled = true
+mods = "Shift"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[shell]
+program = "/opt/homebrew/bin/zsh"
+# args = ["-l", "-c", "tmux a -t 0 || tmux -u"]
+
+[keyboard]
+bindings = [
+ { key = "¥", chars = "\\" },
+ { key = "¥", mods = "Alt", chars = "\\" },
+]
