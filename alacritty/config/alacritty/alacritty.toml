@@ -24,7 +24,8 @@ option_as_alt = "Both"
 [font]
 # normal.family="Hack Nerd Font Mono"
 # normal.family = "JetBrainsMonoNL Nerd Font"
-normal.family = "MesloLGM Nerd Font"
+normal.family = "UDEV Gothic NF"
+# normal.family = "MesloLGM Nerd Font"
 size = 14
 
 [[hints.enabled]]
