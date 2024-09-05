@@ -10,7 +10,7 @@ return {
     config = function()
       require("obsidian-bridge").setup {
         obsidian_server_address = "https://localhost:27123",
-        -- scroll_sync = true, -- See of buffer scrolling section below
+        scroll_sync = true, -- See of buffer scrolling section below
       }
     end,
     event = {
@@ -49,18 +49,57 @@ return {
     opts = {
       workspaces = {
         {
-          name = "personal",
-          -- path = "~/vaults/personal",
-          path = "~/github/markdown/personal",
-        },
-        {
-          name = "work",
-          path = "~/github/markdown/work",
-          -- path = "~/vaults/work",
+          name = "markdown",
+          path = "~/github/markdown",
         },
       },
+      disable_frontmatter = true,
+      templates = {
+        subdir = "templates",
+        date_format = "%Y-%m-%d",
+        time_format = "%H:%M:%S",
+      },
 
-      -- see below for full list of options 👇
+      -- name new notes starting the ISO datetime and ending with note name
+      -- put them in the inbox subdir
+      -- note_id_func = function(title)
+      --   local suffix = ""
+      --   -- get current ISO datetime with -5 hour offset from UTC for EST
+      --   local current_datetime = os.date("!%Y-%m-%d-%H%M%S", os.time() - 5*3600)
+      --   if title ~= nil then
+      --     suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+      --   else
+      --     for _ = 1, 4 do
+      --       suffix = suffix .. string.char(math.random(65, 90))
+      --     end
+      --   end
+      --   return current_datetime .. "_" .. suffix
+      -- end,
+
+      -- key mappings, below are the defaults
+      mappings = {
+        -- overrides the 'gf' mapping to work on markdown/wiki links within your vault
+        ["gf"] = {
+          action = function() return require("obsidian").util.gf_passthrough() end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
+        -- toggle check-boxes
+        -- ["<leader>ch"] = {
+        --   action = function()
+        --     return require("obsidian").util.toggle_checkbox()
+        --   end,
+        --   opts = { buffer = true },
+        -- },
+      },
+      completion = {
+        nvim_cmp = true,
+        min_chars = 2,
+      },
+      ui = {
+        -- Disable some things below here because I set these manually for all Markdown files using treesitter
+        checkboxes = {},
+        bullets = {},
+      },
     },
     {
       "lambdalisue/kensaku.vim",
