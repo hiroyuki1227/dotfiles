@@ -1,37 +1,16 @@
 return {
-  -- bb95dd1b068cd62c68e3ff444ac9acaa7182db7b0336a52d002438615bfdb473
-  --Authorization: Bearer bb95dd1b068cd62c68e3ff444ac9acaa7182db7b0336a52d002438615bfdb473
   {
-    "oflisback/obsidian-bridge.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("obsidian-bridge").setup {
-        obsidian_server_address = "https://localhost:27123",
-        scroll_sync = true, -- See of buffer scrolling section below
-      }
-    end,
-    event = {
-      "BufReadPre *.md",
-      "BufNewFile *.md",
-    },
-    lazy = true,
-  },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
+    'MeanderingProgrammer/render-markdown.nvim',
     opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    'epwalsh/obsidian.nvim',
+    version = '*', -- recommended, use latest release instead of latest commit
     lazy = true,
-    ft = "markdown",
+    ft = 'markdown',
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
     --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -42,22 +21,22 @@ return {
     -- },
     dependencies = {
       -- Required.
-      "nvim-lua/plenary.nvim",
+      'nvim-lua/plenary.nvim',
 
       -- see below for full list of optional dependencies 👇
     },
     opts = {
       workspaces = {
         {
-          name = "markdown",
-          path = "~/github/markdown",
+          name = 'markdown',
+          path = '~/github/markdown',
         },
       },
       disable_frontmatter = true,
       templates = {
-        subdir = "templates",
-        date_format = "%Y-%m-%d",
-        time_format = "%H:%M:%S",
+        subdir = 'templates',
+        date_format = '%Y-%m-%d',
+        time_format = '%H:%M:%S',
       },
 
       -- name new notes starting the ISO datetime and ending with note name
@@ -79,8 +58,10 @@ return {
       -- key mappings, below are the defaults
       mappings = {
         -- overrides the 'gf' mapping to work on markdown/wiki links within your vault
-        ["gf"] = {
-          action = function() return require("obsidian").util.gf_passthrough() end,
+        ['gf'] = {
+          action = function()
+            return require('obsidian').util.gf_passthrough()
+          end,
           opts = { noremap = false, expr = true, buffer = true },
         },
         -- toggle check-boxes
@@ -102,8 +83,28 @@ return {
       },
     },
     {
-      "lambdalisue/kensaku.vim",
-      dependencies = { "vim-denops/denops.vim" },
+      'lambdalisue/kensaku.vim',
+      dependencies = { 'vim-denops/denops.vim' },
     },
+  },
+  -- NOTE:bb95dd1b068cd62c68e3ff444ac9acaa7182db7b0336a52d002438615bfdb473
+  -- NOTE:Authorization: Bearer bb95dd1b068cd62c68e3ff444ac9acaa7182db7b0336a52d002438615bfdb473
+  {
+    'oflisback/obsidian-bridge.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('obsidian-bridge').setup {
+        obsidian_server_address = 'https://localhost:27123',
+        scroll_sync = true, -- See of buffer scrolling section below
+      }
+    end,
+    event = {
+      'BufReadPre *.md',
+      'BufNewFile *.md',
+    },
+    lazy = true,
   },
 }
