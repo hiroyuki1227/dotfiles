@@ -111,9 +111,9 @@ return { -- LSP Configuration & Plugins
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       tsserver = {},
       eslint = {},
-      cssls = {},
-      jsonls = {},
-      yamlls = {},
+      -- cssls = {},
+      -- jsonls = {},
+      -- yamlls = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes { ...},
@@ -219,10 +219,15 @@ return { -- LSP Configuration & Plugins
       terraformls = {},
       yamlls = {},
       bashls = {},
-      graphql = {},
+      -- graphql = {},
       cssls = {},
       ltex = {},
       texlab = {},
+      prismals = {},
+      graphql = {},
+      emmet_ls = {},
+      marksman = {},
+      svelte = {},
     }
 
     -- Ensure the servers and tools above are installed

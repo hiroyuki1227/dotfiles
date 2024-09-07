@@ -4,6 +4,7 @@ return {
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
+    'nvim-lua/plenary.nvim',
   },
   config = function()
     local null_ls = require 'null-ls'
@@ -14,8 +15,11 @@ return {
     require('mason-null-ls').setup {
       ensure_installed = {
         'checkmake',
-        'prettier', -- ts/js formatter
-        'stylua',   -- lua formatter
+        'prettierd', -- ts/js formatter
+        'prettier',  -- ts/js formatter
+        'stylua',    -- lua formatter
+        'prismals',
+        'terraform_fmt',
         'eslint_d', -- ts/js linter
         'shfmt',
         'ruff',
@@ -26,10 +30,14 @@ return {
 
     local sources = {
       diagnostics.checkmake,
-      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
+      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown','markdown_inline', 'css', 'scss', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' } },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
+      formatting.prismals,
       formatting.terraform_fmt,
+      null_ls.builtins.formatting.prettier.with({
+        extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote','--trailing-comma', 'all' },
+      }),
       require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
       require 'none-ls.formatting.ruff_format',
     }
