@@ -1,6 +1,7 @@
-require 'core.options'  -- Load general options
-require 'core.keymaps'  -- Load general keymaps
-require 'core.snippets' -- Custom code snippets
+require 'core.options'   -- Load general options
+require 'core.keymaps'   -- Load general keymaps
+require 'core.snippets'  -- Custom code snippets
+require 'core.highlight' -- Custom code highlight
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -49,11 +50,14 @@ require('lazy').setup({
   require 'plugins.harpoon',
   require 'plugins.markdown',
   require 'plugins.markdown-preview',
+  require 'plugins.outline',
   require 'plugins.obsidian-bridge',
   require 'plugins.codeinm',
   require 'plugins.lazydocker',
   require 'plugins.nvim-highlight-colors',
   require 'plugins.ui',
+  require 'plugins.trouble',
+  require 'plugins.osc52',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the

@@ -1,48 +1,70 @@
--- Set lualine as statusline
 return {
   'nvim-lualine/lualine.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    -- Adapted from: https://github.com/nvim-lualine/lualine.nvim/blob/master/lua/lualine/themes/onedark.lua
+    local lualine = require 'lualine'
+    local lazy_status = require 'lazy.status' -- to configure lazy pending updates count
+
     local colors = {
-      blue = '#61afef',
-      green = '#98c379',
-      purple = '#c678dd',
-      cyan = '#56b6c2',
-      red1 = '#e06c75',
-      red2 = '#be5046',
-      yellow = '#e5c07b',
-      fg = '#abb2bf',
-      bg = '#282c34',
-      gray1 = '#828997',
-      gray2 = '#2c323c',
-      gray3 = '#3e4452',
+      -- blue = "#65D1FF",
+      blue = '#82aaff',
+      -- green = "#3EFFDC",
+      green = '#c3e88d',
+      violet = '#fca7ea',
+      -- violet = "#FF61EF",
+      yellow = '#FFc777',
+      -- yellow = "#FFDA7B",
+
+      red = '#FF757f',
+      -- red = "#FF4A4A",
+      fg = '#c3ccdc',
+      -- fg = "#828bb8",
+      -- bg = "#112638",
+      bg = '#222436',
+      bg1 = '#2d3f76',
+      inactive_bg = '#2f334d',
+      -- inactive_bg = "#2c3043",
     }
 
-    local onedark_theme = {
+    local my_lualine_theme = {
       normal = {
-        a = { fg = colors.bg, bg = colors.green, gui = 'bold' },
-        b = { fg = colors.fg, bg = colors.gray3 },
-        c = { fg = colors.fg, bg = colors.gray2 },
+        a = { bg = colors.blue, fg = colors.bg, gui = 'bold' },
+        b = { bg = colors.bg1, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
       },
-      command = { a = { fg = colors.bg, bg = colors.yellow, gui = 'bold' } },
-      insert = { a = { fg = colors.bg, bg = colors.blue, gui = 'bold' } },
-      visual = { a = { fg = colors.bg, bg = colors.purple, gui = 'bold' } },
-      terminal = { a = { fg = colors.bg, bg = colors.cyan, gui = 'bold' } },
-      replace = { a = { fg = colors.bg, bg = colors.red1, gui = 'bold' } },
+      insert = {
+        a = { bg = colors.green, fg = colors.bg, gui = 'bold' },
+        b = { bg = colors.bg1, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      visual = {
+        a = { bg = colors.violet, fg = colors.bg, gui = 'bold' },
+        b = { bg = colors.bg1, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      command = {
+        a = { bg = colors.yellow, fg = colors.bg, gui = 'bold' },
+        b = { bg = colors.bg1, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      replace = {
+        a = { bg = colors.red, fg = colors.bg, gui = 'bold' },
+        b = { bg = colors.bg1, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
       inactive = {
-        a = { fg = colors.gray1, bg = colors.bg, gui = 'bold' },
-        b = { fg = colors.gray1, bg = colors.bg },
-        c = { fg = colors.gray1, bg = colors.gray2 },
+        a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = 'bold' },
+        b = { bg = colors.inactive_bg, fg = colors.semilightgray },
+        c = { bg = colors.inactive_bg, fg = colors.semilightgray },
       },
     }
 
-    -- Import color theme based on environment variable NVIM_THEME
-    local env_var_nvim_theme = os.getenv 'NVIM_THEME' or 'nord'
+    local env_var_nvim_theme = os.getenv 'NVIM_THEME' or 'tokyonight'
 
     -- Define a table of themes
     local themes = {
-      onedark = onedark_theme,
-      nord = 'nord',
+      mytheme = my_lualine_theme,
+      tokyonight = 'tokyonight',
     }
 
     local mode = {
@@ -58,7 +80,6 @@ return {
       file_status = true, -- displays file status (readonly status, modified status)
       path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
     }
-
     local hide_in_width = function()
       return vim.fn.winwidth(0) > 100
     end
@@ -88,16 +109,25 @@ return {
         -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' },
-        disabled_filetypes = { 'alpha', 'neo-tree' },
-        always_divide_middle = true,
+        -- section_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' },
+        -- disabled_filetypes = { 'alpha', 'neo-tree' },
+        -- always_divide_middle = true,
       },
       sections = {
         lualine_a = { mode },
         lualine_b = { 'branch' },
         lualine_c = { filename },
-        lualine_x = { diagnostics, diff, { 'encoding', cond = hide_in_width }, { 'filetype', cond = hide_in_width } },
+        lualine_x = {
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = '#ff9e64' },
+          },
+          { 'encoding' },
+          { 'fileformat' },
+          { 'filetype' },
+        },
         lualine_y = { 'location' },
         lualine_z = { 'progress' },
       },

@@ -39,6 +39,17 @@ return {
         time_format = '%H:%M:%S',
       },
 
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = '250-daily',
+        -- folder = "notes/dailies",
+        -- Optional, if you want to change the date format for the ID of daily notes.
+        date_format = '%Y-%m-%d',
+        -- Optional, if you want to change the date format of the default alias of daily notes.
+        alias_format = '%B %-d, %Y',
+        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+        template = nil,
+      },
       -- name new notes starting the ISO datetime and ending with note name
       -- put them in the inbox subdir
       -- note_id_func = function(title)
