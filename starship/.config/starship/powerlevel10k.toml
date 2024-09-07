@@ -1,0 +1,193 @@
+#### icon
+# nf-ple-left_half_circle_thick
+# nf-pl-left_hard_divider
+# nf-pl-left_hard_divider
+# nf-pl-right_hard_divider
+# nf-ple-right_half_circle_thick
+
+format = """
+[](fg:#7aa2f7)\
+$os\
+[ ](fg:#7aa2f7 bg:#1a1b26)\
+$direnv\
+$directory\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:#1a1b26)\
+$fill\
+$battery\
+$memory_usage\
+$docker_context\
+$nodejs\
+$conda\
+$python\
+\n$character\
+"""
+
+right_format = """
+$cmd_duration
+$lua
+$rust
+$time
+"""
+
+[os]
+format = "[$symbol]($style)"
+style = 'fg:#1a1b26 bg:#7aa2f7'
+disabled = false
+
+[os.symbols]
+Windows = "󰍲"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Macos = "  " # nf-fa-apple
+Ubuntu = "  " # nf-linux-ubuntu
+Debian = "  " # nf-linux-debian
+
+[directory]
+truncation_length = 6 
+truncate_to_repo = true
+fish_style_pwd_dir_length = 0
+use_logical_path = true
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+repo_root_format = "[ $before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
+style = 'fg:#7aa2f7 bg:#1a1b26'
+disabled = false
+home_symbol = ' ~' # nf-costum-home
+read_only = "🔒"
+read_only_style = 'fg:#f7768e bg:#1a1b26'
+truncation_symbol = '../' # nf-fa-folder_open
+use_os_path_sep = true
+# [directory]
+# truncation_length = 6
+# truncation_symbol = ' ' # nf-fa-folder_open
+# truncate_to_repo = false
+# home_symbol = ' ~' # nf-costum-home
+# use_os_path_sep = true
+# style = 'fg:#7aa2f7 bg:#1a1b26'
+# read_only = ' 󰌾 ' # nf-md-lock
+# read_only_style = 'fg:#f7768e bg:#1a1b26'
+# format = '[$path]($style)[$read_only]($read_only_style)'
+
+[git_branch]
+symbol = '   ' # nf-fa-github_alt, nf-fa-code_fork
+truncation_length = 4
+truncation_symbol = ''
+style = 'fg:#7aa2f7 bg:#1a1b26'
+format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+
+[git_status]
+style = 'fg:#e0af68 bg:#1a1b26'
+conflicted = '='
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕'
+up_to_date = '✓'
+untracked = '?'
+stashed = '$'
+modified = '!${count}'
+renamed = '»'
+deleted = '✘'
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[git_metrics]
+added_style = 'fg:#9ece6a bg:#1a1b26'
+deleted_style = 'fg:#9ece6a bg:#1a1b26'
+format = '[+$added/-$deleted]($deleted_style)'
+disabled = false
+
+[fill]
+symbol = '─'
+style = 'blue'
+
+[conda]
+symbol = ' ' # nf-dev-python
+style = 'fg:#9ece6a bg:#1a1b26'
+format = '[ $symbol$environment ]($style)'
+ignore_base = false
+
+[python]
+symbol = ' ' # nf-dev-python
+format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+pyenv_version_name = false
+style = 'fg:#1a1b26 bg:#9ece6a'
+
+[direnv]
+format = '[$symbol$allowed]($style) '
+style = "bold fg:#1a1b26 bg:#cba6f7"
+disabled = false
+
+[memory_usage]
+disabled = false
+threshold = 0
+format = "[$symbol$ram( $percentage%)]($style) "
+
+[character]
+success_symbol = '[❯](bold #9ece6a)'
+error_symbol = '[❯](bold red)'
+
+[docker_context]
+symbol = ""
+style = 'fg:#9ece6a bg:#1a1b26'
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[cmd_duration]
+min_time = 1
+style = 'fg:#e0af68'
+format = "[   $duration]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
+
+[lua]
+symbol = "" # nf-seti-lua
+format = '[  $symbol $version](blue)' # nf-pl-right_soft_divider
+
+[rust]
+symbol = "" # nf-dev-rust
+format = '[  $symbol $version](red)' # nf-pl-right_soft_divider
+
+[nodejs]
+format = " [node](italic) [${symbol} ($version)](bold bright-green)"
+symbol = ''
+style = 'fg:#9ece6a bg:#1a1b26'
+version_format = "${raw}"
+detect_files = ["!bun.lockb","!bunfig.toml","package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
+detect_folders = ["node_modules"]
+detect_extensions = []
+
+[time]
+disabled = false
+style = 'fg:#73daca'
+format = '[   $time]($style)' # nf-pl-right_soft_divider, nf-fa-clock_o
+time_format = '%T'
+utc_time_offset = '+9'
+
+[battery]
+full_symbol = '🔋 '
+charging_symbol = '⚡️ '
+discharging_symbol = "🪫"
+empty_symbol = "🧟 "
+disabled = false
+format = "[ $symbol$percentage ]($style)"
+
+[[battery.display]]
+threshold = 100
+style = "bold dimmed yellow"
+
+[[battery.display]]
+threshold = 30
+style = "bg:#06969A"
+discharging_symbol = "💦"

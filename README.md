@@ -27,10 +27,15 @@ brew install stow
 git clone  https://github.com/hiroyuki1227/dotfiles.git
 
 cd dotfiles
-
-stow nvim zsh alacritty kitty lazygit  scripts tmux wezterm hammmerspoon
+stow -v nvim zsh alacritty kitty lazygit  scripts tmux wezterm hammmerspoon
 
 dotfileがルートと.config配下にリンクが貼られる
+```
+
+### 削除する場合
+
+```
+stow -vD nvim zsh alacritty kitty lazygit  scripts tmux wezterm hammmerspoon
 ```
 
 ## fzf (Fuzzy Finder)

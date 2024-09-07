@@ -1,0 +1,63 @@
+format = """
+$os\
+$hostname\
+$time\
+$battery\
+$memory_usage
+$directory\
+$git_branch\
+$git_status\
+$git_metrics
+$character
+"""
+
+right_format = "$ruby"
+
+[os]
+disabled = false
+
+[hostname]
+ssh_only = false
+format = "[$ssh_symbol$hostname]($style) "
+style = "bold dimmed red"
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "bold dimmed cyan"
+
+[battery]
+full_symbol = '🔋 '
+charging_symbol = '⚡️ '
+discharging_symbol = '💀 '
+
+[[battery.display]]
+threshold = 100
+style = "bold dimmed yellow"
+
+[memory_usage]
+disabled = false
+threshold = 0
+format = "[$symbol$ram( $percentage%)]($style) "
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+truncation_symbol = "…/"
+style = "white"
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "purple"
+
+[git_status]
+style = "purple"
+
+[git_metrics]
+disabled = false
+added_style = "green"
+deleted_style = "red"
+
+[ruby]
+format = "[$symbol($version )]($style) "
+style = "red"
