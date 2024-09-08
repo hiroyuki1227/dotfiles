@@ -22,8 +22,8 @@ return {
 
       -- I don't even use these mappings, just the clipboard
       -- -- Key mappings for OSC52
-      -- vim.keymap.set("n", "<leader>1", '"+y')
-      -- vim.keymap.set("n", "<leader>2", '"+yy')
+      vim.keymap.set('n', '<leader>1', '"+y')
+      vim.keymap.set('n', '<leader>2', '"+yy')
     end,
   },
 }

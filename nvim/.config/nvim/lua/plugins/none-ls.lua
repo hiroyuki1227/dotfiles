@@ -30,14 +30,31 @@ return {
 
     local sources = {
       diagnostics.checkmake,
-      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown','markdown_inline', 'css', 'scss', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte' } },
+      formatting.prettier.with {
+        filetypes = {
+          'html',
+          'json',
+          'yaml',
+          'markdown',
+          'markdown_inline',
+          'css',
+          'scss',
+          'javascript',
+          'typescript',
+          'typescriptreact',
+          'javascriptreact',
+          'vue',
+          'prisma',
+          'svelte',
+        },
+      },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.prismals,
       formatting.terraform_fmt,
-      null_ls.builtins.formatting.prettier.with({
-        extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote','--trailing-comma', 'all' },
-      }),
+      null_ls.builtins.formatting.prettier.with {
+        extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote', '--trailing-comma', 'all' },
+      },
       require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
       require 'none-ls.formatting.ruff_format',
     }

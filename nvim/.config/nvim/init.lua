@@ -1,6 +1,6 @@
-require 'core.options'   -- Load general options
-require 'core.keymaps'   -- Load general keymaps
-require 'core.snippets'  -- Custom code snippets
+require 'core.options' -- Load general options
+require 'core.keymaps' -- Load general keymaps
+require 'core.snippets' -- Custom code snippets
 require 'core.highlight' -- Custom code highlight
 
 -- Install package manager
@@ -50,6 +50,9 @@ require('lazy').setup({
   require 'plugins.harpoon',
   require 'plugins.markdown',
   require 'plugins.markdown-preview',
+  require 'plugins.render-markdown',
+  -- require 'plugins.image-nvim',
+  -- require 'plugins.img-clip',
   require 'plugins.outline',
   require 'plugins.obsidian-bridge',
   require 'plugins.codeinm',
@@ -57,7 +60,8 @@ require('lazy').setup({
   require 'plugins.nvim-highlight-colors',
   require 'plugins.ui',
   require 'plugins.trouble',
-  require 'plugins.osc52',
+  -- require 'plugins.osc52',
+  -- require 'plugins.prismals',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the

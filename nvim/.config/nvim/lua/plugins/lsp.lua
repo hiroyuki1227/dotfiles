@@ -223,7 +223,28 @@ return { -- LSP Configuration & Plugins
       cssls = {},
       ltex = {},
       texlab = {},
-      prismals = {},
+      prismals = {
+        filetypes = { 'prisma' },
+        cmd = { 'prisma-language-server', '--stdio' },
+        -- root_dir = lspconfig.util.root_pattern('.git', 'package.json'),
+        settings = {
+          prisma = {
+            prismaFmtBinPath = '',
+          },
+        },
+        docs = {
+          description = [[
+          Language server for the Prisma JavaScript and Typescript ORM
+          '@prisma/language-server' can be installed via npm
+          ```sh
+          npm install -g @prisma/language-server
+          ```
+          ]],
+          default_config = {
+            root_dir = [[root_pattern(".git", "package.json")]],
+          },
+        },
+      },
       graphql = {},
       emmet_ls = {},
       marksman = {},

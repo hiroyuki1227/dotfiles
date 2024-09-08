@@ -1,32 +1,18 @@
--- Filename: ~/github/dotfiles-latest/neovim/neobean/lua/plugins/markdown.lua
--- ~/github/dotfiles-latest/neovim/neobean/lua/plugins/markdown.lua
-
--- https://github.com/MeanderingProgrammer/markdown.nvim
---
--- When I hover over markdown headings, this plugins goes away, so I need to
--- edit the default highlights
--- I tried adding this as an autocommand, in the options.lua
--- file, also in the markdownl.lua file, but the highlights kept being overriden
--- so the inly way is the only way I was able to make it work was loading it
--- after the config.lazy in the init.lua file lamw25wmal
-
--- Define color variables
-local color1_bg = "#f265b5"
-local color2_bg = "#37f499"
-local color3_bg = "#04d1f9"
-local color4_bg = "#a48cf2"
-local color5_bg = "#f1fc79"
-local color6_bg = "#f7c67f"
-local color_fg = "#323449"
+local color1_bg = '#f265b5'
+local color2_bg = '#37f499'
+local color3_bg = '#04d1f9'
+local color4_bg = '#a48cf2'
+local color5_bg = '#f1fc79'
+local color6_bg = '#f7c67f'
+local color_fg = '#323449'
 -- local color_sign = "#ebfafa"
 
 return {
-  "MeanderingProgrammer/markdown.nvim",
+  'MeanderingProgrammer/markdown.nvim',
   opts = {
     heading = {
       sign = false,
-      icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },
-
+      icons = { '󰎤 ', '󰎧 ', '󰎪 ', '󰎭 ', '󰎱 ', '󰎳 ' },
       -- Heading colors (when not hovered over), extends through the entire line
       vim.cmd(string.format([[highlight Headline1Bg guifg=%s guibg=%s]], color_fg, color1_bg)),
       vim.cmd(string.format([[highlight Headline2Bg guifg=%s guibg=%s]], color_fg, color2_bg)),
@@ -45,20 +31,20 @@ return {
       vim.cmd(string.format([[highlight Headline6Fg cterm=bold gui=bold guifg=%s]], color6_bg)),
 
       backgrounds = {
-        "Headline1Bg",
-        "Headline2Bg",
-        "Headline3Bg",
-        "Headline4Bg",
-        "Headline5Bg",
-        "Headline6Bg",
+        'Headline1Bg',
+        'Headline2Bg',
+        'Headline3Bg',
+        'Headline4Bg',
+        'Headline5Bg',
+        'Headline6Bg',
       },
       foregrounds = {
-        "Headline1Fg",
-        "Headline2Fg",
-        "Headline3Fg",
-        "Headline4Fg",
-        "Headline5Fg",
-        "Headline6Fg",
+        'Headline1Fg',
+        'Headline2Fg',
+        'Headline3Fg',
+        'Headline4Fg',
+        'Headline5Fg',
+        'Headline6Fg',
       },
     },
   },

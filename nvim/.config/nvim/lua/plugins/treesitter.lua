@@ -5,7 +5,24 @@ return {
     build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-context',
     },
+    opt = function()
+      local tsc = require 'treesitter-context'
+      LazyVim.toggle.map('<leader>ut', {
+        name = 'Treesitter Context',
+        get = tsc.enabled,
+        set = function(state)
+          if state then
+            tsc.enable()
+          else
+            tsc.disable()
+          end
+        end,
+        max_lines = 5,
+      })
+    end,
+
     config = function()
       require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
