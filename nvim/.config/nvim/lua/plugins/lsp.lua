@@ -247,6 +247,7 @@ return { -- LSP Configuration & Plugins
       },
       graphql = {},
       emmet_ls = {},
+      biome = {},
       marksman = {},
       svelte = {},
     }

@@ -14,6 +14,7 @@ return {
     -- list of formatters & linters for mason to install
     require('mason-null-ls').setup {
       ensure_installed = {
+        'biome',
         'checkmake',
         'prettierd', -- ts/js formatter
         'prettier',  -- ts/js formatter
