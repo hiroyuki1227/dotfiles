@@ -12,19 +12,19 @@
 add_newline = true
 
 format = """
-[](fg:#7aa2f7)\
-$os\
-[ ](fg:#7aa2f7 bg:#1a1b26)\
-$directory\
+[ ](fg:#1a1b26)\
+$os$hostname\
+$direnv$directory\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#1a1b26)\
+[ ](fg:#1a1b26)\
 $fill\
-$battery\
-$memory_usage\
-([](fg:#1a1b26)$nodejs[](fg:208 bg:#1a1b26)$package)\
-([](fg:#1a1b26)$golang(bg:#1a1b26))\
+$docker_context\
+([ ](fg:#1a1b26)$nodejs[ ](fg:208 bg:#1a1b26)$package)\
+([ ](fg:#1a1b26)$golang(bg:#1a1b26))\
+([ ](fg:#1a1b26)$lua(bg:#1a1b26))\
+([ ](fg:#1a1b26)$python(bg:#1a1b26))\
 \n$character\
 """
 
@@ -41,7 +41,6 @@ $memory_usage\
 # $fill\
 # $battery\
 # $memory_usage\
-# $docker_context\
 # $nodejs\
 # $conda\
 # $python\
@@ -49,30 +48,35 @@ $memory_usage\
 # """
 
 right_format = """
-$cmd_duration
-$python
-$lua
-$time
+$cmd_duration\
+$battery\
+$memory_usage\
+$time\
 """
+
+[hostname]
+ssh_only = false
+format = '[$hostname]($style)'
+style = "bold fg:yellow bg:#1a1b26"
+disabled = false
+ssh_symbol = " "
 
 [os]
 format = "[$symbol]($style)"
-style = 'fg:#1a1b26 bg:#7aa2f7'
+style = 'fg:#ffffff bg:#1a1b26'
 disabled = false
 
 [os.symbols]
-Macos = "  " # nf-fa-apple
-
+Macos = "🍎 "
 [directory]
-truncation_length = 6 
+truncation_length = 4 
 truncate_to_repo = false
-fish_style_pwd_dir_length = 0
 use_logical_path = true
 format = "[ $path ]($style)[$read_only]($read_only_style)"
 repo_root_format = "[ $before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 style = 'fg:#7aa2f7 bg:#1a1b26'
 home_symbol = ' ~' # nf-fa-home
-truncation_symbol = ' ' # nf-fa-folder_open
+truncation_symbol = '  ~' # nf-fa-folder_open
 read_only = "🔒"
 read_only_style = 'fg:#f7768e bg:#1a1b26'
 use_os_path_sep = true
@@ -111,39 +115,40 @@ style = 'blue'
 [conda]
 symbol = ' ' # nf-dev-python
 style = 'fg:#9ece6a bg:#1a1b26'
-format = '[ $symbol$environment ]($style)'
+format = '[     $symbol$environment ]($style)'
 ignore_base = false
 
 [python]
 symbol = ' ' # nf-dev-python
-format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+format = '[     ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
 pyenv_version_name = false
 style = 'fg:#1a1b26 bg:#9ece6a'
 
 [direnv]
-format = '[$symbol$allowed]($style) '
+format = '[ $symbol$allowed]($style) '
 style = "bold fg:#1a1b26 bg:#cba6f7"
 disabled = false
 
 [memory_usage]
 disabled = false
 threshold = 0
-format = "[$symbol$ram( $percentage%)]($style) "
+style = "bold fg:208"
+format = "[  $symbol$ram( $percentage%)]($style) "
 
 # プロンプトの記号変更
 [character]
-success_symbol = "[󰀵 > ](bold green)"
-error_symbol = "[ > ](bold red)"
+success_symbol = "[󰀵 → ](bold cyan)"
+error_symbol = "[ x ](bold red)"
 
 [docker_context]
 symbol = ""
 style = 'fg:#9ece6a bg:#1a1b26'
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+format = '[  [ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
 
 [cmd_duration]
 min_time = 1
 style = 'fg:#e0af68'
-format = "[   $duration]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
+format = "[  $duration ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
 
 [lua]
 symbol = "" # nf-seti-lua
@@ -156,17 +161,16 @@ format = '[  $symbol $version](red)' # nf-pl-right_soft_divider
 [golang]
 symbol = "  󰟓 "
 style = "fg:#79d4fd bg:#1a1b26"
-format = '[via $symbol($version )]($style)'
+format = '[  via $symbol($version )]($style)'
 
 [package]
-format = '[ $symbol$version ]($style)'
-# オレンジのカラーをfgに当てる
-style = 'fg:#000000 bg:208'
+format = '[$symbol$version ]($style)'
+style = 'bg:208'
 
 [nodejs]
 symbol = " "
-style = 'fg:#9ece6a bg:#1a1b26'
-format = '[via $symbol($version )]($style)'
+style = 'fg:#9ece6a'
+format = '[ node $symbol($version )]($style)'
 version_format = "${raw}"
 detect_files = ["!bun.lockb","!bunfig.toml","package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
 detect_folders = ["node_modules"]
@@ -182,16 +186,27 @@ utc_time_offset = '+9'
 [battery]
 full_symbol = '🔋 '
 charging_symbol = '⚡️ '
-discharging_symbol = "🪫"
-empty_symbol = "🧟 "
-disabled = false
-format = "[ $symbol$percentage ]($style)"
+discharging_symbol = '💀 '
 
-[[battery.display]]
+[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
 threshold = 100
-style = "bold dimmed yellow"
+style = 'bold green'
 
-[[battery.display]]
+[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
+threshold = 80
+style = 'bold blue'
+
+[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
+threshold = 50
+style = 'bold purple'
+
+[[battery.display]] # 'bold yellow' style and 💦 symbol when capacity is between 10% and 30%
 threshold = 30
-style = "bg:#06969A"
-discharging_symbol = "💦"
+style = 'bold yellow'
+discharging_symbol = '💦 '
+
+[[battery.display]] # 'bold red' style and discharging_symbol when capacity is between 0% and 10%
+threshold = 10
+style = 'bold red'
+discharging_symbol = '💦 '
+
