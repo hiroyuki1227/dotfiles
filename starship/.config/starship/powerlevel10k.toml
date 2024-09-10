@@ -25,6 +25,7 @@ $docker_context\
 ([](fg:#4d4c61)$golang(bg:#4d4c61))\
 ([](fg:#4d4c61)$lua(bg:#4d4c61))\
 ([](fg:#4d4c61)$python(bg:#4d4c61))\
+([](fg:#4d4c61)$conda(bg:#4d4c61))\
 \n$character\
 """
 #
@@ -118,14 +119,14 @@ style = 'blue'
 [conda]
 symbol = ' ' # nf-dev-python
 style = 'fg:#9ece6a bg:#4d4c61'
-format = '[     $symbol$environment ]($style)'
+format = '[ $symbol$environment ]($style)'
 ignore_base = false
 
 [python]
 symbol = ' ' # nf-dev-python
-format = '[     ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
 pyenv_version_name = false
-style = 'fg:#4d4c61 bg:#9ece6a'
+style = 'fg:#9ece6a bg:#4d4c61'
 
 [direnv]
 format = '[ $symbol$allowed]($style) '
@@ -155,16 +156,18 @@ format = "[  $duration ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
 
 [lua]
 symbol = "" # nf-seti-lua
-format = '[  $symbol $version](blue)' # nf-pl-right_soft_divider
+format = '[ $symbol $version](blue)' # nf-pl-right_soft_divider
 
 [rust]
 symbol = "" # nf-dev-rust
-format = '[  $symbol $version](red)' # nf-pl-right_soft_divider
+format = '[ $symbol $version](red)' # nf-pl-right_soft_divider
+ 
 
 [golang]
 symbol = "  󰟓 "
 style = "fg:#79d4fd bg:#4d4c61"
-format = '[  via $symbol($version )]($style)'
+format = '[ via $symbol($version )]($style)'
+ 
 
 [package]
 format = '[$symbol$version ]($style)'
