@@ -10,46 +10,28 @@
 # true: スペースを入れる
 # false: スペースを入れない
 add_newline = true
+palette = "solarized"
 
 format = """
-[](fg:#4d4c61)\
+[](fg:dark_blue)\
 $os$hostname\
 $direnv$directory\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#4d4c61)\
+[](fg:dark_blue)\
 $fill\
 $docker_context\
-([](fg:#4d4c61 )$nodejs[](fg:208 bg:#4d4c61)$package)\
-([](fg:#4d4c61)$golang(bg:#4d4c61))\
-([](fg:#4d4c61)$lua(bg:#4d4c61))\
-([](fg:#4d4c61)$python(bg:#4d4c61))\
-([](fg:#4d4c61)$conda(bg:#4d4c61))\
+([](fg:dark_blue)$nodejs[](fg:208 bg:dark_blue)$package)\
+([](fg:dark_blue)$golang(bg:dark_blue))\
+([](fg:dark_blue)$lua(bg:dark_blue))\
+([](fg:dark_blue)$python(bg:dark_blue))\
+([](fg:dark_blue)$conda(bg:dark_blue))\
+([ ](fg:208))\
 \n$character\
 """
 #
 # set -g @prefix_highlight_output_suffix ""
-
-# format = """
-# [](fg:#7aa2f7)\
-# $os\
-# [ ](fg:#7aa2f7 bg:#4d4c61)\
-# $direnv\
-# $directory\
-# $git_branch\
-# $git_status\
-# $git_metrics\
-# [](fg:#4d4c61)\
-# $fill\
-# $battery\
-# $memory_usage\
-# $nodejs\
-# $conda\
-# $python\
-# \n$character\
-# """
-
 right_format = """
 $cmd_duration\
 $battery\
@@ -60,13 +42,13 @@ $time\
 [hostname]
 ssh_only = false
 format = '[$hostname]($style)'
-style = "bold fg:yellow bg:#4d4c61"
+style = "bold fg:yellow bg:dark_blue"
 disabled = false
 ssh_symbol = " "
 
 [os]
 format = "[$symbol]($style)"
-style = 'fg:#ffffff bg:#4d4c51'
+style = 'fg:black bg:dark_blue'
 disabled = false
 
 [os.symbols]
@@ -78,22 +60,22 @@ truncate_to_repo = false
 use_logical_path = true
 format = "[ $path]($style)[$read_only]($read_only_style)"
 repo_root_format = "[ $before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
-style = 'fg:#7aa2f7 bg:#4d4c61'
+style = 'fg:blue bg:dark_blue'
 home_symbol = ' ~' # nf-fa-home
 truncation_symbol = '…/' # nf-fa-folder_open
 read_only = "🔒"
-read_only_style = 'fg:#f7768e bg:#4d4c61'
+read_only_style = 'fg:red bg:dark_blue'
 use_os_path_sep = true
 
 [git_branch]
 symbol = '   ' # nf-fa-github_alt, nf-fa-code_fork
 truncation_length = 4
 truncation_symbol = ''
-style = 'fg:#7aa2f7 bg:#4d4c61'
+style = 'fg:green bg:dark_blue'
 format = '[ $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
 
 [git_status]
-style = 'fg:#e0af68 bg:#4d4c61'
+style = 'fg:red bg:dark_blue'
 conflicted = '='
 ahead = '⇡${count}'
 behind = '⇣${count}'
@@ -107,8 +89,8 @@ deleted = '✘'
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_metrics]
-added_style = 'fg:#9ece6a bg:#4d4c61'
-deleted_style = 'fg:#9ece6a bg:#4d4c61'
+added_style = 'fg:green bg:dark_blue'
+deleted_style = 'fg:magenda bg:dark_blue'
 format = '[+$added/-$deleted]($deleted_style)'
 disabled = false
 
@@ -118,15 +100,15 @@ style = 'blue'
 
 [conda]
 symbol = ' ' # nf-dev-python
-style = 'fg:#9ece6a bg:#4d4c61'
+style = 'fg:teal bg:dark_blue'
 format = '[ $symbol$environment ]($style)'
 ignore_base = false
 
 [python]
 symbol = ' ' # nf-dev-python
-format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
-pyenv_version_name = false
-style = 'fg:#9ece6a bg:#4d4c61'
+format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
+pyenv_version_name = true 
+style = 'fg:teal bg:dark_blue'
 
 [direnv]
 format = '[ $symbol$allowed]($style) '
@@ -136,7 +118,7 @@ disabled = false
 [memory_usage]
 disabled = false
 threshold = 0
-style = "bold fg:208"
+style = "bold fg:orange"
 format = "[  $symbol$ram( $percentage%)]($style) "
 
 # プロンプトの記号変更
@@ -146,12 +128,12 @@ error_symbol = "[ x ](bold red)"
 
 [docker_context]
 symbol = ""
-style = 'fg:#9ece6a bg:#4d4c61'
-format = '[  [ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+style = 'fg:green bg:dark_blue'
+format = '[  [ $symbol( $context) ](fg:magenda bg:dark_blue)]($style)'
 
 [cmd_duration]
 min_time = 1
-style = 'fg:#e0af68'
+style = 'fg:yellow'
 format = "[  $duration ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
 
 [lua]
@@ -165,17 +147,17 @@ format = '[ $symbol $version](red)' # nf-pl-right_soft_divider
 
 [golang]
 symbol = "  󰟓 "
-style = "fg:#79d4fd bg:#4d4c61"
+style = "fg:blue bg:dark_blue"
 format = '[ via $symbol($version )]($style)'
  
 
 [package]
 format = '[$symbol$version ]($style)'
-style = 'fg:#292e42 bg:208'
+style = 'fg:dark_blue bg:208'
 
 [nodejs]
 symbol = " "
-style = 'fg:#7aa2f7 bg:#4d4c61'
+style = 'fg:blue bg:dark_blue'
 format = '[ node $symbol($version )]($style)'
 version_format = "${raw}"
 detect_files = ["!bun.lockb","!bunfig.toml","package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
@@ -216,3 +198,55 @@ threshold = 10
 style = 'bold red'
 discharging_symbol = '💦 '
 
+[palettes.nord]
+dark_blue = '#5E81AC'
+blue = '#81A1C1'
+teal = '#88C0D0'
+red = '#BF616A'
+orange = '#D08770'
+green = '#A3BE8C'
+yellow = '#EBCB8B'
+purple = '#B48EAD'
+gray = '#434C5E'
+black = '#2E3440'
+white='#D8DEE9'
+
+[palettes.onedark]
+dark_blue='#61afef'
+blue='#56b6c2'
+red='#e06c75'
+green='#98c379'
+purple='#c678dd'
+cyan='#56b6c2'
+orange='#be5046'
+yellow='#e5c07b'
+gray='#828997'
+white ='#abb2bf'
+black='#2c323c'
+
+[palettes.solarized]
+dark_blue='#4d4c61'
+blue='#268bd2'
+red='#dc322f'
+green='#859900'
+purple='#6c71c4'
+cyan='#2aa198'
+orange='#be5046'
+yellow='#b58900'
+gray='#828997'
+white ='#eee8d5'
+black='#073642'
+
+
+[palettes.tokyo]
+dark_blue='#4d4c61'
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
+orange='#be5046'
+gray='#444b6a'
+magenda='#bb9af7'

@@ -6,6 +6,7 @@ return {
 	enable_tab_bar = false,
 	font_size = 15.0,
 	font = wezterm.font("UDEV Gothic NF", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+	-- font = wezterm.font("SpaceMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 	-- font = wezterm.font("JetBrainsMonoNL Nerd Font"),
 	-- font = wezterm.font("Hack Nerd Font Mono"),
 	-- macos_window_background_blur = 40,
