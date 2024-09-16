@@ -6,7 +6,7 @@ return {
 	enable_tab_bar = false,
 	font_size = 15.0,
 	-- font = wezterm.font("UDEV Gothic NF", { weight = "Bold", stretch = "Normal", style = "Normal" }),
-	-- font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Regular", stretch = "Normal", style = "Normal" }),
+	-- font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 	-- font = wezterm.font("SpaceMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 	font = wezterm.font("JetBrainsMonoNL Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 	-- font = wezterm.font("Hack Nerd Font Mono"),
@@ -19,10 +19,11 @@ return {
 	-- 	saturation = 0.5,
 	-- },
 	-- window_background_opacity = 0.92,
-	window_background_opacity = 0.75,
+	window_background_opacity = 0.70,
 	-- window_background_opacity = 0.78,
 	-- window_background_opacity = 0.20,
 	window_decorations = "RESIZE",
+
 	-- keys = {
 	--   {
 	--     key = "f",

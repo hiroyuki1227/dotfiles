@@ -16,6 +16,7 @@ return {
         enabled = true,
         view = "notify",
       }
+
       opts.messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
         -- This is a current Neovim limitation.
@@ -38,6 +39,11 @@ return {
         lsp_doc_border = false, -- add a border to hover docs and signature help
       }
       opts.lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
         signature = { enabled = false },
       }
     end,

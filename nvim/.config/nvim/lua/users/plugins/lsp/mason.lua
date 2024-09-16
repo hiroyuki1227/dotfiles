@@ -40,7 +40,10 @@ return {
         "prismals",
         "gopls",
         "prettier", -- prettier formatter
+        "prettierd", -- prettier formatter
         "pyright",
+        "dockerls",
+        "yamlls",
         "pylsp",
       },
     }
