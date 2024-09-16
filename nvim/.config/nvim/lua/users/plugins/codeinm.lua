@@ -1,6 +1,6 @@
 return {
   -- Remove the `use` here if you're using folke/lazy.nvim.
-  "Exafunction/codeium.vim",
+  "Exafunction/codeium.nvim",
   dependecies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",

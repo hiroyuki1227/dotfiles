@@ -33,13 +33,13 @@ keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buf
 -- vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
 
 -- toggle line wrapping
-keymap.set("n", "<leader>lw", "<cmd>set warp!<CR>", { desc = "toggle line wrapping" })
+keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "toggle line wrapping" })
 --
 -- clear highlights
-vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "clear search highlight" })
+keymap.set("n", "<Esc>", ":noh<CR>", { desc = "clear search highlight" })
 
 -- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
-vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
-vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
+keymap.set("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
+keymap.set("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
+keymap.set("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
+keymap.set("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
