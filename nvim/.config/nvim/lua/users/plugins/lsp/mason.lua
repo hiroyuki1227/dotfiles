@@ -39,8 +39,8 @@ return {
         "emmet_ls",
         "prismals",
         "gopls",
-        "prettier", -- prettier formatter
-        "prettierd", -- prettier formatter
+        -- "prettier", -- prettier formatter
+        -- "prettierd", -- prettier formatter
         "pyright",
         "dockerls",
         "yamlls",

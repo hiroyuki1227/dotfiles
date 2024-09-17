@@ -1,4 +1,5 @@
 -- https://github.com/HakonHarnes/img-clip.nvim
+-- https://github.com/HakonHarnes/img-clip.nvim
 
 return {
   "HakonHarnes/img-clip.nvim",
