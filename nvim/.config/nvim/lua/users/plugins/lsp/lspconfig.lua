@@ -104,7 +104,7 @@ return {
         -- configure graphql language server
         lspconfig["graphql"].setup {
           capabilities = capabilities,
-          filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+          filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact", "css", "html", "sass", "scss" },
         }
       end,
       ["emmet_ls"] = function()
