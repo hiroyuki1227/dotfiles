@@ -1,4 +1,4 @@
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd "let g:netrw_liststyle = 3"
 
 local opt = vim.opt
 
@@ -18,8 +18,6 @@ opt.wrap = false
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
-opt.cursorline = true
-
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
@@ -30,7 +28,7 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+opt.clipboard:append "unnamedplus" -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
@@ -45,3 +43,11 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "1"
 opt.foldmethod = "indent"
+
+-- カーソル行の背景色を変更
+-- vim.cmd [[
+--   highlight CursorLine guibg=#2E3440  " Nordテーマのダークブルー
+-- ]]
+
+-- カーソル行の強調表示を有効にする
+vim.opt.cursorline = true

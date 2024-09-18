@@ -24,5 +24,10 @@ return {
       mode = "cursor", -- set to `false` to disable
       separator = nil, -- set to `nil` to disable
     }
+
+    -- 背景色の変更
+    vim.cmd [[
+      highlight TreesitterContext guibg=#2E3440  "Nordのダークブルーに設定
+    ]]
   end,
 }
