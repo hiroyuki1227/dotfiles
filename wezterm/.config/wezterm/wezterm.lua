@@ -2,7 +2,8 @@ local wezterm = require("wezterm")
 return {
 
 	-- color_scheme = 'termnial.sexy',
-	color_scheme = "tokyonight",
+	-- color_scheme = "tokyonight",
+	color_scheme = "solarized_osaka_night",
 	enable_tab_bar = false,
 
 	-- font = wezterm.font("SpaceMono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
