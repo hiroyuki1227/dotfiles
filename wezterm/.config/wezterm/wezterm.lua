@@ -26,7 +26,7 @@ return {
 
 	-- text_background_opacity = 0.70,
 	window_background_opacity = 0.70,
-	-- macos_window_background_blur = 40,
+	macos_window_background_blur = 10,
 	-- macos_window_background_blur = 10,
 	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
 	-- window_background_image_hsb = {

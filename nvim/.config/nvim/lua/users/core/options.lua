@@ -1,6 +1,10 @@
 vim.cmd "let g:netrw_liststyle = 3"
 
+vim.scriptencoding = "utf-8"
+
 local opt = vim.opt
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
 opt.relativenumber = true
 opt.number = true
@@ -43,7 +47,7 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "1"
 opt.foldmethod = "indent"
-
+--
 -- カーソル行の背景色を変更
 -- vim.cmd [[
 --   highlight CursorLine guibg=#2E3440  " Nordテーマのダークブルー
