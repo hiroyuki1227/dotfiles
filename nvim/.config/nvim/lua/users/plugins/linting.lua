@@ -4,8 +4,9 @@ return {
   optional = true,
   opts = {
     linters = {
+      -- https://github.com/LazyVim/LazyVim/discussions/4094#discussioncomment-10178217
       ["markdownlint-cli2"] = {
-        args = { "--config", os.getenv "HOME" .. "/dotfiles/markdownlint.yaml" },
+        args = { "--config", os.getenv "HOME" .. "/dotfiles/markdownlint.yaml", "--" },
       },
     },
   },
@@ -18,6 +19,8 @@ return {
       typescript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
+      markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
+      ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
       svelte = { "eslint_d" },
       python = { "pylint" },
     }
@@ -31,7 +34,7 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "<leader>l", function()
+    vim.keymap.set("n", "<leader>lf", function()
       lint.try_lint()
     end, { desc = "Trigger linting for current file" })
   end,
