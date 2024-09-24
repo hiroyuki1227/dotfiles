@@ -9,26 +9,26 @@
 # コマンドラインに1行分のスペース設定
 # true: スペースを入れる
 # false: スペースを入れない
-add_newline = true
-palette = "solarized"
+add_newline = false
+command_timeout = 1000
+palette = "tokyo"
+# palette = "catppuccin_mocha"
 
 format = """
-[](fg:dark_blue)\
+$character\
 $os$hostname\
 $direnv$directory\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:dark_blue)\
 $fill\
 $docker_context\
-([](fg:dark_blue)$nodejs[](fg:208 bg:dark_blue)$package)\
-([](fg:dark_blue)$golang(bg:dark_blue))\
-([](fg:dark_blue)$lua(bg:dark_blue))\
-([](fg:dark_blue)$python(bg:dark_blue))\
-([](fg:dark_blue)$conda(bg:dark_blue))\
-([ ](fg:208))\
-\n$character\
+($nodejs)($package)\
+$golang\
+$lua\
+$python\
+$conda\
+\n[󰀵 → ](bold green)\
 """
 #
 # set -g @prefix_highlight_output_suffix ""
@@ -39,68 +39,76 @@ $memory_usage\
 $time\
 """
 
+[fill]
+symbol = '─'
+style = 'fg:cyan'
+
+[character]
+success_symbol = "🚀 "
+error_symbol = "🔥 "
+
 [hostname]
 ssh_only = false
-format = '[$hostname]($style)'
-style = "bold fg:yellow bg:dark_blue"
+format = 'on [$hostname](bold yellow) '
 disabled = false
 ssh_symbol = " "
 
 [os]
-format = "[$symbol]($style)"
-style = 'fg:black bg:dark_blue'
+format = "[$symbol]($style) "
+style = 'fg:white'
 disabled = false
 
 [os.symbols]
-Macos = "🍎 "
+Macos = "󰀵"
+# Macos = "🍎 "
+
 
 [directory]
 truncation_length = 3 
 truncate_to_repo = false
+fish_style_pwd_dir_length=2
 use_logical_path = true
-format = "[ $path]($style)[$read_only]($read_only_style)"
-repo_root_format = "[ $before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
-style = 'fg:blue bg:dark_blue'
+format = "at [$path]($style)[$read_only]($read_only_style) "
+repo_root_format = "at [$before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+style = 'fg:cyan'
 home_symbol = ' ~' # nf-fa-home
 truncation_symbol = '…/' # nf-fa-folder_open
 read_only = "🔒"
-read_only_style = 'fg:red bg:dark_blue'
+read_only_style = 'fg:red'
 use_os_path_sep = true
 
 [git_branch]
-symbol = '   ' # nf-fa-github_alt, nf-fa-code_fork
-truncation_length = 4
-truncation_symbol = ''
-style = 'fg:green bg:dark_blue'
-format = '[ $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+symbol = " "
+format = 'via [$symbol$branch]($style) '
+# truncation_length = 4
+truncation_symbol = '…/'
+style = 'bold fg:green'
 
+# Shows current git status
 [git_status]
-style = 'fg:red bg:dark_blue'
-conflicted = '='
+format = '[$all_status$ahead_behind]($style) '
+style = 'bold green'
+conflicted = '🏳'
+up_to_date = ''
+untracked = ' '
 ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
-diverged = '⇕'
-up_to_date = '✓'
-untracked = '?'
-stashed = '$'
-modified = '!${count}'
-renamed = '»'
-deleted = '✘'
-format = '([\[$all_status$ahead_behind\]]($style))'
+stashed = ' '
+modified = ' '
+staged = '[++\($count\)](green)'
+renamed = '襁 '
+deleted = ' '
 
 [git_metrics]
-added_style = 'fg:green bg:dark_blue'
-deleted_style = 'fg:magenda bg:dark_blue'
-format = '[+$added/-$deleted]($deleted_style)'
+added_style = 'fg:green'
+deleted_style = 'fg:magenda'
+format = '[+$added/-$deleted]($deleted_style) '
 disabled = false
-
-[fill]
-symbol = '─'
-style = 'blue'
 
 [conda]
 symbol = ' ' # nf-dev-python
-style = 'fg:teal bg:dark_blue'
+style = 'fg:teal'
 format = '[ $symbol$environment ]($style)'
 ignore_base = false
 
@@ -108,28 +116,25 @@ ignore_base = false
 symbol = ' ' # nf-dev-python
 format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
 pyenv_version_name = true 
-style = 'fg:teal bg:dark_blue'
+style = 'fg:cyan'
 
 [direnv]
 format = '[ $symbol$allowed]($style) '
-style = "bold fg:#4d4c61 bg:#cba6f7"
+style = "bold fg:#4d4c61"
 disabled = false
 
 [memory_usage]
 disabled = false
 threshold = 0
-style = "bold fg:orange"
-format = "[  $symbol$ram( $percentage%)]($style) "
+style = "bold fg:yellow"
+# format = "[  $symbol$ram( $percentage%)]($style) "
+format = "[《 $symbol$ram( $percentage%)]($style) "
 
-# プロンプトの記号変更
-[character]
-success_symbol = "[󰀵 → ](bold cyan)"
-error_symbol = "[ x ](bold red)"
 
 [docker_context]
 symbol = ""
-style = 'fg:green bg:dark_blue'
-format = '[  [ $symbol( $context) ](fg:magenda bg:dark_blue)]($style)'
+style = 'fg:blue'
+format = '[《 [ $symbol( $context) ](fg:magenda bg:dark_blue)]($style)'
 
 [cmd_duration]
 min_time = 1
@@ -152,13 +157,13 @@ format = '[ via $symbol($version )]($style)'
  
 
 [package]
-format = '[$symbol$version ]($style)'
-style = 'fg:dark_blue bg:208'
+format = ' [$symbol$version ]($style) '
+style = 'fg:dark_blue'
 
 [nodejs]
 symbol = " "
-style = 'fg:blue bg:dark_blue'
-format = '[ node $symbol($version )]($style)'
+style = 'fg:blue'
+format = '[ node $symbol($version )]($style) '
 version_format = "${raw}"
 detect_files = ["!bun.lockb","!bunfig.toml","package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
 detect_folders = ["node_modules"]
@@ -167,7 +172,7 @@ detect_extensions = []
 [time]
 disabled = false
 style = 'fg:#73daca'
-format = '[   $time]($style)' # nf-pl-right_soft_divider, nf-fa-clock_o
+format = '[《  $time]($style)' # nf-pl-right_soft_divider, nf-fa-clock_o
 time_format = '%T'
 utc_time_offset = '+9'
 

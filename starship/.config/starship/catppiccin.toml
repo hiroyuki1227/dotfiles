@@ -45,36 +45,35 @@ add_newline = true
 disabled = true
 style = "bg:color_mantle fg:color_text"
 
-
-[os.symbols]
-Windows = "󰍲"
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-EndeavourOS = ""
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
-
+# [os.symbols]
+# Windows = "󰍲"
+# Ubuntu = "󰕈"
+# SUSE = ""
+# Raspbian = "󰐿"
+# Mint = "󰣭"
+# Macos = "󰀵"
+# Manjaro = ""
+# Linux = "󰌽"
+# Gentoo = "󰣨"
+# Fedora = "󰣛"
+# Alpine = ""
+# Amazon = ""
+# Android = ""
+# Arch = "󰣇"
+# Artix = "󰣇"
+# EndeavourOS = ""
+# CentOS = ""
+# Debian = "󰣚"
+# Redhat = "󱄛"
+# RedHatEnterprise = "󱄛"
+#
+# [directory.substitutions]
+# "Documents" = "󰈙 "
+# "Downloads" = " "
+# "Music" = "󰝚 "
+# "Pictures" = " "
+# "Developer" = "󰲋 "
+#
 [cmd_duration]
 min_time = 1_000
 show_notifications = false
@@ -83,8 +82,6 @@ min_time_to_notify = 10_000
 show_milliseconds = true
 format = '[$duration ]($style)'
 style = 'fg:color_pink bg:color_mantle'
-
-
 
 [custom.is_folder_config]
 disabled = true

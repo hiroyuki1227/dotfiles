@@ -15,15 +15,13 @@ return {
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
     "hrsh7th/cmp-cmdline",
+    "VonHeikemen/lsp-zero.nvim",
   },
   config = function()
     local cmp = require "cmp"
-
     local luasnip = require "luasnip"
-
     local lspkind = require "lspkind"
 
-    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup {

@@ -4,7 +4,8 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 -- color_scheme = 'termnial.sexy',
-config.color_scheme = "Tokyo Night Moon"
+config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Tokyo Night Moon"
 -- config.color_scheme = "solarized_osaka_night"
 config.enable_tab_bar = false
 
