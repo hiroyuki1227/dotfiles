@@ -29,9 +29,8 @@ config.enable_tab_bar = false
 config.font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" })
 -- config.font = wezterm.font("UDEV Gothic 35NLG", { weight = "Bold", stretch = "Normal", style = "Normal" })
 wezterm.font_with_fallback({
-	{ family = "CodeNewRoman Nerd Font" },
-	{ family = "UDEV Gothic 35NLG" },
-	{ family = "Apple Color Emoji", assume_emoji_presentation = true },
+	"CodeNewRoman Nerd Font",
+	"UDEV Gothic 35NLG",
 })
 
 wezterm.font_rules = {
@@ -48,8 +47,25 @@ wezterm.font_rules = {
 }
 
 config.font_size = 14
+config.line_height = 1.0
 
 config.enable_tab_bar = false
+config.hyperlink_rules = {
+	{
+		regex = "\\b\\w+://\\S+",
+		format = "$0",
+	},
+	{
+		regex = "\\bfile://\\S+",
+		format = "$0",
+	},
+	{
+		regex = "\\b\\w+@\\S+",
+		format = "$0:80",
+	},
+}
+
+config.window_padding = { left = 10, right = 10, top = 10, bottom = 10 }
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.70
