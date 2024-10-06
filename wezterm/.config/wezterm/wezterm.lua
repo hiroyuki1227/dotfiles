@@ -3,96 +3,79 @@ local wezterm = require("wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
--- color_scheme = 'termnial.sexy',
-config.color_scheme = "Catppuccin Mocha"
--- config.color_scheme = "Tokyo Night Moon"
--- config.color_scheme = "solarized_osaka_night"
-config.enable_tab_bar = false
 
--- This is where you actually apply your config choices
+config = {
+	term = "wezterm",
 
--- my coolnight colorscheme
--- config.colors = {
--- 	foreground = "#CBE0F0",
--- 	background = "#011423",
--- 	cursor_bg = "#47FF9C",
--- 	cursor_border = "#47FF9C",
--- 	cursor_fg = "#011423",
--- 	selection_bg = "#033259",
--- 	selection_fg = "#CBE0F0",
--- 	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
--- 	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
--- }
-
--- config.font = wezterm.font("MesloLGS Nerd Font Mono")
--- config.font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", italic = true })
-config.font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" })
--- config.font = wezterm.font("UDEV Gothic 35NLG", { weight = "Bold", stretch = "Normal", style = "Normal" })
-wezterm.font_with_fallback({
-	"CodeNewRoman Nerd Font",
-	"UDEV Gothic 35NLG",
-})
-
-wezterm.font_rules = {
-	{
-		italic = true,
-		bolditlic = true,
-		font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Italic" }),
+	default_prog = {
+		"/opt/homebrew/bin/zsh",
+		"--login",
+		"-c",
+		[[
+    if command -v tmux >/dev/null 2>&1; then
+      tmux attach || tmux new;
+    else
+      exec zsh;
+    fi
+    ]],
 	},
-	{
-		bolditlic = true,
-		italic = true,
-		font = wezterm.font("UDEV Gothic NF", { weight = "Bold", stretch = "Normal", style = "Italic" }),
-	},
-}
 
-config.font_size = 14
-config.line_height = 1.0
+	window_decorations = "RESIZE",
+	color_scheme = "Catppuccin Mocha",
+	initial_rows = 50,
+	initial_cols = 120,
 
-config.enable_tab_bar = false
-config.hyperlink_rules = {
-	{
-		regex = "\\b\\w+://\\S+",
-		format = "$0",
-	},
-	{
-		regex = "\\bfile://\\S+",
-		format = "$0",
-	},
-	{
-		regex = "\\b\\w+@\\S+",
-		format = "$0:80",
-	},
-}
+	font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+	font_size = 15,
+	line_height = 1.0,
 
-config.window_padding = { left = 10, right = 10, top = 10, bottom = 10 }
+	enable_tab_bar = false,
 
-config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.70
-config.macos_window_background_blur = 10
+	window_close_confirmation = "NeverPrompt",
+	cursor_blink_ease_out = "Constant",
+	cursor_blink_ease_in = "Constant",
+	cursor_blink_rate = 400,
 
---
---  Setup Shortc cut keys
-local act = wezterm.action
-config.keys = {
-	-- Ctrl+Shift+f によるフルスクリーン
-	{
-		key = "f",
-		mods = "SHIFT|CTRL",
-		action = act.ToggleFullScreen,
+	window_padding = {
+		left = 2,
+		right = 2,
+		top = 5,
+		bottom = 5,
 	},
-	-- Ctrl+Shift+tで新しいタブを作成
-	{
-		key = "t",
-		mods = "SHIFT|CTRL",
-		action = act.SpawnTab("CurrentPaneDomain"),
+
+	window_background_opacity = 0.8,
+	macos_window_background_blur = 10,
+
+	hyperlink_rules = {
+		{
+			regex = "\\b\\w+://\\S+",
+			format = "$0",
+		},
+		{
+			regex = "\\bfile://\\S+",
+			format = "$0",
+		},
+		{
+			regex = "\\b\\w+@\\S+",
+			format = "$0:80",
+		},
 	},
-	-- Ctrl+Shift+dで新しいペインを作成(画面を分割)
-	{
-		key = "d",
-		mods = "SHIFT|CTRL",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+
+	keys = {
+		{
+			key = "f",
+			mods = "CTRL|CMD",
+			action = wezterm.action.ToggleFullScreen,
+		},
+	},
+	mouse_bindings = {
+		{
+			-- Click-click will open the link under the mouse cursor
+			event = { Up = { streak = 1, button = "Left" } },
+			mods = "CTRL",
+			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
 	},
 }
--- and finally, return the configuration to wezterm
+
 return config

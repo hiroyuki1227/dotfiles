@@ -1,0 +1,34 @@
+return {
+  "nvim-treesitter/nvim-treesitter-context",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  config = function()
+    require("treesitter-context").setup({
+      enable = true,
+      trim_scope = "outer",
+      line_numbers = true,
+      multiple_lines = true,
+      multiline_threshold = 10,
+      patterns = {
+        default = {
+          "class",
+          "function",
+          "method",
+          "for",
+          "while",
+          "if",
+          "switch",
+          "case",
+        },
+      },
+      zindex = 25,
+      mode = "cursor", -- set to `false` to disable
+      max_lines = 5,
+      separator = nil, -- set to `ni-l` to disable
+    })
+
+    -- 背景色の変更
+    vim.cmd([[
+      highlight TreesitterContext  guibg=#2E3440
+    ]])
+  end,
+}
