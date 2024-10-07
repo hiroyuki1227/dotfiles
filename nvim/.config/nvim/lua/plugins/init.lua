@@ -54,14 +54,14 @@ return {
         },
         zindex = 25,
         mode = "cursor", -- set to `false` to disable
-        max_lines = 5,
+        max_lines = 3,
         separator = nil, -- set to `ni-l` to disable
       })
 
       -- 背景色の変更
       vim.cmd([[
-      highlight TreesitterContext  guibg=#2E3440
-    ]])
+        highlight TreesitterContext  guibg= #2E3440
+      ]])
     end,
   },
   {
@@ -85,6 +85,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
+    optional = true,
     config = function()
       require("configs.lint")
     end,

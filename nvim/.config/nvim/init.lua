@@ -21,7 +21,6 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-
   { import = "plugins" },
 }, lazy_config)
 
@@ -36,8 +35,8 @@ end
 
 require("options")
 require("nvchad.autocmds")
-require("highlight")
-require("snippets")
+require("configs.highlight")
+-- require("configs.snippets")
 
 vim.schedule(function()
   require("mappings")

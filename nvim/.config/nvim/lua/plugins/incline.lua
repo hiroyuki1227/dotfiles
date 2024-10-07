@@ -2,9 +2,8 @@ return {
   {
     "b0o/incline.nvim",
     dependencies = { "craftzdog/solarized-osaka.nvim" },
-    lazy = false,
-    event = "VeryLazy",
-    -- event = "BufReadPre",
+    -- event = "VeryLazy",
+    event = "BufReadPre",
     priority = 1200,
     config = function()
       local colors = require("solarized-osaka.colors").setup()

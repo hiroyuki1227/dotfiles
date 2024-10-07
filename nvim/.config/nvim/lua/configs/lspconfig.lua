@@ -2,7 +2,7 @@ local nvlsp = require("nvchad.configs.lspconfig")
 local lspconfig = require("lspconfig")
 nvlsp.defaults() -- loads nvchad's defaults
 
-lspconfig.lua_lss.setup({
+lspconfig.lua_ls.setup({
   settings = {
     lua = {
       runtime = { version = "Lua 5.3" },

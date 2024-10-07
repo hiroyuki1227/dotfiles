@@ -22,6 +22,7 @@ config = {
 
 	window_decorations = "RESIZE",
 	color_scheme = "Catppuccin Mocha",
+	-- color_scheme = "tokyonight",
 	initial_rows = 50,
 	initial_cols = 120,
 
