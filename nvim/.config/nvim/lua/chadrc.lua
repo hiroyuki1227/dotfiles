@@ -2,7 +2,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "tokyonight",
   theme_toggle = { "tokyonight", "catppuccin" },
   transparency = true,
   build = function()
