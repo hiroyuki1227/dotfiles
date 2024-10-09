@@ -5,6 +5,12 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("i", "jk", "<ESC>")
 
+-- save file without auto-formatting
+map("n", "<leader>sn", "<cmd>noautocmd w<CR>", { desc = "Save without formatting" })
+--
+-- delete single character without copying into register
+-- map("n", "x", "_x", { desc = "Delete character under cursor" })
+
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -42,10 +48,10 @@ map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "toggle line wrapping" })
 map("n", "<Esc>", ":noh<CR>", { desc = "clear search highlight" })
 
 -- Resize with arrows
--- map("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
--- map("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
--- map("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
--- map("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
+map("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
+map("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
+map("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
+map("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 --
