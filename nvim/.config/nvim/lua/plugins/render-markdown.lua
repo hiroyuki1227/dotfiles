@@ -5,17 +5,10 @@
 --
 -- When I hover over markdown headings, this plugins goes away, so I need to
 -- edit the default highlights
--- I tried adding this as an autocommand, in the options.lua
--- file, also in the markdownl.lua file, but the highlights kept being overriden
--- so the inly way is the only way I was able to make it work was loading it
--- after the config.lazy in the init.lua file lamw25wmal
-
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  -- Moved highlight creation out of opts as suggested by plugin maintainer
-  -- There was no issue, but it was creating unnecessary noise when ran
-  -- :checkhealth render-markdown
-  -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/138#issuecomment-2295422741
+  lazy = false,
+  enabled = true,
   init = function()
     -- Define color variables
     -- These are the colors for the eldritch colorscheme
@@ -46,6 +39,9 @@ return {
     vim.cmd(string.format([[highlight Headline6Fg cterm=bold gui=bold guifg=%s]], color6_bg))
   end,
   opts = {
+    bullet = {
+      enabled = true,
+    },
     heading = {
       sign = false,
       icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },
