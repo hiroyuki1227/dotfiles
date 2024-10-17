@@ -1,0 +1,19 @@
+return {
+  "echasnovski/mini.move",
+  Lazy = false,
+  version = false,
+  opts = {
+    mapping = {
+      move_line_up = "<C-k>",
+      move_line_down = "<C-j>",
+      move_char_up = "<C-h>",
+      move_char_down = "<C-l>",
+
+      -- preserve cursor position:
+      move_to_top = "<C-Home>",
+      move_to_bottom = "<C-End>",
+      move_to_left = "<C-Left>",
+      move_to_right = "<C-Right>",
+    },
+  },
+}

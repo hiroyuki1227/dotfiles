@@ -15,7 +15,18 @@ return {
       require("base46").load_all_highlights()
     end,
   },
+  { "nvchad/volt", lazy = true },
+  {
+    "nvchad/menu",
+    lazy = true,
+    -- mouse users + nvimtree users!
+    vim.keymap.set("n", "<RightMouse>", function()
+      vim.cmd.exec('"normal! \\<RightMouse>"')
 
+      local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+      require("menu").open(options, { mouse = true })
+    end, {}),
+  },
   {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeToggle",
