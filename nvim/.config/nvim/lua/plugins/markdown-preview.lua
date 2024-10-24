@@ -1,12 +1,19 @@
 -- install without yarn or npm
 return {
   "iamcco/markdown-preview.nvim",
-  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  ft = { "markdown" },
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview" },
   build = function()
+    vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim")
     vim.fn["mkdp#util#install"]()
   end,
 }
+-- "iamcco/markdown-preview.nvim",
+-- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+-- ft = { "markdown" },
+-- build = function()
+-- vim.fn["mkdp#util#install"]()
+-- end,
+-- }
 
 -- -- install with yarn or npm
 -- {

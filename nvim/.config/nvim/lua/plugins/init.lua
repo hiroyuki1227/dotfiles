@@ -168,13 +168,13 @@ return {
     end,
   },
 
-  {
-    "nvimtools/none-ls.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return require("configs.null-ls")
-    end,
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   event = "VeryLazy",
+  --   opts = function()
+  --     return require("configs.null-ls")
+  --   end,
+  -- },
   {
     "smjonas/inc-rename.nvim",
     config = function()
