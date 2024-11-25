@@ -1,49 +1,61 @@
-# Kitty theme
-# Add the theme at the top, any setting below the theme will be overriden
-# include ~/github/dotfiles-latest/kitty/themes/themes/ChallengerDeep.conf
-# include ~/github/dotfiles-latest/kitty/themes/themes/Catppuccin-Mocha.conf
-# include ~/github/dotfiles-latest/kitty/themes/themes/Linkarzu.conf
-# include ~/.config/kitty/themes/themes/tokyo_night_moon.conf
-include ~/.config/kitty/active-theme.conf
-
-font_size 14.5
-
-# Make sure you have the fonts installed
+# テーマファイルを呼び出す
+include ~/.config/kitty/theme.conf
+# include ~/.config/kitty/active-theme.conf
+# japanese fonts
+# font_family JetBrainsMonoNL Nerd Font Mono
+# font_family FiraCode Nerd Font Mono
 font_family CodeNewRoman Nerd Font Mono
 # font_family MesloLGM Nerd Font
-# font_family MesloLGS Nerd Font
-# font_family MesloLGMDZ Nerd Font
+#english fonts
+# font_family ComicShannsMono Nerd Font
+# font_family SpaceMono Nerd Font
+# font_family UDEV Gothic NF
+fallback_family UDEV Gothic NF
 
-# Kitty's font was more spaced compared to alacritty's, tried font variations
-# but it didn't change, so I went with this, it works fine
-modify_font cell_width 95%
-# I was going crazy
-# after a kitty update, font height seemed smaller, this fixed it
-modify_font cell_height 5px
+font_size 15
+# modify_font cell_height -2px
+# modify_font cell_width 95%
+# text_composition_strategy legacy
 
-background_opacity 0.7
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
+
+# グリフレンダリング用のフォント (ligaturesや記号)
+# symbol_map U+2500-U+257F, Hack Nerd Font
+
+background_opacity 0.85
 background_blur 10
 dynamic_background_opacity yes
+
 scrollback_lines 10000
+enabled_layouts Tall, *
 
-# The following command checks if tmux is installed.
-# If tmux is installed, it automatically attaches to an existing tmux session.
-# If no tmux session exists, a new one is created.
-# If tmux is not installed, it simply starts zsh without tmux.
-shell zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
-
-# Old version of above command:
-# The 2 commands after login are needed to automatically attach to an existing 
-# tmux session, if no session exists, a new one is created
+# The 2 commands after login are needed to automatically attach to an existing
+# tmux session, no session exists, a new on is created
 # shell zsh --login -c "tmux attach || tmux"
+# shell zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
 
-# When you do fn+ctrl+shift+2 it opens the kitty file in the editor below
+# When you do fn+ctrl+shif+2 it opens the kitty file in the editor below
 editor /opt/homebrew/bin/nvim
 
-# These colors match what I have in my alacritty theme
-# Commenting them as they're set by the theme on the top
-# foreground #CDD6F4
-# background #1E1E2E
+# window_padding_width 5 5 0 0
+window_margin_width 10
+single_window_margin_width 10
+
+active_border_color #00ffff
+cursor  #ffffff
+cursor_text_color #000000
+
+# window_border_width 2pt
+# inactive_border_color 
+
+macos_titlebar_color system
+macos_quit_when_last_window_closed yes
+macos_option_as_alt no
+macos_traditional_fullscreen yes
+
+confirm_os_window_close 0
 
 # Make kitty borderless
 # "yes" disables round corners and hides the title bar 
@@ -51,37 +63,39 @@ editor /opt/homebrew/bin/nvim
 # hide_window_decorations yes
 hide_window_decorations titlebar-only
 
-#: The window padding (in pts) (blank area between the text and the
-#: window border). A single value sets all four sides. Two values set
-#: the vertical and horizontal sides. Three values set top, horizontal
-#: and bottom. Four values set top, right, bottom and left.
-window_padding_width 5 5 0 0
-
-# I'm adding these below the theme in case the theme sets them
-cursor #ebfafa
-cursor_text_color #0D1116
+tab_bar_edge top
+tab_bar_style powerline
+tab_powerline_style slanted
+tab_title_template " {index}: {'{: <501}'.format(title)}"
 
 
-#: Ask for confirmation when closing an OS window or a tab with at
-#: least this number of kitty windows in it by window manager (e.g.
-#: clicking the window close button or pressing the operating system
-#: shortcut to close windows) or by the close_tab action. A value of
-#: zero disables confirmation. This confirmation also applies to
-#: requests to quit the entire application (all OS windows, via the
-#: quit action). Negative values are converted to positive ones,
-#: however, with shell_integration enabled, using negative values
-#: means windows sitting at a shell prompt are not counted, only
-#: windows where some command is currently running. Note that if you
-#: want confirmation when closing individual windows, you can map the
-#: close_window_with_confirmation action.
-confirm_os_window_close 0
+# tab_bar_min_tabs            1
+# tab_bar_edge                top
+# tab_bar_style               powerline
+# tab_powerline_style         slanted
+# tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}
 
+allow_hyperlinks yes
+#
+# for URL settings
+url_color #0087bd
+url_style single
+open_url_with default
+url_prefixes http https file ftp gemini irc gopher mailto news git
+detect_urls yes
 
-#: The audio bell. Useful to disable it in environments that require
-#: silence.
-enable_audio_bell no
+#: ウィンドウのレイアウト変更
+map kitty_mod+space next_layout
+# ウィンドウの移動
+map kitty_mod+j kitten pass_keys.py neighboring_window bottom ctrl+j
+map kitty_mod+k kitten pass_keys.py neighboring_window top    ctrl+k
+map kitty_mod+h kitten pass_keys.py neighboring_window left   ctrl+h
+map kitty_mod+l kitten pass_keys.py neighboring_window right  ctrl+l
 
-macos_titlebar_color system
-macos_quit_when_last_window_closed yes
-macos_option_as_alt no
-macos_traditional_fullscreen yes
+# 現在居るタブのウィンドウのみを同時入力する場合のマッピング
+map kitty_mod+a launch --allow-remote-control kitty +kitten broadcast --match-tab state:focused
+# 次のタブへ移動
+map kitty_mod+n next_tab
+# 前のタブへ移動
+map kitty_mod+p previous_tab
+

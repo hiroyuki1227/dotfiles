@@ -1,13 +1,5 @@
 return {
   { lazy = true, "nvim-lua/plenary.nvim" },
-
-  {
-    "nvchad/ui",
-    config = function()
-      require("nvchad")
-    end,
-  },
-
   {
     "nvchad/base46",
     lazy = true,
@@ -15,18 +7,27 @@ return {
       require("base46").load_all_highlights()
     end,
   },
-  { "nvchad/volt", lazy = true },
   {
-    "nvchad/menu",
-    lazy = true,
-    -- mouse users + nvimtree users!
-    vim.keymap.set("n", "<RightMouse>", function()
-      vim.cmd.exec('"normal! \\<RightMouse>"')
-
-      local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-      require("menu").open(options, { mouse = true })
-    end, {}),
+    "nvchad/ui",
+    lazy = false,
+    config = function()
+      require("nvchad")
+    end,
   },
+  "nvchad/volt",
+  "nvchad/menu",
+  -- {
+  --   "nvchad/menu",
+  --   lazy = true,
+  --   -- mouse users + nvimtree users!
+  --   vim.keymap.set("n", "<RightMouse>", function()
+  --     vim.cmd.exec('"normal! \\<RightMouse>"')
+  --
+  --     local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+  --     require("menu").open(options, { mouse = true })
+  --   end, {}),
+  -- },
+  { "nvchad/minty", cmd = { "Huefy", "Shades" } },
   {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeToggle",
@@ -56,6 +57,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
+      require("nvchad/configs.treesitter")
       require("configs.treesitter")
     end,
   },
@@ -129,6 +131,7 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-lspconfig" },
     config = function()
+      -- require("nvchad.mason").install_all()
       require("configs.mason-lspconfig")
     end,
   },
