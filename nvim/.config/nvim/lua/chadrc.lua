@@ -3,7 +3,7 @@ local M = {}
 
 M.base46 = {
   theme = "tokyonight",
-  theme_toggle = { "tokyonight", "catppuccin" },
+  theme_toggle = { "tokyonight", "tokyonight" },
   transparency = true,
   build = function()
     require("base46").load_all_highlights()
