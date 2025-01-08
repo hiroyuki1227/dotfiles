@@ -28,7 +28,7 @@ config = {
 
 	font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 	font_size = 15,
-	line_height = 1.0,
+	line_height = 1.2,
 
 	enable_tab_bar = false,
 
@@ -46,6 +46,8 @@ config = {
 
 	window_background_opacity = 0.8,
 	macos_window_background_blur = 20,
+	max_fps = 120,
+	prefer_egl = true,
 
 	hyperlink_rules = {
 		{
