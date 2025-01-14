@@ -27,3 +27,5 @@ palette = 14=#04d1f9
 # white
 palette = 7=#ebfafa
 palette = 15=#ebfafa
+
+theme = tokyonight_moon

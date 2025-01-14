@@ -99,7 +99,7 @@ custom-shader = shaders/bloom025.glsl
 # echo '' >>~/.zprofile && echo '# Configure shell for brew' >>~/.zprofile && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)"
 #
 # This assumes you installed tmux through brew if using macos
-command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+# command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
 
 # Horizontal window padding. This applies padding between the terminal cells
 # and the left and right window borders. The value is in points, meaning that
@@ -221,19 +221,7 @@ quick-terminal-animation-duration = 0.08
 keybind = super+i=inspector:toggle
 keybind = super+r=reload_config
 
-# This doesn't work when in tmux, if outside tmux the regular ctrl+l works
-# keybind = super+k=clear_screen
-#
-
-# The opacity level (opposite of transparency) of the background. A value of
-# 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
-# or greater than 1 will be clamped to the nearest valid value.
 background-opacity = 0.85 
-
-# A positive value enables blurring of the background when background-opacity
-# is less than 1. The value is the blur radius to apply. A value of 20
-# is reasonable for a good looking blur. Higher values will cause strange
-# rendering issues as well as performance issues.
-# 
-# This is only supported on macOS.
-background-blur-radius = 30
+background-blur-radius = 10
+window-height = 50
+window-width = 120

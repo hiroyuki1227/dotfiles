@@ -31,6 +31,7 @@ local options = {
     "gowork",
     "vimdoc",
     "json",
+    "glsl",
   },
 
   highlight = {
