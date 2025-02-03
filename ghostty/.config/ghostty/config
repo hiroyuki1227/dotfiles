@@ -22,7 +22,8 @@
 # 
 # Cycles are not allowed. If a cycle is detected, an error will be logged and
 # the configuration file will be ignored.
-config-file = ghostty-theme
+#
+# config-file = ghostty-theme
 
 # Some shaders can be found in this repo, they're usually uploaded to discord
 # https://github.com/hackrmomo/ghostty-shaders
@@ -118,7 +119,7 @@ custom-shader = shaders/bloom025.glsl
 # left padding to 2 and the right padding to 4. If you want to set both
 # paddings to the same value, you can use a single value. For example,
 # `window-padding-x = 2` will set both paddings to 2.
-window-padding-x = 4,2
+window-padding-x = 7,7
 
 # Vertical window padding. This applies padding between the terminal cells and
 # the top and bottom window borders. The value is in points, meaning that it
@@ -137,9 +138,10 @@ window-padding-x = 4,2
 # top padding to 2 and the bottom padding to 4. If you want to set both
 # paddings to the same value, you can use a single value. For example,
 # `window-padding-y = 2` will set both paddings to 2.
-window-padding-y = 6,0
+window-padding-y = 7,7
 
 # font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "CodeNewRoman Nerd Font Mono"
 font-size = 15
 
@@ -162,6 +164,8 @@ macos-titlebar-style = hidden
 # Confirms that a surface should be closed before closing it. This defaults to
 # true. If set to false, surfaces will close without any confirmation.
 confirm-close-surface = false
+quit-after-last-window-closed = true
+# quit-after-last-window-closed-delay = 1s
 
 # Toggle the "quick" terminal. The quick terminal is a terminal that
 # appears on demand from a keybinding, often sliding in from a screen
@@ -221,7 +225,9 @@ quick-terminal-animation-duration = 0.08
 keybind = super+i=inspector:toggle
 keybind = super+r=reload_config
 
-background-opacity = 0.85 
+background-opacity = 0.75
 background-blur-radius = 10
 window-height = 50
 window-width = 120
+theme = tokyonight_moon
+cursor-click-to-move = true

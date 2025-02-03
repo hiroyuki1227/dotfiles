@@ -14,8 +14,8 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 opt.mouse = "a" -- enable mouse support
-opt.wrap = true -- display lines as one long line(default: truet)
-opt.linebreak = true -- Companion to wrap, don't split words (default: false)
+opt.wrap = false -- display lines as one long line(default: truet)
+-- opt.linebreak = false -- Companion to wrap, don't split words (default: false)
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
