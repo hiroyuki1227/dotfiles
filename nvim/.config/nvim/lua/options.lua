@@ -15,7 +15,7 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 opt.mouse = "a" -- enable mouse support
 opt.wrap = false -- display lines as one long line(default: truet)
--- opt.linebreak = false -- Companion to wrap, don't split words (default: false)
+opt.linebreak = true -- Companion to wrap, don't split words (default: false)
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -27,6 +27,7 @@ opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
+opt.whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 

@@ -225,8 +225,8 @@ quick-terminal-animation-duration = 0.08
 keybind = super+i=inspector:toggle
 keybind = super+r=reload_config
 
-background-opacity = 0.75
-background-blur-radius = 10
+background-opacity = 0.8
+background-blur-radius = 30
 window-height = 50
 window-width = 120
 theme = tokyonight_moon
