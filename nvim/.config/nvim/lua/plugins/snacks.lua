@@ -10,6 +10,8 @@
 -- resolve it
 -- https://github.com/folke/snacks.nvim/issues/812
 -- TODO
+-- local Snacks = require("snacks")
+local icons = require("lib.icons")
 
 return {
   {
@@ -195,13 +197,7 @@ return {
           cycle = false,
         },
       },
-      -- Documentation for the picker
-      -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
       picker = {
-        -- My ~/github/dotfiles-latest/neovim/lazyvim/lua/config/keymaps.lua
-        -- file was always showing at the top, I needed a way to decrease its
-        -- score, in frecency you could use :FrecencyDelete to delete a file
-        -- from the database, here you can decrease it's score
         transform = function(item)
           if not item.file then
             return item
@@ -210,34 +206,16 @@ return {
           if item.file:match("lazyvim/lua/config/keymaps%.lua") then
             item.score_add = (item.score_add or 0) - 30
           end
-          -- Boost the "neobean" keymaps file:
-          -- if item.file:match("neobean/lua/config/keymaps%.lua") then
-          --   item.score_add = (item.score_add or 0) + 100
-          -- end
           return item
         end,
-        -- In case you want to make sure that the score manipulation above works
-        -- or if you want to check the score of each file
         debug = {
           scores = true, -- show scores in the list
         },
-        -- I like the "ivy" layout, so I set it as the default globaly, you can
-        -- still override it in different keymaps
         layout = {
           preset = "ivy",
-          -- When reaching the bottom of the results in the picker, I don't want
-          -- it to cycle and go back to the top
           cycle = false,
         },
         layouts = {
-          -- I wanted to modify the ivy layout height and preview pane width,
-          -- this is the only way I was able to do it
-          -- NOTE: I don't think this is the right way as I'm declaring all the
-          -- other values below, if you know a better way, let me know
-          --
-          -- Then call this layout in the keymaps above
-          -- got example from here
-          -- https://github.com/folke/snacks.nvim/discussions/468
           ivy = {
             layout = {
               box = "vertical",
@@ -309,10 +287,7 @@ return {
         win = {
           input = {
             keys = {
-              -- to close the picker on ESC instead of going to normal mode,
-              -- add the following keymap to your config
               ["<Esc>"] = { "close", mode = { "n", "i" } },
-              -- I'm used to scrolling like this in LazyGit
               ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
               ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
               ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
@@ -321,37 +296,187 @@ return {
           },
         },
       },
-      -- Folke pointed me to the snacks docs
-      -- https://github.com/LazyVim/LazyVim/discussions/4251#discussioncomment-11198069
-      -- Here's the lazygit snak docs
-      -- https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md
       lazygit = {
+        enabled = true,
         theme = {
           selectedLineBgColor = { bg = "CursorLine" },
         },
-        -- With this I make lazygit to use the entire screen, because by default there's
-        -- "padding" added around the sides
-        -- I asked in LazyGit, folke didn't like it xD xD xD
-        -- https://github.com/folke/snacks.nvim/issues/719
         win = {
-          -- -- The first option was to use the "dashboard" style, which uses a
-          -- -- 0 height and width, see the styles documentation
-          -- -- https://github.com/folke/snacks.nvim/blob/main/docs/styles.md
-          -- style = "dashboard",
-          -- But I can also explicitly set them, which also works, what the best
-          -- way is? Who knows, but it works
           width = 0,
           height = 0,
         },
       },
       notifier = {
         enabled = true,
-        top_down = false, -- place notifications from top to bottom
+        timeout = 2000,
+        width = { min = 40, max = 0.4 },
+        height = { min = 1, max = 0.6 },
+        margin = { top = 0, right = 1, bottom = 0 },
+        padding = true,
+        sort = { "level", "added" },
+        level = vim.log.levels.TRACE,
+        icons = {
+          debug = icons.ui.Bug,
+          error = icons.diagnostics.Error,
+          info = icons.diagnostics.Information,
+          trace = icons.ui.Bookmark,
+          warn = icons.diagnostics.Warning,
+        },
+        style = "compact",
+        -- top_down = true,
+        top_down = false,
+        date_format = "%R",
+        more_format = " ↓ %d lines ",
+        refresh = 50,
       },
       words = { enabled = true },
-      bigfile = { enabled = true },
-      scratch = { enabled = true },
+      bigfile = {
+        enabled = true,
+        notify = true,
+        size = 200 * 1024,
+      },
+      scope = {
+        enabled = true,
+        keys = {
+          textobject = {
+            ii = {
+              min_size = 2, -- minimum size of the scope
+              edge = false, -- inner scope
+              cursor = false,
+              treesitter = { blocks = { enabled = false } },
+              desc = "inner scope",
+            },
+            ai = {
+              cursor = false,
+              min_size = 2, -- minimum size of the scope
+              treesitter = { blocks = { enabled = false } },
+              desc = "full scope",
+            },
+          },
+          jump = {
+            ["[a"] = {
+              min_size = 1, -- allow single line scopes
+              bottom = false,
+              cursor = false,
+              edge = true,
+              treesitter = { blocks = { enabled = false } },
+              desc = "jump to top edge of scope",
+            },
+            ["]a"] = {
+              min_size = 1, -- allow single line scopes
+              bottom = true,
+              cursor = false,
+              edge = true,
+              treesitter = { blocks = { enabled = false } },
+              desc = "jump to bottom edge of scope",
+            },
+          },
+        },
+      },
+      scratch = {
+        enabled = true,
+        name = "SCRATCH",
+        ft = function()
+          if vim.bo.buftype == "" and vim.bo.filetype ~= "" then
+            return vim.bo.filetype
+          end
+          return "markdown"
+        end,
+        icon = nil,
+        root = vim.fn.stdpath("data") .. "/scratch",
+        autowrite = true,
+        filekey = {
+          cwd = true,
+          branch = true,
+          count = true,
+        },
+        win = {
+          width = 120,
+          height = 40,
+          bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
+          minimal = false,
+          noautocmd = false,
+          zindex = 20,
+          wo = { winhighlight = "NormalFloat:Normal" },
+          border = "rounded",
+          title_pos = "center",
+          footer_pos = "center",
+
+          keys = {
+            ["execute"] = {
+              "<cr>",
+              function(_)
+                vim.cmd("%SnipRun")
+              end,
+              desc = "Execute buffer",
+              mode = { "n", "x" },
+            },
+          },
+        },
+        win_by_ft = {
+          lua = {
+            keys = {
+              ["source"] = {
+                "<cr>",
+                function(self)
+                  local name = "scratch." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+                  require("snacks").debug.run({ buf = self.buf, name = name })
+                end,
+                desc = "Source buffer",
+                mode = { "n", "x" },
+              },
+              ["execute"] = {
+                "e",
+                function(_)
+                  vim.cmd("%SnipRun")
+                end,
+                desc = "Execute buffer",
+                mode = { "n", "x" },
+              },
+            },
+          },
+        },
+      },
+      bufdelte = { enabled = true },
+      statuscolumn = {
+        enabled = true,
+        left = { "mark", "sign" },
+        right = { "fold", "git" },
+        folds = {
+          open = false,
+          git_hl = false,
+        },
+        git = {
+          patterns = { "GitSign", "MiniDiffSign" },
+        },
+        refresh = 50,
+      },
+      debug = { enabled = true },
       quickfix = { enabled = true, exclude = { "packer" } },
+      dim = {
+        enabled = true,
+        scope = {
+          min_size = 5,
+          max_size = 20,
+          siblings = true,
+        },
+        -- animate scopes. Enabled by default for Neovim >= 0.10
+        -- Works on older versions but has to trigger redraws during animation.
+        animate = {
+          enabled = vim.fn.has("nvim-0.10") == 1,
+          easing = "outQuad",
+          duration = {
+            step = 20, -- ms per step
+            total = 300, -- maximum duration
+          },
+        },
+        -- what buffers to dim
+        filter = function(buf)
+          return vim.g.snacks_dim ~= false and vim.b[buf].snacks_dim ~= false and vim.bo[buf].buftype == ""
+        end,
+      },
+      git = { enabled = true },
+      gitbrowse = { enabled = true },
       dashboard = {
         enabled = true,
         lazy = false,
