@@ -37,6 +37,7 @@ end
 
 require("options")
 require("nvchad.autocmds")
+require("configs.autocmds")
 require("configs.highlight")
 -- require("configs.snippets")
 

@@ -49,6 +49,25 @@ lspconfig.graphql.setup({
   filetype = { "graphql", "typescript", "typescriptreact", "javascript", "javascriptreact" },
 })
 
+lspconfig.pylsp.setup({
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = { "E501" },
+        },
+        pyflakes = { enabled = false },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        mccabe = { enabled = false },
+        pylsp_mypy = { enabled = false },
+        pylsp_block = { enabled = false },
+        pylsp_isort = { enabled = false },
+      },
+    },
+  },
+})
+
 lspconfig.emmet_ls.setup({
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,

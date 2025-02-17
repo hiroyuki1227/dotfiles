@@ -11,7 +11,7 @@ frame = "buttonless"
 # frame = "transparent"
 idle = true
 maximized = false
-# neovim-bin = "/usr/bin/nvim" # in reality found dynamically on $PATH if unset
+neovim-bin = "/opt/homebrew/bin/nvim" # in reality found dynamically on $PATH if unset
 no-multigrid = false
 srgb = false
 tabs = true
@@ -25,5 +25,7 @@ vsync = false
 wsl = false
 
 [font]
-normal = [] # Will use the bundled Fira Code Nerd Font by default
+normal = []          # Will use the bundled Fira Code Nerd Font by default
 size = 14.0
+hinting = "full"
+edging = "antialias"

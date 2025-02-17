@@ -16,7 +16,7 @@ palette = "tokyo"
 
 format = """
 $character\
-$os$hostname\
+$hostname\
 $direnv$directory\
 $git_branch\
 $git_status\
@@ -28,9 +28,9 @@ $golang\
 $lua\
 $python\
 $conda\
-\n[󰀵 → ](bold green)\
+\n[ → ](bold green)\
 """
-#
+#\n[󰀵 → ](bold green)\
 # set -g @prefix_highlight_output_suffix ""
 right_format = """
 $cmd_duration\
@@ -44,7 +44,9 @@ symbol = '─'
 style = 'fg:cyan'
 
 [character]
-success_symbol = "🚀 "
+# success_symbol = "🚀 "
+# success_symbol = " 🍎 "
+success_symbol = "  "
 error_symbol = "🔥 "
 
 [hostname]
@@ -58,21 +60,25 @@ format = "[$symbol]($style) "
 style = 'fg:white'
 disabled = false
 
+###########################################
 [os.symbols]
-Macos = "󰀵"
-# Macos = "🍎 "
+Macos = "  "
+Linux = " 󰌽 "
+Ubuntu = "  "
+Debian = "  "
 
+###########################################
 
 [directory]
-truncation_length = 3 
+truncation_length = 3
 truncate_to_repo = false
-fish_style_pwd_dir_length=2
+fish_style_pwd_dir_length = 2
 use_logical_path = true
 format = "at [$path]($style)[$read_only]($read_only_style) "
 repo_root_format = "at [$before_root_path ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 style = 'fg:cyan'
-home_symbol = ' ~' # nf-fa-home
-truncation_symbol = '…/' # nf-fa-folder_open
+home_symbol = ' ~'                                                                                                                               # nf-fa-home
+truncation_symbol = '…/'                                                                                                                          # nf-fa-folder_open
 read_only = "🔒"
 read_only_style = 'fg:red'
 use_os_path_sep = true
@@ -107,15 +113,15 @@ format = '[+$added/-$deleted]($deleted_style) '
 disabled = false
 
 [conda]
-symbol = ' ' # nf-dev-python
+symbol = ' '                              # nf-dev-python
 style = 'fg:teal'
 format = '[ $symbol$environment ]($style)'
 ignore_base = false
 
 [python]
-symbol = ' ' # nf-dev-python
+symbol = ' '                                                                # nf-dev-python
 format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
-pyenv_version_name = true 
+pyenv_version_name = true
 style = 'fg:cyan'
 
 [direnv]
@@ -142,19 +148,19 @@ style = 'fg:yellow'
 format = "[  $duration ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
 
 [lua]
-symbol = "" # nf-seti-lua
+symbol = ""                         # nf-seti-lua
 format = '[ $symbol $version](blue)' # nf-pl-right_soft_divider
 
 [rust]
-symbol = "" # nf-dev-rust
+symbol = ""                        # nf-dev-rust
 format = '[ $symbol $version](red)' # nf-pl-right_soft_divider
- 
+
 
 [golang]
 symbol = "  󰟓 "
 style = "fg:blue bg:dark_blue"
 format = '[ via $symbol($version )]($style)'
- 
+
 
 [package]
 format = ' [$symbol$version ]($style) '
@@ -165,7 +171,13 @@ symbol = " "
 style = 'fg:blue'
 format = '[ node $symbol($version )]($style) '
 version_format = "${raw}"
-detect_files = ["!bun.lockb","!bunfig.toml","package-lock.json", "yarn.lock", "pnpm-lock.yaml"]
+detect_files = [
+  "!bun.lockb",
+  "!bunfig.toml",
+  "package-lock.json",
+  "yarn.lock",
+  "pnpm-lock.yaml",
+]
 detect_folders = ["node_modules"]
 detect_extensions = []
 
@@ -214,37 +226,37 @@ yellow = '#EBCB8B'
 purple = '#B48EAD'
 gray = '#434C5E'
 black = '#2E3440'
-white='#D8DEE9'
+white = '#D8DEE9'
 
 [palettes.onedark]
-dark_blue='#61afef'
-blue='#56b6c2'
-red='#e06c75'
-green='#98c379'
-purple='#c678dd'
-cyan='#56b6c2'
-orange='#be5046'
-yellow='#e5c07b'
-gray='#828997'
-white ='#abb2bf'
-black='#2c323c'
+dark_blue = '#61afef'
+blue = '#56b6c2'
+red = '#e06c75'
+green = '#98c379'
+purple = '#c678dd'
+cyan = '#56b6c2'
+orange = '#be5046'
+yellow = '#e5c07b'
+gray = '#828997'
+white = '#abb2bf'
+black = '#2c323c'
 
 [palettes.solarized]
-dark_blue='#4d4c61'
-blue='#268bd2'
-red='#dc322f'
-green='#859900'
-purple='#6c71c4'
-cyan='#2aa198'
-orange='#be5046'
-yellow='#b58900'
-gray='#828997'
-white ='#eee8d5'
-black='#073642'
+dark_blue = '#4d4c61'
+blue = '#268bd2'
+red = '#dc322f'
+green = '#859900'
+purple = '#6c71c4'
+cyan = '#2aa198'
+orange = '#be5046'
+yellow = '#b58900'
+gray = '#828997'
+white = '#eee8d5'
+black = '#073642'
 
 
 [palettes.tokyo]
-dark_blue='#4d4c61'
+dark_blue = '#4d4c61'
 black = '#15161e'
 red = '#f7768e'
 green = '#9ece6a'
@@ -252,6 +264,6 @@ yellow = '#e0af68'
 blue = '#7aa2f7'
 cyan = '#7dcfff'
 white = '#a9b1d6'
-orange='#be5046'
-gray='#444b6a'
-magenda='#bb9af7'
+orange = '#be5046'
+gray = '#444b6a'
+magenda = '#bb9af7'

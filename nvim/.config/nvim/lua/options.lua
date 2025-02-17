@@ -1,4 +1,5 @@
 require("nvchad.options")
+require("options-link")
 local opt = vim.opt
 
 opt.encoding = "utf-8"
@@ -6,12 +7,28 @@ opt.fileencoding = "utf-8"
 
 opt.relativenumber = true
 opt.number = true
---
+vim.opt.title = true
+opt.autoindent = true -- copy indent from current line when starting new one
+opt.smartindent = true
+opt.hlsearch = true -- highlight all matches on previous search pattern
+opt.backup = false -- creates a backup file
+opt.showcmd = true -- show command in last line of the screen
+opt.cmdheight = 1 -- height of the command bar
+opt.laststatus = 3 -- global statusline
+opt.expandtab = true -- convert tabs to spaces
+opt.scrolloff = 10 -- is one of my fav
+opt.shell = "fish"
+opt.inccommand = "split"
+opt.backupskip = "/tmp/*,/private/tmp/*"
+opt.ignorecase = true -- ignore case when searching
+opt.smarttab = true -- tab respects 'tabstop'
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+opt.breakindent = true -- set indent on newline
+opt.backspace = "indent,eol,start" -- backspace through everything in insert mode
+opt.path:append({ "**" }) -- finding files - search down into subfolders
+opt.wildignore:append({ "*/node_modules/*" })
 
 opt.mouse = "a" -- enable mouse support
 opt.wrap = false -- display lines as one long line(default: truet)
@@ -20,6 +37,7 @@ opt.linebreak = true -- Companion to wrap, don't split words (default: false)
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.cursorline = true -- highlight the current line
 
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
@@ -47,10 +65,20 @@ opt.foldenable = true
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "1"
-opt.foldmethod = "indent"
--- opt.foldmethod = "expr"
+-- opt.foldmethod = "indent"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
---
+opt.foldtext = ""
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+-- Add asterisks in block comments
+vim.opt.formatoptions:append({ "r" })
+
+vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
+vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
 --
 -- カーソル行の背景色を変更
@@ -130,10 +158,6 @@ if vim.g.neovide then
   -- https://youtu.be/33gQ9p-Zp0I
   vim.g.neovide_input_macos_option_key_is_meta = "only_right"
 
-  -- vim.g.neovide_window_blurred = true
-  vim.g.neovide_transparency = 0.7
-  vim.g.neovide_normal_opacity = 0.7
-
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_floating_corner_radius = 0.3
@@ -154,64 +178,55 @@ if vim.g.neovide then
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
+
+  vim.g.neovide_remember_window_size = true
   ---- IMEの設定
-  local function set_ime(args)
-    if args.event:match("Enter$") then
-      vim.g.neovide_input_ime = true
-    else
-      vim.g.neovide_input_ime = false
-    end
-  end
-
-  local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
-
-  vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
-    group = ime_input,
-    pattern = "*",
-    callback = set_ime,
-  })
-
-  vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
-    group = ime_input,
-    pattern = "[/\\?]",
-    callback = set_ime,
-  })
-
-  -- Helper function for transparency formatting
-  -- local alpha = function()
-  --   return string.format("%x", math.floor(255 * vim.g.neovide_transparency_point or 0.8))
+  -- local function set_ime(args)
+  --   if args.event:match("Enter$") then
+  --     vim.g.neovide_input_ime = true
+  --   else
+  --     vim.g.neovide_input_ime = false
+  --   end
   -- end
-  -- Set transparency and background color (title bar color)
-  -- vim.g.neovide_transparency = 0.0
-  -- vim.g.neovide_transparency_point = 0.8
-  -- vim.g.neovide_background_color = "#0f1117" .. alpha()
-  -- Add keybinds to change transparency
-  -- local change_transparency = function(delta)
-  --   vim.g.neovide_transparency_point = vim.g.neovide_transparency_point + delta
-  --   vim.g.neovide_background_color = "#0f1117" .. alpha()
-  -- end
-  -- vim.keymap.set({ "n", "v", "o" }, "<D-]>", function()
-  --   change_transparency(0.01)
-  -- end)
-  -- vim.keymap.set({ "n", "v", "o" }, "<D-[>", function()
-  --   change_transparency(-0.01)
-  -- end)
-  vim.g.terminal_color_0 = "#45475a"
-  vim.g.terminal_color_1 = "#f38ba8"
-  vim.g.terminal_color_2 = "#a6e3a1"
-  vim.g.terminal_color_3 = "#f9e2af"
-  vim.g.terminal_color_4 = "#89b4fa"
-  vim.g.terminal_color_5 = "#f5c2e7"
-  vim.g.terminal_color_6 = "#94e2d5"
-  vim.g.terminal_color_7 = "#bac2de"
-  vim.g.terminal_color_8 = "#585b70"
-  vim.g.terminal_color_9 = "#f38ba8"
-  vim.g.terminal_color_10 = "#a6e3a1"
-  vim.g.terminal_color_11 = "#f9e2af"
-  vim.g.terminal_color_12 = "#89b4fa"
-  vim.g.terminal_color_13 = "#f5c2e7"
-  vim.g.terminal_color_14 = "#94e2d5"
-  vim.g.terminal_color_15 = "#a6adc8"
+  --
+  -- local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+  --
+  -- vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+  --   group = ime_input,
+  --   pattern = "*",
+  --   callback = set_ime,
+  -- })
+  --
+  -- vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+  --   group = ime_input,
+  --   pattern = "[/\\?]",
+  --   callback = set_ime,
+  -- })
+
+  -- vim.g.neovide_background_color = "#24283b"
+  -- vim.g.neovide_window_blurred = true
+  vim.g.neovide_transparency = 0.75
+  vim.g.neovide_normal_opacity = 0.75
+  vim.g.transparency = 0.75
+
+  vim.g.terminal_color_0 = "#1d202f"
+  vim.g.terminal_color_1 = "#f7768e"
+  vim.g.terminal_color_2 = "#9ece6a"
+  vim.g.terminal_color_3 = "#e0af68"
+  vim.g.terminal_color_4 = "#7aa2f7"
+  vim.g.terminal_color_5 = "#bb9af7"
+  vim.g.terminal_color_6 = "#7dcfff"
+  vim.g.terminal_color_7 = "#a9b1d6"
+  vim.g.terminal_color_8 = "#414868"
+  vim.g.terminal_color_9 = "#ff899d"
+  vim.g.terminal_color_10 = "#9fe044"
+  vim.g.terminal_color_11 = "#faba4a"
+  vim.g.terminal_color_12 = "#8db0ff"
+  vim.g.terminal_color_13 = "#c7a9ff"
+  vim.g.terminal_color_14 = "#a4daff"
+  vim.g.terminal_color_15 = "#c0caf5"
+
+  vim.cmd([[autocmd VimEnter * cd ~/github/workspace/]])
 end
 
 vim.opt.guicursor = {

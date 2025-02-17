@@ -53,6 +53,5 @@ map("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
 map("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
 map("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
 
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
---
 require("keymaps")
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
