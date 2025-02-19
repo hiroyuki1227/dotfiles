@@ -93,7 +93,7 @@ else
   -- This WILL NOT auto wrap existing lines, or if you paste a long line into a
   -- file it will not wrap it as well
   -- https://www.reddit.com/r/neovim/comments/1av26kw/i_tried_to_figure_it_out_but_i_give_up_how_do_i/
-  vim.opt.textwidth = 80
+  vim.opt.textwidth = 120
 
   -- Above option applies the setting to ALL file types, if you want to apply it
   -- to specific files only
@@ -111,7 +111,7 @@ else
   -- Shows colorcolumn that helps me with markdown guidelines.
   -- This is the vertical bar that shows the 80 character limit
   -- This applies to ALL file types
-  vim.opt.colorcolumn = "80"
+  vim.opt.colorcolumn = "120"
 
   -- -- To apply it to markdown files only
   -- vim.api.nvim_create_autocmd("BufWinEnter", {

@@ -16,18 +16,20 @@ return {
   },
   "nvchad/volt",
   "nvchad/menu",
-  -- {
-  --   "nvchad/menu",
-  --   lazy = true,
-  --   -- mouse users + nvimtree users!
-  --   vim.keymap.set("n", "<RightMouse>", function()
-  --     vim.cmd.exec('"normal! \\<RightMouse>"')
-  --
-  --     local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-  --     require("menu").open(options, { mouse = true })
-  --   end, {}),
-  -- },
+  {
+    "nvchad/menu",
+    lazy = true,
+    -- mouse users + nvimtree users!
+    vim.keymap.set("n", "<RightMouse>", function()
+      vim.cmd.exec('"normal! \\<RightMouse>"')
+
+      local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+      require("menu").open(options, { mouse = true })
+    end, {}),
+  },
+
   { "nvchad/minty", cmd = { "Huefy", "Shades" } },
+
   {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeToggle",
@@ -35,6 +37,7 @@ return {
       require("configs.nvim-tree")
     end,
   },
+
   {
     "windwp/nvim-ts-autotag",
     ft = {
@@ -206,30 +209,30 @@ return {
     event = "VeryLazy",
     lazy = true,
     opts = {
-      -- startVisible = true,
-      -- showBlankVirtLine = true,
-      -- highlightColor = { link = "Comment" },
-      -- hints = {
-      --      Caret = { text = "^", prio = 2 },
-      --      Dollar = { text = "$", prio = 1 },
-      --      MatchingPair = { text = "%", prio = 5 },
-      --      Zero = { text = "0", prio = 1 },
-      --      w = { text = "w", prio = 10 },
-      --      b = { text = "b", prio = 9 },
-      --      e = { text = "e", prio = 8 },
-      --      W = { text = "W", prio = 7 },
-      --      B = { text = "B", prio = 6 },
-      --      E = { text = "E", prio = 5 },
-      -- },
-      -- gutterHints = {
-      --     G = { text = "G", prio = 10 },
-      --     gg = { text = "gg", prio = 9 },
-      --     PrevParagraph = { text = "{", prio = 8 },
-      --     NextParagraph = { text = "}", prio = 8 },
-      -- },
-      -- disabled_fts = {
-      --     "startify",
-      -- },
+      startVisible = true,
+      showBlankVirtLine = true,
+      highlightColor = { link = "Comment" },
+      hints = {
+        Caret = { text = "^", prio = 2 },
+        Dollar = { text = "$", prio = 1 },
+        MatchingPair = { text = "%", prio = 5 },
+        Zero = { text = "0", prio = 1 },
+        w = { text = "w", prio = 10 },
+        b = { text = "b", prio = 9 },
+        e = { text = "e", prio = 8 },
+        W = { text = "W", prio = 7 },
+        B = { text = "B", prio = 6 },
+        E = { text = "E", prio = 5 },
+      },
+      gutterHints = {
+        G = { text = "G", prio = 10 },
+        gg = { text = "gg", prio = 9 },
+        PrevParagraph = { text = "{", prio = 8 },
+        NextParagraph = { text = "}", prio = 8 },
+      },
+      disabled_fts = {
+        "startify",
+      },
     },
   },
   {

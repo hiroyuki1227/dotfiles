@@ -174,7 +174,7 @@ if vim.g.neovide then
   vim.g.neovide_remember_window_size = true
   vim.g.neovide_theme = "auto"
 
-  vim.g.neovide_padding_top = 5
+  vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
@@ -204,27 +204,49 @@ if vim.g.neovide then
   -- })
 
   -- vim.g.neovide_background_color = "#24283b"
-  -- vim.g.neovide_window_blurred = true
-  vim.g.neovide_transparency = 0.75
-  vim.g.neovide_normal_opacity = 0.75
-  vim.g.transparency = 0.75
+  vim.g.neovide_window_blurred = true
+  vim.g.neovide_transparency = 0.6
+  vim.g.neovide_normal_opacity = 0.6
+  vim.g.transparency = 0.6
+  --
+  vim.g.neovide_text_gamma = 0.0
+  vim.g.neovide_text_contrast = 0.5
 
-  vim.g.terminal_color_0 = "#1d202f"
-  vim.g.terminal_color_1 = "#f7768e"
-  vim.g.terminal_color_2 = "#9ece6a"
-  vim.g.terminal_color_3 = "#e0af68"
-  vim.g.terminal_color_4 = "#7aa2f7"
-  vim.g.terminal_color_5 = "#bb9af7"
-  vim.g.terminal_color_6 = "#7dcfff"
-  vim.g.terminal_color_7 = "#a9b1d6"
-  vim.g.terminal_color_8 = "#414868"
-  vim.g.terminal_color_9 = "#ff899d"
-  vim.g.terminal_color_10 = "#9fe044"
-  vim.g.terminal_color_11 = "#faba4a"
-  vim.g.terminal_color_12 = "#8db0ff"
-  vim.g.terminal_color_13 = "#c7a9ff"
-  vim.g.terminal_color_14 = "#a4daff"
-  vim.g.terminal_color_15 = "#c0caf5"
+  -- tokyonight
+  -- vim.g.terminal_color_0 = "#1d202f"
+  -- vim.g.terminal_color_1 = "#f7768e"
+  -- vim.g.terminal_color_2 = "#9ece6a"
+  -- vim.g.terminal_color_3 = "#e0af68"
+  -- vim.g.terminal_color_4 = "#7aa2f7"
+  -- vim.g.terminal_color_5 = "#bb9af7"
+  -- vim.g.terminal_color_6 = "#7dcfff"
+  -- vim.g.terminal_color_7 = "#a9b1d6"
+  -- vim.g.terminal_color_8 = "#414868"
+  -- vim.g.terminal_color_9 = "#ff899d"
+  -- vim.g.terminal_color_10 = "#9fe044"
+  -- vim.g.terminal_color_11 = "#faba4a"
+  -- vim.g.terminal_color_12 = "#8db0ff"
+  -- vim.g.terminal_color_13 = "#c7a9ff"
+  -- vim.g.terminal_color_14 = "#a4daff"
+  -- vim.g.terminal_color_15 = "#c0caf5"
+  --
+  --   catppuccin-moch
+  vim.g.terminal_color_0 = "#45475a"
+  vim.g.terminal_color_1 = "#f38ba8"
+  vim.g.terminal_color_2 = "#a6e3a1"
+  vim.g.terminal_color_3 = "#f9e2af"
+  vim.g.terminal_color_4 = "#89b4fa"
+  vim.g.terminal_color_5 = "#f5c2e7"
+  vim.g.terminal_color_6 = "#94e2d5"
+  vim.g.terminal_color_7 = "#bac2de"
+  vim.g.terminal_color_8 = "#585b70"
+  vim.g.terminal_color_9 = "#f38ba8"
+  vim.g.terminal_color_10 = "#a6e3a1"
+  vim.g.terminal_color_11 = "#f9e2af"
+  vim.g.terminal_color_12 = "#89b4fa"
+  vim.g.terminal_color_13 = "#f5c2e7"
+  vim.g.terminal_color_14 = "#94e2d5"
+  vim.g.terminal_color_15 = "#a6adc8"
 
   vim.cmd([[autocmd VimEnter * cd ~/github/workspace/]])
 end

@@ -476,6 +476,12 @@ return {
         end,
       },
       git = { enabled = true },
+      util = {
+        wo = {
+          winblend = 0,
+        },
+        is_transparent = true,
+      },
       gitbrowse = { enabled = true },
       dashboard = {
         enabled = true,
