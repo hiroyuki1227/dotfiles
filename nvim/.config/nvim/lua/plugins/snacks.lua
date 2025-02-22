@@ -84,24 +84,24 @@ return {
       {
         "<leader>pk",
         function()
-          require("snacks").picker.keymaps({ layout = "ivy" })
+          require("snacks").picker.keymaps({ layout = "vertical" })
         end,
         desc = "Search Keymaps (Snacks Picker)",
       },
       {
         "<leader>gbr",
         function()
-          require("snacks").picker.git_branches({ layout = "ivy" })
+          require("snacks").picker.git_branches({ layout = "select" })
         end,
         desc = "Search Git Branches (Snacks Picker)",
       },
-      {
-        "<leader>th",
-        function()
-          require("snacks").picker.colorschemes({ layout = "ivy" })
-        end,
-        desc = "Pick Color Scheme (Snacks Picker)",
-      },
+      -- {
+      --   "<leader>th",
+      --   function()
+      --     require("snacks").picker.colorschemes({ layout = "ivy" })
+      --   end,
+      --   desc = "Pick Color Scheme (Snacks Picker)",
+      -- },
       {
         "<leader>vh",
         function()
@@ -137,7 +137,35 @@ return {
         end,
         desc = "[P]Search for incomplete tasks",
       },
-      -- -- List git branches with Snacks_picker to quickly switch to a new branch
+      -- -- Iterate throuth completed tasks in Snacks_picker lamw26wmal
+      {
+        "<leader>tc",
+        function()
+          require("snacks").picker.grep({ -- Snacks.picker.grep({
+            prompt = " ",
+            -- pass your desired search as a static pattern
+            search = "^\\s*- \\[x\\] `done:",
+            -- we enable regex so the pattern is interpreted as a regex
+            regex = true,
+            -- no “live grep” needed here since we have a fixed pattern
+            live = false,
+            -- restrict search to the current working directory
+            dirs = { vim.fn.getcwd() },
+            -- include files ignored by .gitignore
+            args = { "--no-ignore" },
+            -- Start in normal mode
+            on_show = function()
+              vim.cmd.stopinsert()
+            end,
+            finder = "grep",
+            format = "file",
+            show_empty = true,
+            supports_live = false,
+            layout = "ivy",
+          })
+        end,
+        desc = "[P]Search for complete tasks",
+      },
       {
         "<leader><space>",
         function()
@@ -208,9 +236,10 @@ return {
           end
           return item
         end,
-        debug = {
-          scores = true, -- show scores in the list
-        },
+        -- 左側にスコアの数字を表示させる
+        -- debug = {
+        --   scores = true, -- show scores in the list
+        -- },
         layout = {
           preset = "ivy",
           cycle = false,
@@ -329,7 +358,7 @@ return {
         more_format = " ↓ %d lines ",
         refresh = 50,
       },
-      words = { enabled = true },
+      words = { enabled = false },
       bigfile = {
         enabled = true,
         notify = true,
@@ -483,6 +512,41 @@ return {
         is_transparent = true,
       },
       gitbrowse = { enabled = true },
+      styles = {
+        snacks_image = {
+          relative = "editor",
+          col = -1,
+        },
+      },
+      image = {
+        enabled = true,
+        doc = {
+          -- Personally I set this to false, I don't want to render all the
+          -- images in the file, only when I hover over them
+          -- render the image inline in the buffer
+          -- if your env doesn't support unicode placeholders, this will be disabled
+          -- takes precedence over `opts.float` on supported terminals
+          inline = vim.g.neovim_mode == "skitty" and true or false,
+          -- only_render_image_at_cursor = vim.g.neovim_mode == "skitty" and false or true,
+          -- render the image in a floating window
+          -- only used if `opts.inline` is disabled
+          float = true,
+          -- Sets the size of the image
+          -- max_width = 60,
+          max_width = vim.g.neovim_mode == "skitty" and 20 or 60,
+          max_height = vim.g.neovim_mode == "skitty" and 10 or 30,
+          -- max_height = 30,
+          -- Apparently, all the images that you preview in neovim are converted
+          -- to .png and they're cached, original image remains the same, but
+          -- the preview you see is a png converted version of that image
+          --
+          -- Where are the cached images stored?
+          -- This path is found in the docs
+          -- :lua print(vim.fn.stdpath("cache") .. "/snacks/image")
+          -- For me returns `~/.cache/neobean/snacks/image`
+          -- Go 1 dir above and check `sudo du -sh ./* | sort -hr | head -n 5`
+        },
+      },
       dashboard = {
         enabled = true,
         sections = {
@@ -525,6 +589,29 @@ return {
       --     { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
       --     { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
       --     { section = "startup" },
+      --   },
+      -- },
+      -- zen = {
+      --   enabled = true,
+      --   toggle = {
+      --     dim = true,
+      --     git_signs = false,
+      --     mini_diff_signs = false,
+      --     -- diagnostics = false,
+      --     -- inlay_hints = false,
+      --   },
+      --   show = {
+      --     statusline = false,
+      --     tabline = false,
+      --   },
+      --   win = { style = "zen" },
+      --   zoom = {
+      --     toggles = {},
+      --     show = { statusline = true, tabline = true },
+      --     win = {
+      --       backdrop = { transparent = false }, -- transparent = false,
+      --       width = 120,
+      --     },
       --   },
       -- },
     },

@@ -229,5 +229,5 @@ background-opacity = 0.8
 background-blur-radius = 30
 window-height = 50
 window-width = 120
-theme = tokyonight_moon
+theme = tokyonight_night
 cursor-click-to-move = true
