@@ -45,8 +45,8 @@ style = 'fg:cyan'
 
 [character]
 # success_symbol = "🚀 "
-# success_symbol = " 🍎 "
-success_symbol = "  "
+success_symbol = " 🍎 "
+# success_symbol = "  "
 error_symbol = "🔥 "
 
 [hostname]
@@ -70,7 +70,7 @@ Debian = "  "
 ###########################################
 
 [directory]
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = false
 fish_style_pwd_dir_length = 2
 use_logical_path = true

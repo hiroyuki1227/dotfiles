@@ -119,26 +119,12 @@ custom-shader = shaders/bloom025.glsl
 # left padding to 2 and the right padding to 4. If you want to set both
 # paddings to the same value, you can use a single value. For example,
 # `window-padding-x = 2` will set both paddings to 2.
-window-padding-x = 7,7
-
-# Vertical window padding. This applies padding between the terminal cells and
-# the top and bottom window borders. The value is in points, meaning that it
-# will be scaled appropriately for screen DPI.
-# 
-# If this value is set too large, the screen will render nothing, because the
-# grid will be completely squished by the padding. It is up to you as the user
-# to pick a reasonable value. If you pick an unreasonable value, a warning
-# will appear in the logs.
-# 
-# Changing this configuration at runtime will only affect new terminals,
-# i.e. new windows, tabs, etc.
-# 
-# To set a different top and bottom padding, specify two numerical values
-# separated by a comma. For example, `window-padding-y = 2,4` will set the
-# top padding to 2 and the bottom padding to 4. If you want to set both
-# paddings to the same value, you can use a single value. For example,
-# `window-padding-y = 2` will set both paddings to 2.
-window-padding-y = 7,7
+window-padding-x = 2 
+window-padding-y = 2
+# window-padding-balance = false
+# window-padding-color = background
+window-vsync = true
+window-decoration = true
 
 # font-family = "JetBrainsMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font Mono"
@@ -225,9 +211,9 @@ quick-terminal-animation-duration = 0.08
 keybind = super+i=inspector:toggle
 keybind = super+r=reload_config
 
-background-opacity = 0.8
-background-blur-radius = 30
-window-height = 50
-window-width = 120
+background-opacity = 0.75
+background-blur-radius = 20
+window-height = 60
+window-width = 150
 theme = tokyonight_night
 cursor-click-to-move = true

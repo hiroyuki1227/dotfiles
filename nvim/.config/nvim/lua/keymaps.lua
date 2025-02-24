@@ -3,6 +3,11 @@
 
 local M = {}
 
+local Snacks = require("snacks")
+local LazyVim = require("configs.lazy")
+-- local MiniDiff = require("mini.diff")
+-- local LazyVim = require("lazyvim")
+
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -26,9 +31,10 @@ local M = {}
 
 -- By default lazygit opens with <leader>gg, but I use it way too much, so need
 -- something faster
+
 if vim.fn.executable("lazygit") == 1 then
   vim.keymap.set("n", "<M-g>", function()
-    Snacks.lazygit({ cwd = LazyVim.root.git() })
+    Snacks.lazygit({ cwd = LazyVim.utils.root.git() })
   end, { desc = "Lazygit (Root Dir)" })
 end
 
@@ -37,7 +43,9 @@ end
 -- vim.keymap.set("n", "<M-g>", ":LazyGit<CR>", { desc = "Lazygit (Root Dir)" })
 
 -- Select the hunk under the cursor, excluding trailing blank line
+
 vim.keymap.set("n", "<M-2>", function()
+  -- MiniDiff.textobject()
   require("mini.diff").textobject()
   -- Get the current line content
   local current_line = vim.api.nvim_get_current_line()

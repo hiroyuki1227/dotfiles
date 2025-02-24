@@ -86,3 +86,12 @@ lspconfig.emmet_ls.setup({
     "sass",
   },
 })
+
+lspconfig.eslint.setup({
+  settings = {
+    workingDirectory = { mode = "auto" },
+    experimental = {
+      useFlatConfig = false,
+    },
+  },
+})
