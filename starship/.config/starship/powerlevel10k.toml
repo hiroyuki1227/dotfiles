@@ -16,27 +16,32 @@ palette = "tokyo"
 
 format = """
 $character\
-$hostname\
-$direnv$directory\
+$os$hostname\
+$directory\
 $git_branch\
 $git_status\
 $git_metrics\
-$fill\
-$docker_context\
-($nodejs)($package)\
-$golang\
-$lua\
 $python\
+$aws\
+$golang\
+$java\
+$nodejs\
+$rust\
+$ruby\
+$scala\
+$dart\
 $conda\
-\n[ → ](bold green)\
-"""
-#\n[󰀵 → ](bold green)\
-# set -g @prefix_highlight_output_suffix ""
-right_format = """
-$cmd_duration\
+$pijul_channel\
+$lua\
+$rlang\
+$package\
+$buf\
+$docker_context\
+$fill \
 $battery\
 $memory_usage\
-$time\
+[](#1C3A5E)$time[ ](#1C3A5E)$cmd_duration
+[ → ](bold green)\
 """
 
 [fill]
@@ -44,8 +49,8 @@ symbol = '─'
 style = 'fg:cyan'
 
 [character]
-# success_symbol = "🚀 "
-success_symbol = " 🍎 "
+success_symbol = "🚀 "
+# success_symbol = " 🍎 "
 # success_symbol = "  "
 error_symbol = "🔥 "
 
@@ -62,15 +67,17 @@ disabled = false
 
 ###########################################
 [os.symbols]
-Macos = "  "
+Macos = ""
 Linux = " 󰌽 "
 Ubuntu = "  "
 Debian = "  "
 
 ###########################################
+[cmd_duration]
+format = 'last command: [$duration](bold yellow)'
 
 [directory]
-truncation_length = 2
+truncation_length = 3
 truncate_to_repo = false
 fish_style_pwd_dir_length = 2
 use_logical_path = true
@@ -112,65 +119,52 @@ deleted_style = 'fg:magenda'
 format = '[+$added/-$deleted]($deleted_style) '
 disabled = false
 
+# ---
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
 [conda]
-symbol = ' '                              # nf-dev-python
-style = 'fg:teal'
-format = '[ $symbol$environment ]($style)'
-ignore_base = false
+symbol = " "
 
-[python]
-symbol = ' '                                                                # nf-dev-python
-format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
-pyenv_version_name = true
-style = 'fg:cyan'
-
-[direnv]
-format = '[ $symbol$allowed]($style) '
-style = "bold fg:#4d4c61"
-disabled = false
-
-[memory_usage]
-disabled = false
-threshold = 0
-style = "bold fg:yellow"
-# format = "[  $symbol$ram( $percentage%)]($style) "
-format = "[《 $symbol$ram( $percentage%)]($style) "
-
+[dart]
+symbol = " "
 
 [docker_context]
-symbol = ""
-style = 'fg:blue'
-format = '[《 [ $symbol( $context) ](fg:magenda bg:dark_blue)]($style)'
-
-[cmd_duration]
-min_time = 1
-style = 'fg:yellow'
-format = "[  $duration ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
-
-[lua]
-symbol = ""                         # nf-seti-lua
-format = '[ $symbol $version](blue)' # nf-pl-right_soft_divider
-
-[rust]
-symbol = ""                        # nf-dev-rust
-format = '[ $symbol $version](red)' # nf-pl-right_soft_divider
-
+symbol = " "
 
 [golang]
-symbol = "  󰟓 "
-style = "fg:blue bg:dark_blue"
-format = '[ via $symbol($version )]($style)'
+symbol = " "
+
+[lua]
+symbol = " "
+
+[java]
+symbol = " "
 
 
-[package]
-format = ' [$symbol$version ]($style) '
-style = 'fg:dark_blue'
+[memory_usage]
+symbol = "󰍛"
+disabled = false
+threshold = 1
+style = 'bold dimmed white'
+
+# format = "[  $symbol$ram( $percentage%)]($style) "
+# format = "[《 $symbol$ram( $percentage%)]($style) "
+format = "$symbol [${ram}(|${swap})]($style) "
 
 [nodejs]
 symbol = " "
 style = 'fg:blue'
-format = '[ node $symbol($version )]($style) '
-version_format = "${raw}"
+format = "[$symbol($version )]($style)"
+# format = '[ node $symbol($version )]($style) '
+# version_format = "${raw}"
 detect_files = [
   "!bun.lockb",
   "!bunfig.toml",
@@ -181,12 +175,34 @@ detect_files = [
 detect_folders = ["node_modules"]
 detect_extensions = []
 
+[package]
+symbol = "󰏗 "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+pyenv_version_name = true
+
+[ruby]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
 [time]
 disabled = false
-style = 'fg:#73daca'
-format = '[《  $time]($style)' # nf-pl-right_soft_divider, nf-fa-clock_o
-time_format = '%T'
-utc_time_offset = '+9'
+time_format = "%r"                                      # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
+
 
 [battery]
 full_symbol = '🔋 '

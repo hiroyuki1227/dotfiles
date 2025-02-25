@@ -180,7 +180,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
-  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  pattern = { "text", "plaintex", "typst", "gitcommit" },
   callback = function()
     -- -- By default wrap is set to true regardless of what I chose in my options.lua file,
     -- -- This sets wrapping for my skitty-notes and I don't want to have
@@ -190,6 +190,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Don't check for spell in markdown
+vim.api.nvim_create_autocmd("FileType", {
+
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
 -- When I open markdown files I want to fold the markdown headings
 -- Originally I thought about using it only for skitty-notes, but I think I want
 -- it in all markdown files

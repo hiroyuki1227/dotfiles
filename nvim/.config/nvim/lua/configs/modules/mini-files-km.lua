@@ -26,7 +26,7 @@ M.setup = function(opts)
         local curr_entry = mini_files.get_fs_entry()
         if curr_entry and curr_entry.fs_type == "directory" then
           -- Call tmux pane function with the directory path
-          require("config.keymaps").tmux_pane_function(curr_entry.path)
+          require("keymaps").tmux_pane_function(curr_entry.path)
         else
           -- Notify if not a directory or no entry is selected
           vim.notify("Not a directory or no entry selected", vim.log.levels.WARN)

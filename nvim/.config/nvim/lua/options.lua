@@ -5,6 +5,7 @@ local opt = vim.opt
 
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
+opt.spelllang = { "en", "cjk" }
 
 opt.relativenumber = true
 opt.number = true
