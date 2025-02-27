@@ -63,7 +63,7 @@ custom-shader = shaders/bloom025.glsl
 # custom-shader = shaders/underwater.glsl
 # custom-shader = shaders/water.glsl
 
-window-padding-x =4,2
+window-padding-x = 4,2
 window-padding-y = 6,0
 # window-padding-balance = false
 # window-padding-color = background
@@ -92,8 +92,8 @@ quick-terminal-animation-duration = 0.08
 keybind = super+i=inspector:toggle
 keybind = super+r=reload_config
 
-background-opacity = 0.75
-background-blur-radius = 20
+background-opacity = 0.9
+background-blur-radius = 30
 window-height = 60
 window-width = 150
 theme = tokyonight_night
