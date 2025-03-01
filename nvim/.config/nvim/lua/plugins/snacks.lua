@@ -594,25 +594,25 @@ return {
       -- zen = {
       --   enabled = true,
       --   toggle = {
-      --     dim = true,
-      --     git_signs = false,
-      --     mini_diff_signs = false,
-      --     -- diagnostics = false,
-      --     -- inlay_hints = false,
+      -- dim = true,
+      --   git_signs = false,
+      --   mini_diff_signs = false,
+      --   -- diagnostics = false,
+      --   -- inlay_hints = false,
+      -- },
+      -- show = {
+      --   statusline = false,
+      --   tabline = false,
+      -- },
+      -- win = { style = "zen" },
+      -- zoom = {
+      --   toggles = {},
+      --   show = { statusline = true, tabline = true },
+      --   win = {
+      --     backdrop = { transparent = false }, -- transparent = false,
+      --     width = 120,
       --   },
-      --   show = {
-      --     statusline = false,
-      --     tabline = false,
-      --   },
-      --   win = { style = "zen" },
-      --   zoom = {
-      --     toggles = {},
-      --     show = { statusline = true, tabline = true },
-      --     win = {
-      --       backdrop = { transparent = false }, -- transparent = false,
-      --       width = 120,
-      --     },
-      --   },
+      -- },
       -- },
     },
   },

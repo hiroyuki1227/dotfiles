@@ -47,7 +47,6 @@ opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
--- opt.whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
@@ -93,6 +92,8 @@ opt.cursorline = true
 -- opt.cursorcolumn = true
 opt.ruler = true
 opt.cursorlineopt = "both" -- to enable cursorline!
+opt.helplang = "ja,en"
+-- opt.whichwrap:append("b,s,h,l,<,>,[,],~")
 
 -- json
 -- local vcmd = vim.cmd
@@ -205,11 +206,12 @@ if vim.g.neovide then
   --   callback = set_ime,
   -- })
 
+  --
   -- vim.g.neovide_background_color = "#24283b"
-  vim.g.neovide_window_blurred = true
-  vim.g.neovide_transparency = 0.5
-  vim.g.neovide_normal_opacity = 0.5
-  vim.g.transparency = 0.5
+  vim.g.neovide_window_blurred = false
+  vim.g.neovide_transparency = 0.75
+  vim.g.neovide_normal_opacity = 0.75
+  vim.g.transparency = 0.85
   --
   vim.g.neovide_text_gamma = 0.0
   vim.g.neovide_text_contrast = 0.5

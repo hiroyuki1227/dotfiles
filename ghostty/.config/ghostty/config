@@ -24,6 +24,7 @@
 # the configuration file will be ignored.
 #
 # config-file = ghostty-theme
+config-file = solarized_osaka_dark
 
 # Some shaders can be found in this repo, they're usually uploaded to discord
 # https://github.com/hackrmomo/ghostty-shaders
@@ -69,32 +70,43 @@ window-padding-y = 6,0
 # window-padding-color = background
 window-vsync = true
 window-decoration = true
+window-inherit-working-directory = true
 
 # font-family = "JetBrainsMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "CodeNewRoman Nerd Font Mono"
-font-size = 15
+font-size = 14
 font-feature = -calt
 font-feature = -dlig
 
 macos-titlebar-style = hidden
+macos-option-as-alt = right
+
 confirm-close-surface = false
 quit-after-last-window-closed = true
 # quit-after-last-window-closed-delay = 1s
 
-# keybind = global:cmd+s=toggle_quick_terminal
-keybind = cmd+s=toggle_quick_terminal
-macos-option-as-alt = right
 # quick-terminal-animation-duration = 0.1
 quick-terminal-animation-duration = 0.08
 # quick-terminal-animation-duration = 0
 
+# keybind = global:cmd+s=toggle_quick_terminal
+keybind = cmd+s=toggle_quick_terminal
 keybind = super+i=inspector:toggle
-keybind = super+r=reload_config
+keybind = super+r=reload_config 
+keybind = super+f=toggle_fullscreen
 
 background-opacity = 0.9
 background-blur-radius = 30
 window-height = 60
 window-width = 150
-theme = tokyonight_night
+# theme = tokyonight_night
+
 cursor-click-to-move = true
+cursor-opacity = 0.7
+cursor-style = block
+cursor-style-blink = false
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+unfocused-split-opacity = 0.825

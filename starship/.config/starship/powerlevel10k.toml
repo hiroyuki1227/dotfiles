@@ -74,7 +74,7 @@ Debian = "  "
 
 ###########################################
 [cmd_duration]
-format = 'last command: [$duration](bold yellow)'
+format = ' [$duration](bold yellow)'
 
 [directory]
 truncation_length = 3
@@ -102,7 +102,7 @@ style = 'bold fg:green'
 format = '[$all_status$ahead_behind]($style) '
 style = 'bold green'
 conflicted = '🏳'
-# up_to_date = ''
+up_to_date = ''
 untracked = ' '
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
@@ -111,17 +111,17 @@ stashed = ' '
 modified = ' '
 staged = '[++\($count\)](green)'
 renamed = '襁 '
-# deleted = ' '
+deleted = ' '
 # ahead = '🏎💨'
 # behind = '😰'
 # diverged = '😵'
-up_to_date = '✓'
+# up_to_date = '✓'
 # untracked = '🤷'
 # stashed = '📦'
 # modified = '📝'
 # staged = '[++\($count\)](green)'
 # renamed = '👅'
-deleted = '🗑'
+# deleted = '🗑'
 
 [git_metrics]
 added_style = 'fg:green'

@@ -2,7 +2,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "tokyonight",
+  theme = "solarized_osaka",
   theme_toggle = { "tokyonight", "solarized_osaka" },
   transparency = true,
   styles = {
