@@ -19,7 +19,6 @@ M.ui = {
   --   CursorLine = { bg = "one_fg", fg = "one_bg" },
   --   Cursor = { bg = "one_bg", fg = "one_fg" },
   -- },
-
   statusline = {
     enabled = true,
     theme = "minimal",
@@ -54,9 +53,9 @@ M.ui = {
 
   colorify = {
     enabled = true,
-    mode = "virtual",
+    mode = "virtual", -- fg, bg, virtual
     virt_text = "󱓻 ",
-    highlight = { hex = true, lspvars = true, tailwind = true },
+    highlight = { hex = true, lspvars = true, tailwind = true, oklch = true },
   },
 }
 

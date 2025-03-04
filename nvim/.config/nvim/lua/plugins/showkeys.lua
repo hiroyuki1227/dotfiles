@@ -1,0 +1,42 @@
+return {
+  "nvzone/showkeys",
+  cmd = "ShowkeysToggle",
+  opts = {
+    -- top-right, top-center, top-left, bottom-right,bottom-center, bottom-left
+    position = "top-right",
+    maxkeys = 3,
+    show_count = true,
+    keyformat = {
+
+      ["<BS>"] = "󰁮 ",
+      ["<CR>"] = "⏎",
+      ["<Space>"] = "󱁐",
+      ["<Up>"] = "󰁝",
+      ["<Down>"] = "󰁅",
+      ["<Left>"] = "󰁍",
+      ["<Right>"] = "󰁔",
+      ["<PageUp>"] = "Page 󰁝",
+      ["<PageDown>"] = "Page 󰁅",
+      ["<D>"] = "⌘",
+      ["<C>"] = "⌃",
+      ["<A>"] = "⌥",
+      ["<S>"] = "⇧",
+      ["<M>"] = "⌥",
+      ["<Tab>"] = "⇥",
+      ["<S-Tab>"] = "⇤",
+      ["<S-Right>"] = "⇒",
+      ["<S-Left>"] = "⇐",
+      ["<S-Up>"] = "⇑",
+      ["<S-Down>"] = "⇓",
+      ["<C-Right>"] = "⇒",
+      ["<C-Left>"] = "⇐",
+      ["<C-Up>"] = "⇑",
+      ["<C-Down>"] = "⇓",
+      ["<Return>"] = "⏎",
+      ["<ESC>"] = "⎋",
+    },
+  },
+  keys = {
+    { "<leader>ks", "<cmd>ShowkeysToggle<cr>", desc = "Showkeys Toggle" },
+  },
+}
