@@ -16,7 +16,7 @@ palette = "tokyo"
 
 format = """
 $character\
-$os$hostname\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
@@ -50,9 +50,9 @@ symbol = '─'
 style = 'fg:cyan'
 
 [character]
-success_symbol = "🚀 "
+# success_symbol = "🚀 "
 # success_symbol = " 🍎 "
-# success_symbol = "  "
+success_symbol = " "
 error_symbol = "🔥 "
 
 [hostname]
@@ -78,7 +78,7 @@ Debian = "  "
 format = ' [$duration](bold yellow)'
 
 [directory]
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = false
 fish_style_pwd_dir_length = 2
 use_logical_path = true
@@ -165,10 +165,16 @@ symbol = "󰍛"
 disabled = false
 threshold = 1
 style = 'bold dimmed white'
+# format = "[$symbol$ram( $percentage%)]($style) "
+# format = "[$symbol $ram($percentage%)]($style) "
+format = '$symbol [${ram}]($style) '
+# format = "$symbol [${ram}(|${swap})]($style) "
 
-# format = "[  $symbol$ram( $percentage%)]($style) "
-# format = "[《 $symbol$ram( $percentage%)]($style) "
-format = "$symbol [${ram}(|${swap})]($style) "
+[time]
+disabled = false
+time_format = "%r"                                      # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
 
 [nodejs]
 symbol = " "
@@ -207,13 +213,6 @@ symbol = " "
 
 [scala]
 symbol = " "
-
-[time]
-disabled = false
-time_format = "%r"                                      # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
-
 
 [battery]
 full_symbol = '🔋 '

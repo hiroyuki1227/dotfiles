@@ -21,8 +21,51 @@ config = {
 	},
 
 	window_decorations = "RESIZE",
-	color_scheme = "Catppuccin Mocha",
-	-- color_scheme = "tokyonight",
+	-- color_scheme = "Solarized (dark) (terminal.sexy)",
+	-- color_scheme = "Solarized Osaka",
+	-- color_scheme_dirs = { "~/.config/wezterm/themes" },
+	-- color_scheme = "Solarized Osaka",
+	colors = {
+		foreground = "#839395",
+		background = "#001419",
+		cursor_bg = "#839395",
+		cursor_border = "#839395",
+		cursor_fg = "#001419",
+		selection_bg = "#1a6397",
+		selection_fg = "#839395",
+		ansi = { "#001014", "#db302d", "#849900", "#b28500", "#268bd3", "#d23681", "#29a298", "#9eabac" },
+		brights = { "#001419", "#db302d", "#849900", "#b28500", "#268bd3", "#d23681", "#29a298", "#839395" },
+		["tab_bar"] = {
+			inactive_tab_edge = "#002c38",
+			background = "#191b28",
+			["active_tab"] = {
+				bg_color = "#2b8bd3",
+				fg_color = "#001419",
+			},
+			["inactive_tab"] = {
+				bg_color = "#002c38",
+				fg_color = "#063540",
+			},
+			["inactive_tab_hover"] = {
+				bg_color = "#002c38",
+				fg_color = "#268bd3",
+			},
+			["new_tab_hover"] = {
+				fg_color = "#002c38",
+				bg_color = "#268bd3",
+			},
+			["new_tab"] = {
+
+				fg_color = "#268bd3",
+				bg_color = "#191b28",
+			},
+		},
+		-- ["metadata"] = {
+		-- 	aliases = "Solarized Osaka",
+		-- 	authors = "caftzdog",
+		-- 	name = "Solarized Osaka",
+		-- },
+	},
 	initial_rows = 50,
 	initial_cols = 120,
 
@@ -40,12 +83,12 @@ config = {
 	window_padding = {
 		left = 2,
 		right = 2,
-		top = 5,
-		bottom = 5,
+		top = 2,
+		bottom = 2,
 	},
 
-	window_background_opacity = 0.8,
-	macos_window_background_blur = 20,
+	window_background_opacity = 0.85,
+	macos_window_background_blur = 30,
 	max_fps = 120,
 	prefer_egl = true,
 
