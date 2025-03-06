@@ -41,7 +41,7 @@ $fill \
 $battery\
 $memory_usage\
 [](#1C3A5E)$time[ ](#1C3A5E)$cmd_duration
-[ 》](bold green)\
+[ 》](bold orange)\
 """
 
 [fill]

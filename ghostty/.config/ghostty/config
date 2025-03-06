@@ -72,10 +72,10 @@ window-vsync = true
 window-decoration = true
 window-inherit-working-directory = true
 
-# font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font Mono"
-font-family = "CodeNewRoman Nerd Font Mono"
-font-size = 15
+# font-family = "CodeNewRoman Nerd Font Mono"
+font-size = 13
 font-feature = -calt
 font-feature = -dlig
 
@@ -96,14 +96,14 @@ keybind = super+i=inspector:toggle
 keybind = super+r=reload_config 
 keybind = super+f=toggle_fullscreen
 
-background-opacity = 0.75
+background-opacity = 0.85
 background-blur-radius = 30
 window-height = 60
 window-width = 150
 # theme = tokyonight_night
 
 cursor-click-to-move = true
-cursor-opacity = 0.7
+cursor-opacity = 0.85
 cursor-style = block
 cursor-style-blink = false
 
