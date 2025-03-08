@@ -13,3 +13,10 @@ gui:
     markedBaseCommitBgColor: ['#b28500']
     unstagedChangesColor: ['#f55350']
     defaultFgColor: ['#839395']
+customCommands:
+  - key: C
+    command: git cz
+    description: commit with commitizen
+    context: files
+    loadingText: opening commitizen commit tool
+    subprocess: true

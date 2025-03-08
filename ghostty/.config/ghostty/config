@@ -24,7 +24,8 @@
 # the configuration file will be ignored.
 #
 # config-file = ghostty-theme
-config-file = solarized_osaka_dark
+# config-file = solarized_osaka_dark
+theme = "Solarized Dark - Patched"
 
 # Some shaders can be found in this repo, they're usually uploaded to discord
 # https://github.com/hackrmomo/ghostty-shaders
@@ -74,8 +75,9 @@ window-inherit-working-directory = true
 
 # font-family = "JetBrainsMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font Mono"
+# font-family = "PlemolJP Console NF"
 font-family = "CodeNewRoman Nerd Font Mono"
-font-size = 15
+font-size = 16
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
@@ -99,13 +101,11 @@ keybind = super+i=inspector:toggle
 keybind = super+r=reload_config 
 keybind = super+f=toggle_fullscreen
 
-background-opacity = 0.75
-background-blur-radius = 30
+background-opacity = 0.9
+background-blur-radius = 20
 window-height = 60
 window-width = 150
 window-colorspace = display-p3
-
-# theme = tokyonight_night
 
 cursor-click-to-move = true
 cursor-opacity = 0.85
