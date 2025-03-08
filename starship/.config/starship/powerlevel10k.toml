@@ -73,6 +73,13 @@ Linux = " 󰌽 "
 Ubuntu = "  "
 Debian = "  "
 
+[username]
+style_user = "bright-yellow bold italic"
+style_root = "purple bold italic"
+format = "[⭘ $user]($style) "
+disabled = false
+show_always = false
+
 ###########################################
 [cmd_duration]
 format = ' [$duration](bold yellow)'
@@ -87,9 +94,18 @@ repo_root_format = "at [$before_root_path ]($before_repo_root_style)[$repo_root]
 style = 'fg:cyan'
 home_symbol = ' ~'                                                                                                                               # nf-fa-home
 truncation_symbol = '…/'                                                                                                                          # nf-fa-folder_open
-read_only = "🔒"
+# read_only = "🔒 "
+read_only = " ◈"
 read_only_style = 'fg:red'
 use_os_path_sep = true
+
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
 
 [git_branch]
 symbol = " "
@@ -172,7 +188,7 @@ format = '$symbol [${ram}]($style) '
 
 [time]
 disabled = false
-time_format = "%r"                                      # Hour:Minute Format
+time_format = "%R"                                      # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
 

@@ -65,24 +65,27 @@ custom-shader = shaders/bloom025.glsl
 # custom-shader = shaders/water.glsl
 
 window-padding-x = 4,2
-window-padding-y = 6,0
+window-padding-y = 6,2
 # window-padding-balance = false
 # window-padding-color = background
 window-vsync = true
 window-decoration = true
 window-inherit-working-directory = true
 
-font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMono Nerd Font"
 # font-family = "JetBrainsMono Nerd Font Mono"
-# font-family = "CodeNewRoman Nerd Font Mono"
-font-size = 13
+font-family = "CodeNewRoman Nerd Font Mono"
+font-size = 15
 font-feature = -calt
 font-feature = -dlig
+font-feature = -liga
+font-thicken = true
+font-thicken-strength = 
 
-macos-titlebar-style = hidden
+# native tansparent tabs hidden
+macos-titlebar-style = hidden 
 macos-option-as-alt = right
 
-confirm-close-surface = false
 quit-after-last-window-closed = true
 # quit-after-last-window-closed-delay = 1s
 
@@ -96,10 +99,12 @@ keybind = super+i=inspector:toggle
 keybind = super+r=reload_config 
 keybind = super+f=toggle_fullscreen
 
-background-opacity = 0.85
+background-opacity = 0.75
 background-blur-radius = 30
 window-height = 60
 window-width = 150
+window-colorspace = display-p3
+
 # theme = tokyonight_night
 
 cursor-click-to-move = true
@@ -110,3 +115,6 @@ cursor-style-blink = false
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 unfocused-split-opacity = 0.825
+unfocused-split-fill = #5e6576
+
+confirm-close-surface = false

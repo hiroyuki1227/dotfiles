@@ -1,5 +1,5 @@
-require("options-link")
 require("nvchad.options")
+require("options-link")
 
 local opt = vim.opt
 
@@ -85,6 +85,7 @@ vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 -- カーソル行の背景色を変更
 vim.cmd([[
    highlight CursorLine guibg= #323449
+   highlight CursorLineNr guibg= guibg=#323449 guifg= #f1fc79
  ]])
 
 -- カーソル行の強調表示を有効にする

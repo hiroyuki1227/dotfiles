@@ -69,7 +69,14 @@ config = {
 	initial_rows = 50,
 	initial_cols = 120,
 
-	font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+	-- font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+
+	font = wezterm.font_with_fallback({
+		{ family = "CodeNewRoman Nerd Font", weight = "Bold", stretch = "Normal", style = "Normal" },
+		{ family = "UDEV Gothic NF", weight = "Bold", stretch = "Normal", style = "Normal" },
+		{ family = "JetBrains Nerd Font", weight = "Bold", stretch = "Normal", style = "Normal" },
+	}),
+
 	font_size = 15,
 	line_height = 1.2,
 
