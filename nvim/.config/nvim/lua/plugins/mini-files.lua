@@ -83,7 +83,7 @@ return {
       -- Open the directory of the file currently being edited
       -- If the file doesn't exist because you maybe switched to a new git branch
       -- open the current working directory
-      "<leader>e",
+      "<leader>F",
       function()
         local buf_name = vim.api.nvim_buf_get_name(0)
         local dir_name = vim.fn.fnamemodify(buf_name, ":p:h")
