@@ -19,7 +19,7 @@ opt.cmdheight = 1 -- height of the command bar
 opt.laststatus = 3 -- global statusline
 opt.expandtab = true -- convert tabs to spaces
 opt.scrolloff = 10 -- is one of my fav
-opt.shell = "fish"
+opt.shell = "/opt/homebrew/bin/zsh"
 opt.inccommand = "split"
 opt.backupskip = "/tmp/*,/private/tmp/*"
 opt.ignorecase = true -- ignore case when searching
@@ -184,6 +184,28 @@ if vim.g.neovide then
   vim.g.neovide_padding_left = 0
 
   vim.g.neovide_remember_window_size = true
+  local function set_ime(args)
+    if args.event:match("Enter$") then
+      vim.g.neovide_input_ime = true
+    else
+      vim.g.neovide_input_ime = false
+    end
+  end
+
+  local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+
+  vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+    group = ime_input,
+    pattern = "*",
+    callback = set_ime,
+  })
+
+  vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+    group = ime_input,
+    pattern = "[/\\?]",
+    callback = set_ime,
+  })
+  -- vim.g.neovide_input_ime = true
   ---- IMEの設定
   -- local function set_ime(args)
   --   if args.event:match("Enter$") then
@@ -209,10 +231,10 @@ if vim.g.neovide then
 
   --
   -- vim.g.neovide_background_color = "#24283b"
-  vim.g.neovide_window_blurred = false
-  vim.g.neovide_transparency = 0.75
-  vim.g.neovide_normal_opacity = 0.75
-  vim.g.transparency = 0.75
+  vim.g.neovide_window_blurred = true
+  vim.g.neovide_transparency = 0.6
+  vim.g.neovide_normal_opacity = 0.6
+  vim.g.transparency = 0.6
   --
   vim.g.neovide_text_gamma = 0.0
   vim.g.neovide_text_contrast = 0.5
@@ -288,8 +310,8 @@ if vim.g.neovide then
   vim.g.terminal_color_13 = "#f254a0"
   vim.g.terminal_color_14 = "#2aeddd"
   vim.g.terminal_color_15 = "#ffffff"
-  -- vim.g.neovide_background_color = "#1a1b26"
-  -- vim.g.neovide_foreground_color = "#c0caf5"
+  -- vim.g.neovide_background_color = "#001419"
+  -- vim.g.neovide_foreground_color = "#29a298"
 
   vim.cmd([[autocmd VimEnter * cd ~/github/workspace/]])
 end

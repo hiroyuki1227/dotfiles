@@ -11,8 +11,9 @@
 # false: スペースを入れない
 add_newline = false
 command_timeout = 1000
-palette = "tokyo"
+# palette = "tokyo"
 # palette = "catppuccin_mocha"
+palette = "solarized"
 
 format = """
 $character\
@@ -273,28 +274,28 @@ white = '#D8DEE9'
 [palettes.onedark]
 dark_blue = '#61afef'
 blue = '#56b6c2'
-red = '#e06c75'
-green = '#98c379'
-purple = '#c678dd'
-cyan = '#56b6c2'
-orange = '#be5046'
-yellow = '#e5c07b'
+red = '#db302d'
+green = '#849900'
+purple = '#6d71c4'
+cyan = '#29a298'
+orange = '#c94c16'
+yellow = '#b28500'
 gray = '#828997'
-white = '#abb2bf'
-black = '#2c323c'
+white = '#9eabac'
+black = '#001014'
 
 [palettes.solarized]
-dark_blue = '#4d4c61'
-blue = '#268bd2'
-red = '#dc322f'
-green = '#859900'
-purple = '#6c71c4'
-cyan = '#2aa198'
-orange = '#be5046'
-yellow = '#b58900'
+dark_blue = '#0f3856'
+blue = '#268bd3'
+red = '#db382d'
+green = '#849900'
+purple = '#d23681'
+cyan = '#29a298'
+orange = '#c94c16'
+yellow = '#b28500'
 gray = '#828997'
-white = '#eee8d5'
-black = '#073642'
+white = '#9eabac'
+black = '#001419'
 
 
 [palettes.tokyo]
