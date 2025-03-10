@@ -33,7 +33,9 @@ opt.path:append({ "**" }) -- finding files - search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
 
 opt.mouse = "a" -- enable mouse support
+opt.whichwrap:remove({ "b", "s", "h", "l" })
 opt.wrap = false -- display lines as one long line(default: truet)
+
 opt.linebreak = true -- Companion to wrap, don't split words (default: false)
 
 -- search settings
@@ -58,6 +60,12 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 opt.splitkeep = "cursor" -- split horizontal window to the bottom
 
+vim.g.mapleader = " "
+vim.opt.timeout = true
+-- Default neovim is 1,000 but lazyvim sets it to 300
+vim.opt.timeoutlen = 1000
+-- I find the animations a bit laggy
+-- vim.g.snacks_animate = false
 -- turn off swapfile
 opt.swapfile = false
 

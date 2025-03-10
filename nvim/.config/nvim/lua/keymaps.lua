@@ -1,36 +1,9 @@
--- Filename: ~/github/dotfiles-latest/neovim/neobean/lua/config/keymaps.lua
--- ~/github/dotfiles-latest/neovim/neobean/lua/config/keymaps.lua
-
 local M = {}
 
 local Snacks = require("snacks")
 local LazyVim = require("configs.lazy")
 -- local MiniDiff = require("mini.diff")
 -- local LazyVim = require("lazyvim")
-
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
--- -- Leaving this here as an example in case you want to delete default keymaps
--- -- delete default buffer navigation keymaps
--- vim.keymap.del("n", "<S-h>")
--- vim.keymap.del("n", "<S-l>")
-
--- I don't want to switch between buffers anymore, instead I'll use BufExplorer
--- For this to work, make sure you have the plugin installed
--- vim.keymap.set("n", "<S-h>", "<cmd>BufExplorer<cr>", { desc = "[P]Open bufexplorer" })
-
--- I was running out of Ctrl keys that I use for several things, like pasting
--- images intoa file using img-clip.nvim, or uploading images to imgur, pasting
--- the path of a file to the clipboard, etc, so I switched all of those ctrl
--- keys to alt, you just need to configure your terminal emulator for that lamw25wmal,
--- I configured both Ghostty and Kitty to just treat the right option key as alt
--- in macOS, I still use the left option key for unicode characters, like ñ ó á
--- and stuff like that in spanish, you pinchis gringos wouldn't understand
-
--- By default lazygit opens with <leader>gg, but I use it way too much, so need
--- something faster
 
 if vim.fn.executable("lazygit") == 1 then
   vim.keymap.set("n", "<M-g>", function()
@@ -85,119 +58,9 @@ vim.keymap.set("n", "<C-u>", function()
   vim.cmd("normal! " .. lines .. "kzz")
 end, { noremap = true, silent = true })
 
--- When jumping with ctrl+d and u the cursors stays in the middle
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<c-u>", "<c-u>zz")
-
 -- Quit or exit neovim, easier than to do <leader>qq
 vim.keymap.set({ "n", "v", "i" }, "<M-q>", "<cmd>wqa<cr>", { desc = "[P]Quit All" })
 
--- -- This, by default configured as <leader>sk but I run it too often lamw25wmal
--- vim.keymap.set({ "n", "v", "i" }, "<M-k>", "<cmd>Telescope keymaps<cr>", { desc = "[P]Key Maps" })
-
--- -- List git branches with telescope to quickly switch to a new branch
--- vim.keymap.set("n", "<M-b>", function()
---   require("telescope.builtin").git_branches(require("telescope.themes").get_ivy({
---     initial_mode = "insert",
---     layout_config = {
---       -- Adjust the preview width for better visibility
---       preview_width = 0.5,
---     },
---     attach_mappings = function(_, map)
---       -- Remap <Space> to checkout the currently selected branch
---       -- map("i", "<Space>", require("telescope.actions").select_default)
---       map("n", "<Space>", require("telescope.actions").select_default)
---       return true
---     end,
---   }))
--- end, { desc = "[P]Checkout Git branch in telescope" })
-
-vim.keymap.set({ "n", "v", "i" }, "<M-h>", function()
-  -- require("noice").cmd("history")
-  require("noice").cmd("all")
-end, { desc = "[P]Noice History" })
-
--- Dismiss noice notifications
-vim.keymap.set({ "n", "v", "i" }, "<M-d>", function()
-  require("noice").cmd("dismiss")
-end, { desc = "Dismiss All" })
-
--- HACK: Manage Markdown tasks in Neovim similar to Obsidian | Telescope to List Completed and Pending Tasks
--- https://youtu.be/59hvZl077hM
---
--- -- Iterate through incomplete tasks in telescope
--- -- You can confirm in your teminal lamw25wmal with:
--- -- rg "^\s*-\s\[ \]" test-markdown.md
--- vim.keymap.set("n", "<leader>tt", function()
---   require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
---     prompt_title = "Incomplete Tasks",
---     -- search = "- \\[ \\]", -- Fixed search term for tasks
---     -- search = "^- \\[ \\]", -- Ensure "- [ ]" is at the beginning of the line
---     search = "^\\s*- \\[ \\]", -- also match blank spaces at the beginning
---     search_dirs = { vim.fn.getcwd() }, -- Restrict search to the current working directory
---     use_regex = true, -- Enable regex for the search term
---     initial_mode = "normal", -- Start in normal mode
---     layout_config = {
---       preview_width = 0.5, -- Adjust preview width
---     },
---     additional_args = function()
---       return { "--no-ignore" } -- Include files ignored by .gitignore
---     end,
---   }))
--- end, { desc = "[P]Search for incomplete tasks" })
-
--- HACK: Manage Markdown tasks in Neovim similar to Obsidian | Telescope to List Completed and Pending Tasks
--- https://youtu.be/59hvZl077hM
---
--- -- Iterate throuth completed tasks in telescope lamw25wmal
--- vim.keymap.set("n", "<leader>tc", function()
---   require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
---     prompt_title = "Completed Tasks",
---     -- search = [[- \[x\] `done:]], -- Regex to match the text "`- [x] `done:"
---     -- search = "^- \\[x\\] `done:", -- Matches lines starting with "- [x] `done:"
---     search = "^\\s*- \\[x\\] `done:", -- also match blank spaces at the beginning
---     search_dirs = { vim.fn.getcwd() }, -- Restrict search to the current working directory
---     use_regex = true, -- Enable regex for the search term
---     initial_mode = "normal", -- Start in normal mode
---     layout_config = {
---       preview_width = 0.5, -- Adjust preview width
---     },
---     additional_args = function()
---       return { "--no-ignore" } -- Include files ignored by .gitignore
---     end,
---   }))
--- end, { desc = "[P]Search for completed tasks" })
-
--- Commented these 2 as I couldn't clear search results with escape
--- I want to close split panes with escape, the default is "q"
--- vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { desc = "Close split pane" })
--- I also want to close split panes with escape in terminal mode
--- vim.keymap.set("n", "<esc>", "<C-W>c", { desc = "Delete Window", remap = true })
-
--- HACK: How I navigate between buffers in neovim
--- https://youtu.be/ldfxEda_mzc
---
--- -- I'm switching from bufexplorer to telescope buffers as I get a file preview,
--- -- that's basically the main benefit lamw25wmal
--- vim.keymap.set("n", "<S-h>", function()
---   require("telescope.builtin").buffers(require("telescope.themes").get_ivy({
---     sort_mru = true,
---     -- -- Sorts current and last buffer to the top and selects the lastused (default: false)
---     -- -- Leave this at false, otherwise when put in normal mode, the buffer
---     -- -- below is selected, not the one at the top
---     sort_lastused = false,
---     initial_mode = "normal",
---     -- Pre-select the current buffer
---     -- ignore_current_buffer = false,
---     -- select_current = true,
---     layout_config = {
---       -- Set preview width, 0.7 sets it to 70% of the window width
---       preview_width = 0.45,
---     },
---   }))
--- end, { desc = "[P]Open telescope buffers" })
-
--- Unfinished attempt ty try to get the final config of a plugin, see reddit:
 -- https://www.reddit.com/r/neovim/comments/1hmmfpn/how_can_i_see_the_final_fully_merged_config_of/
 vim.keymap.set("n", "<leader>fP", function()
   vim.ui.input({ prompt = "Plugin name: " }, function(plugin_name)
@@ -228,116 +91,15 @@ vim.keymap.set("n", "<leader>fP", function()
   end)
 end, { desc = "[P]Inspect plugin merge config" })
 
--- -- -- Open buffers with fzf-lua
--- vim.keymap.set("n", "<S-h>", function()
---   require("fzf-lua").buffers({
---     sort_mru = true, -- Sort buffers by most recently used
---     sort_lastused = true, -- Sort by last used
---     preview = {
---       layout = "vertical", -- Set preview layout to vertical
---       vertical = "down:45%", -- 45% of window height for the preview
---     },
---   })
--- end, { desc = "[P]fzf-lua buffers" })
-
--- vim.keymap.del("n", "<S-l>")
-
--- Snipe has been updated so this keymap changed, I moved the keymap to the
--- snipe plugin file, the only issue as of now is that `max_path_width` is not
--- available, but raised issue https://github.com/leath-dub/snipe.nvim/issues/38
--- vim.keymap.set("n", "<S-l>", function()
---   local toggle = require("snipe").create_buffer_menu_toggler({
---     -- Limit the width of path buffer names
---     max_path_width = 1,
---   })
---   toggle()
--- end, { desc = "[P]Snipe" })
-
 vim.keymap.set("n", "<leader>uk", '<cmd>lua require("kubectl").toggle()<cr>', { noremap = true, silent = true })
 
--- -- use kj to exit insert mode
--- -- I auto save with
 -- --  ~/github/dotfiles-latest/neovim/neobean/lua/plugins/auto-save.lua
 vim.keymap.set("i", "kj", "<ESC>", { desc = "[P]Exit insert mode with kj" })
-
--- -- An alternative way of saving (autosave)
--- -- Auto saving when exiting insert mode with `kj`
--- -- Disabling this because switched over to
--- --  ~/github/dotfiles-latest/neovim/neobean/lua/plugins/auto-save.lua
--- -- And it works :muacks:, beautifully
--- vim.keymap.set("i", "kj", function()
---   -- "Write" saves regardless of whether the buffer has been modified or not
---   -- vim.cmd("write")
---   -- "Update" saves only if the buffer has been modified since the last save
---   -- Suggested in reddit by user @SeoCamo
---   vim.cmd("update")
---   -- Move to the right
---   vim.cmd("normal l")
---   -- Switch back to command mode after saving
---   vim.cmd("stopinsert")
---   -- Print the "File saved" message and the file path
---   -- print("FILE SAVED: " .. vim.fn.expand("%:p"))
--- end, { desc = "[P]Write current file and exit insert mode" })
-
--- use gh to move to the beginning of the line in normal mode
--- use gl to move to the end of the line in normal mode
 vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
 vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
---
--- I'm switching from gh to H and gl to L so that I can also use the same
--- bindings in tmux copy mode, because I can't use gh and gl there, I tried
--- Nope, disabled this as I use them for telescope buffers and snipe
--- vim.keymap.set({ "n", "v" }, "H", "^", { desc = "[P]Go to the beginning line" })
--- vim.keymap.set({ "n", "v" }, "L", "$", { desc = "[P]go to the end of the line" })
-
--- In visual mode, after going to the end of the line, come back 1 character
 vim.keymap.set("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
-
--- -- These are defaults from lazyvim, but I also want them to work in insert mode
--- -- This worked great, but it didn't work with tmux, cannot use those keys to
--- -- switch to tmux panes anymore
--- local function navigate_window(direction)
---   return function()
---     if vim.fn.mode() == "i" then
---       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc><C-w>" .. direction, true, false, true), "n", true)
---     else
---       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>" .. direction, true, false, true), "n", true)
---     end
---   end
--- end
--- vim.keymap.set({ "n", "i" }, "<C-h>", navigate_window("h"), { desc = "Go to Left Window", remap = false })
--- vim.keymap.set({ "n", "i" }, "<C-j>", navigate_window("j"), { desc = "Go to Lower Window", remap = false })
--- vim.keymap.set({ "n", "i" }, "<C-k>", navigate_window("k"), { desc = "Go to Upper Window", remap = false })
--- vim.keymap.set({ "n", "i" }, "<C-l>", navigate_window("l"), { desc = "Go to Right Window", remap = false })
-
--- -- yank selected text into system clipboard
--- -- Vim/Neovim has two clipboards: unnamed register (default) and system clipboard.
--- --
--- -- Yanking with `y` goes to the unnamed register, accessible only within Vim.
--- -- The system clipboard allows sharing data between Vim and other applications.
--- -- Yanking with `"+y` copies text to both the unnamed register and system clipboard.
--- -- The `"+` register represents the system clipboard.
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "[P]Yank to system clipboard" })
-
--- HACK: Paste unformatted text from Neovim to Slack, Discord, Word or any other app
--- https://youtu.be/S3drTCO7Ct4
---
--- NOTE: New method of yanking text without LF (Line Feed) characters
--- This method is preferred because the old method requires a lot of edge cases,
--- for example codeblocks, or blockquotes which use `>`
---
--- Prettier is what autoformats all my files, including the markdown files
--- proseWrap: "always" is only enabled for markdown, which wraps all my markdown
--- lines at 80 characters, even existing lines are autoformatted
---
--- So only for markdown files, I'm copying all the text, to a temp file, applying
--- the prettier --prose-wrap never --write command on that file, then copying
--- the text in that file to my system clipboard
---
--- This gives me text without LF characters that I can pate in slack, the
--- browser, etc
 vim.keymap.set("v", "y", function()
-  -- Check if the current buffer's filetype is markdown
   if vim.bo.filetype ~= "markdown" then
     -- Not a Markdown file, copy the selection to the system clipboard
     vim.cmd('normal! "+y')
@@ -384,122 +146,10 @@ vim.keymap.set("v", "y", function()
   vim.notify("yanked markdown with --prose-wrap never", vim.log.levels.INFO)
 end, { desc = "[P]Copy selection formatted with Prettier", noremap = true, silent = true })
 
--- -- NOTE: Old (but working) method of yanking text without LF (Line Feed) characters
--- --
--- -- With bat I printed all the characters in a file (cata is an alias in my zshrc)
--- -- cata ~/github/obsidian_main/999-test/test-markdown.md | head -70
--- -- So this give me something like:
--- -- ␊
--- -- -·This·file·is·to·test·**different·markdown·functionality**,·like·headings,␊
--- -- ··indentation,·code·blocks,·icons,·etc␊
--- -- -·This·is·just·a·`second`·paragraph·to·demonstrate·how·bullet·points·show,␊
--- -- ··notice·they·have·the·same·indentation␊
--- -- -·Now·what·is·this·new·thing:␊
--- -- ··-·testing·new·line␊
--- -- ··-·another·one␊
--- -- -·Below·here·I·have·a·codeblock␊
--- -- ␊
--- -- ```bash␊
--- -- testing·bash·code·testing·something·else·testing·bash·code·testing·something·else·testing·bash␊
--- -- code·testing·something·else·testing·bash·code·testing·something·else␊
--- -- ```␊
--- -- ␊
--- --
--- -- Notice that it shows me newlines (line feed (LF)) characters, so  had to
--- -- come up with a keymap that:
--- -- Identifies lines ending with a line feed (LF) character.
--- -- If the next line does not start with a '-' (bullet point), it joins the lines
--- -- Empty lines (paragraph breaks) are preserved
--- -- Lines starting with '-' are treated as bullet points and not merged
--- -- Code blocks delimited by ``` are ignored and not modified
--- -- Leading and trailing spaces are trimmed from each line
--- -- Multiple spaces within lines are reduced to a single space
--- -- The processed text is copied to the system clipboard lamw25wmal
--- --
--- -- CONFIGURED KEYMAP TO ONLY APPLY TO MARKDOWN FILES
--- vim.keymap.set("v", "y", function()
---   -- Check if the current buffer's filetype is markdown
---   if vim.bo.filetype ~= "markdown" then
---     -- Not a Markdown file, copy the selection to the system clipboard
---     vim.cmd('normal! "+y')
---     -- Display message
---     vim.notify("Yanked to system clipboard", vim.log.levels.INFO)
---     return
---   end
---   -- Yank the selected text into a temporary register
---   vim.cmd('normal! "zy')
---   -- Get the yanked text from register 'z'
---   local text = vim.fn.getreg("z")
---   -- Remove carriage returns
---   text = text:gsub("\r", "")
---   -- Split the text into lines
---   local lines = vim.split(text, "\n", { plain = true })
---   local processed_lines = {}
---   local i = 1
---   local in_code_block = false
---   while i <= #lines do
---     local line = lines[i]
---     if line:match("^%s*```") then
---       -- Toggle code block state
---       in_code_block = not in_code_block
---       -- Add the line as is
---       table.insert(processed_lines, line)
---       i = i + 1
---     elseif in_code_block then
---       -- Inside a code block, add the line as is
---       table.insert(processed_lines, line)
---       i = i + 1
---     elseif line == "" then
---       -- Empty line, paragraph break
---       table.insert(processed_lines, "")
---       i = i + 1
---     elseif i < #lines and lines[i + 1]:match("^%s*%-") then
---       -- Next line starts with '-', do not merge
---       table.insert(processed_lines, line)
---       i = i + 1
---     else
---       -- Merge lines until the next empty line, line starting with '-', or code block
---       local paragraph = {}
---       -- Trim spaces from the current line
---       local trimmed_line = line:gsub("^%s*(.-)%s*$", "%1")
---       table.insert(paragraph, trimmed_line)
---       i = i + 1
---       while i <= #lines and lines[i] ~= "" and not lines[i]:match("^%s*%-") and not lines[i]:match("^%s*```") do
---         -- Trim spaces from the line before adding
---         trimmed_line = lines[i]:gsub("^%s*(.-)%s*$", "%1")
---         table.insert(paragraph, trimmed_line)
---         i = i + 1
---       end
---       -- Concatenate the paragraph lines with a single space
---       local merged_line = table.concat(paragraph, " ")
---       -- Replace multiple spaces with a single space
---       merged_line = merged_line:gsub("%s+", " ")
---       table.insert(processed_lines, merged_line)
---     end
---   end
---   -- Reconstruct the text
---   text = table.concat(processed_lines, "\n")
---   -- Copy the processed text to the system clipboard
---   vim.fn.setreg("+", text)
---   -- Display message
---   vim.notify("YANKED MARKDOWN WITHOUT LINEBREAKS", vim.log.levels.INFO)
--- end, { desc = "[P]Copy selection without line breaks", noremap = true, silent = true })
-
 -- yank/copy to end of line
 vim.keymap.set("n", "Y", "y$", { desc = "[P]Yank to end of line" })
-
--- Disabled this because I use these keymaps to navigate markdown headers
--- Ctrl+d and u are used to move up or down a half screen
--- but I don't like to use ctrl, so enabled this as well, both options work
--- zz makes the cursor to stay in the middle
--- If you want to return back to ctrl+d and ctrl+u
--- vim.keymap.set("n", "gk", "<C-u>zz", { desc = "[P]Go up a half screen" })
--- vim.keymap.set("n", "gj", "<C-d>zz", { desc = "[P]Go down a half screen" })
-
--- Move lines up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "[P]Move line down in visual mode" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "[P]Move line up in visual mode" })
-
 -- When you do joins with J it will keep your cursor at the beginning instead of at the end
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -532,29 +182,9 @@ vim.keymap.set(
   { desc = "[P]GLOBALLY replace word I'm on with lowercase" }
 )
 
--- Quickly alternate between the last 2 files
--- LazyVim comes with the default shortcut <leader>bb for this, but I navigate
--- between alternate files way too often, so doing leader<space> is more useful for me
---
--- By default, in LazyVim, With leader<space> you usually find files in the root directory
---
--- I tried disabling leader<space> in telescope.lua and setting it in this file but didn't work
--- So I set the command to alternate between files directly in the `telescope.lua` file
---
--- With `:help registers` you can see the register below
--- Alternate buffer register "#
--- The command to switch is `:e #`
--- `:e` is used to `edit-a-file`, see `help :e`
-
--- HACK: Alternate between the last 2 tmux sessions or neovim buffers, blazingly fast, with a keymap
--- https://youtu.be/HWs3YEj05K4
---
--- Switch to the alternate buffer lamw25wmal
 vim.keymap.set({ "n", "i", "v" }, "<M-BS>", "<cmd>e #<cr>", { desc = "[P]Alternate buffer" })
 vim.keymap.set({ "n" }, "<leader><BS>", "<cmd>e #<cr>", { desc = "[P]Alternate buffer" })
 
--- Toggle executable permission on current file, previously I had 2 keymaps, to
--- add or remove exec permissions, now it's a toggle using the same keymap
 vim.keymap.set("n", "<leader>fx", function()
   local file = vim.fn.expand("%")
   local perms = vim.fn.getfperm(file)
@@ -569,9 +199,6 @@ vim.keymap.set("n", "<leader>fx", function()
   end
 end, { desc = "Toggle executable permission" })
 
--- If this is a bash script, make it executable, and execute it in a tmux pane on the right
--- Using a tmux pane allows me to easily select text
--- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
 vim.keymap.set("n", "<leader>cb", function()
   local file = vim.fn.expand("%") -- Get the current file name
   local first_line = vim.fn.getline(1) -- Get the first line of the file
@@ -591,25 +218,6 @@ vim.keymap.set("n", "<leader>cb", function()
   end
 end, { desc = "[P]BASH, execute file" })
 
--- -- If this is a bash script, make it executable, and execute it in a split pane on the right
--- -- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
--- vim.keymap.set("n", "<leader>cb", function()
---   local file = vim.fn.expand("%") -- Get the current file name
---   local first_line = vim.fn.getline(1) -- Get the first line of the file
---   if string.match(first_line, "^#!/") then -- If first line contains shebang
---     local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
---     vim.cmd("!chmod +x " .. escaped_file) -- Make the file executable
---     vim.cmd("vsplit") -- Split the window vertically
---     vim.cmd("terminal " .. escaped_file) -- Open terminal and execute the file
---     vim.cmd("startinsert") -- Enter insert mode, recommended by echasnovski on Reddit
---   else
---     vim.cmd("echo 'Not a script. Shebang line not found.'")
---   end
--- end, { desc = "[P]Execute bash script in pane on the right" })
-
--- If this is a .go file, execute it in a tmux pane on the right
--- Using a tmux pane allows me to easily select text
--- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
 vim.keymap.set("n", "<leader>cg", function()
   local file = vim.fn.expand("%") -- Get the current file name
   if string.match(file, "%.go$") then -- Check if the file is a .go file
@@ -630,61 +238,9 @@ vim.keymap.set("n", "<leader>cg", function()
     vim.cmd("echo 'Not a Go file.'") -- Notify the user if the file is not a Go file
   end
 end, { desc = "[P]GOLANG, execute file" })
-
--- -- If this is a .go file, execute it in a split pane on the right
--- -- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
--- vim.keymap.set("n", "<leader>cg", function()
---   local file = vim.fn.expand("%") -- Get the current file name
---   if string.match(file, "%.go$") then -- Check if the file is a .go file
---     local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
---     vim.cmd("split") -- Split the window vertically
---     vim.cmd("terminal go run " .. escaped_file) -- Run the file in a terminal pane
---     vim.cmd("startinsert") -- Enter insert mode in the terminal
---   else
---     vim.cmd("echo 'Not a Go file.'") -- Notify the user if the file is not a Go file
---   end
--- end, { desc = "[P]Execute Go file in pane on the right" })
-
--- -- Toggle a tmux pane on the right in bash, in the same directory as the current file
--- -- Opening it in bash because it's faster, I don't have to run my .zshrc file,
--- -- which pulls from my repo and a lot of other stuff
--- vim.keymap.set("n", "<leader>f.", function()
---   local file_dir = vim.fn.expand("%:p:h") -- Get the directory of the current file
---   local pane_width = 60
---   local right_pane_id =
---     vim.fn.system("tmux list-panes -F '#{pane_id} #{pane_width}' | awk '$2 == " .. pane_width .. " {print $1}'")
---   if right_pane_id ~= "" then
---     -- If the right pane exists, close it
---     vim.fn.system("tmux kill-pane -t " .. right_pane_id)
---   else
---     -- -- If the right pane doesn't exist, open it
---     -- vim.fn.system("tmux split-window -h -l " .. pane_width .. " 'cd " .. file_dir .. " && bash'")
---     -- If the right pane doesn't exist, open it with zsh and no-pull parameter
---     vim.fn.system("tmux split-window -h -l " .. pane_width .. " 'cd " .. file_dir .. " && DISABLE_PULL=1 zsh'")
---   end
--- end, { desc = "[P]Open (toggle) current dir in right tmux pane" })
-
--- HACK: Neovim Toggle Terminal on Tmux Pane at the Bottom (or Right)
--- https://youtu.be/33gQ9p-Zp0I
---
--- Toggle a tmux pane on the right in zsh, in the same directory as the current file
---
--- Notice I'm setting the variable DISABLE_PULL=1, because in my zshrc file,
--- I check if this variable is set, if it is, I don't pull github repos, to save time
---
--- I keep track of the opened dir lamw25wmal, and if it changes, the next time I
--- bring up the tmux pane, it will open the path of the new dir
---
--- I defined it as a function, because I call this function from the
--- mini.files plugin to open the highlighted dir in a tmux pane on the right
 M.tmux_pane_function = function(dir)
   -- NOTE: variable that controls the auto-cd behavior
   local auto_cd_to_new_dir = true
-  -- NOTE: Variable to control pane direction: 'right' or 'bottom'
-  -- If you modify this, make sure to also modify TMUX_PANE_DIRECTION in the
-  -- zsh-vi-mode section on the .zshrc file
-  -- Also modify this in your tmux.conf file if you want it to work when in tmux
-  -- copy-mode
   local pane_direction = vim.g.tmux_pane_direction or "bottom"
   -- NOTE: Below, the first number is the size of the pane if split horizontally,
   -- the 2nd number is the size of the pane if split vertically
@@ -742,17 +298,6 @@ vim.keymap.set({ "n", "v", "i" }, "<M-t>", function()
   M.tmux_pane_function()
 end, { desc = "[P]Terminal on tmux pane" })
 
--- -- Open a tmux pane on the right in bash, in the same directory as the current file
--- -- Opening it in bash because it's faster, I don't have to run my .zshrc file,
--- -- which pulls from my repo and a lot of other stuff
--- vim.keymap.set("n", "<leader>f.", function()
---   local file_dir = vim.fn.expand("%:p:h") -- Get the directory of the current file
---   -- `-l 60` specifies the size of the tmux pane, in this case 60 columns
---   local cmd = "silent !tmux split-window -h -l 60 'cd " .. file_dir .. " && bash'"
---   vim.cmd(cmd)
--- end, { desc = "[P]Open current dir in right tmux pane" })
-
--- This will add 3 lines:
 -- 1. File path with the wordname Filename: first, then the path, and Go project name
 -- 2. Just the filepath
 -- 3. Name that I will use with `go mod init`
@@ -785,19 +330,6 @@ vim.keymap.set({ "n", "v", "i" }, "<M-z>", function()
   end
 end, { desc = "[P]Insert filename with path and go project name at cursor" })
 
--- -- Paste file path by itself
--- vim.keymap.set("n", "<leader>fp", function()
---   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
---   local lineToInsert = filePath
---   local row, _ = unpack(vim.api.nvim_win_get_cursor(0)) -- Get the current row number
---   -- Insert line, leave cursor current position
---   vim.api.nvim_buf_set_lines(0, row - 1, row - 0, false, { lineToInsert })
---   -- Comment out the newly inserted line using the plugin's 'gcc' command
---   vim.cmd("normal gcc")
---   -- Insert a blank line below the current line
---   vim.api.nvim_buf_set_lines(0, row, row, false, { "" })
--- end, { desc = "[P]Insert filename with path at cursor" })
-
 -- Function to copy file path to clipboard
 local function copy_filepath_to_clipboard()
   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
@@ -809,19 +341,6 @@ end
 -- vim.keymap.set("n", "<leader>fp", copy_filepath_to_clipboard, { desc = "[P]Copy file path to clipboard" })
 -- I couldn't use <M-p> because its used for previous reference
 vim.keymap.set({ "n", "v", "i" }, "<M-c>", copy_filepath_to_clipboard, { desc = "[P]Copy file path to clipboard" })
-
--- -- Paste file path with the wordname Filename: first
--- vim.keymap.set("n", "<leader>fz", function()
---   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
---   local lineToInsert = "Filename: " .. filePath
---   local row, _ = unpack(vim.api.nvim_win_get_cursor(0)) -- Get the current row number
---   -- Insert line, leave cursor current position
---   vim.api.nvim_buf_set_lines(0, row - 1, row - 0, false, { lineToInsert })
---   -- Comment out the newly inserted line using the plugin's 'gcc' command
---   vim.cmd("normal gcc")
---   -- Insert a blank line below the current line
---   vim.api.nvim_buf_set_lines(0, row, row, false, { "" })
--- end, { desc = "[P]Insert filename with path at cursor" })
 
 -- I save a lot, and normally do it with `:w<CR>`, but I guess this will be
 -- easier on my fingers
@@ -1188,38 +707,6 @@ vim.keymap.set("n", "<leader>iR", function()
   end)
 end, { desc = "[P]Rename image under cursor" })
 
--- HACK: Upload images from Neovim to Imgur
--- https://youtu.be/Lzl_0SzbUBo
---
--- Upload images to my own imgur account (authenticated)
---
--- NOTE: This command is for macOS because that's the OS I use
--- if you use Linux, it will try, but if it fails you'll have to adapt the
--- `local upload_command` and make sure you have the dependencies needed
---
--- NOTE: Issue where image in clipboard was not "detected" has been fixed
---
--- This script uploads images to Imgur using an access token, and refreshes the token if it's expired.
--- It reads environment variables from a specified file and updates them as needed.
---
--- If you want to upload the images to your own imgur account, follow the
--- registration quickstart section in https://apidocs.imgur.com/
--- You can use postman's web version or the desktop app, the instructions tell
--- you even how to import imgur's api collection in postman lamw25wmal
---
--- For the new postman version go to the `Imgur API` folder, then click on the
--- `Authorization` tab, set the auth type to `oauth 2.0`, fill in the fields in
--- the `Configure new token` section, and click `Get New Access Token` at the
--- bottom, this will give you a lot of details including the refresh token
---
--- Configuration:
--- - Ensure your environment variables are stored in a file formatted as `VARIABLE="value"`.
--- NOTE: Here's a sample file to copy and paste:
--- IMGUR_ACCESS_TOKEN="xxxxxxx"
--- IMGUR_REFRESH_TOKEN="yyyyyyy"
--- IMGUR_CLIENT_ID="zzzzzz"
--- IMGUR_CLIENT_SECRET="wwwwww"
---
 -- Path to your environment variables file
 local env_file_path = vim.fn.expand("~/Library/Mobile Documents/com~apple~CloudDocs/github/imgur_credentials")
 -- Configuration variables
@@ -1447,82 +934,6 @@ vim.keymap.set({ "n", "i" }, "<M-i>", function()
   end, 100)
 end, { desc = "[P]Paste image to Imgur" })
 
--- -- Upload images to imgur, this uploads the images UN-authentiated, it means
--- -- it uploads them anonymously, not tied to your account
--- -- used this as a start
--- -- https://github.com/evanpurkhiser/image-paste.nvim/blob/main/lua/image-paste.lua
--- -- Configuration:
--- -- Path to your environment variables file
--- local env_file_path = vim.fn.expand("~/Library/Mobile Documents/com~apple~CloudDocs/github/imgur_credentials")
--- vim.keymap.set({ "n", "v", "i" }, "<C-f>", function()
---   print("UPLOADING IMAGE TO IMGUR...")
---   -- Slight delay to show the message
---   vim.defer_fn(function()
---     -- Function to read environment variables from the specified file
---     local function load_env_variables()
---       local env_vars = {}
---       local file = io.open(env_file_path, "r")
---       if file then
---         for line in file:lines() do
---           for key, value in string.gmatch(line, 'export%s+([%w_]+)="([^"]+)"') do
---             env_vars[key] = value
---           end
---         end
---         file:close()
---       else
---         print("Failed to open " .. env_file_path .. " to load environment variables.")
---       end
---       return env_vars
---     end
---     -- Load environment variables
---     local env_vars = load_env_variables()
---     -- Retrieve the Imgur Client ID from the loaded environment variables
---     local imgur_client_id = env_vars["IMGUR_CLIENT_ID"]
---     if not imgur_client_id or imgur_client_id == "" then
---       print("Imgur Client ID not found. Please set IMGUR_CLIENT_ID in your environment file.")
---       return
---     end
---     -- Function to execute image upload command to Imgur
---     local function upload_to_imgur()
---       local upload_command = string.format(
---         [[
---         osascript -e "get the clipboard as «class PNGf»" | sed "s/«data PNGf//; s/»//" | xxd -r -p \
---         | curl --silent --fail --request POST --form "image=@-" \
---           --header "Authorization: Client-ID %s" "https://api.imgur.com/3/upload" \
---         | jq --raw-output .data.link
---       ]],
---         imgur_client_id
---       )
---       local url = nil
---       vim.fn.jobstart(upload_command, {
---         stdout_buffered = true,
---         on_stdout = function(_, data)
---           url = vim.fn.join(data):gsub("^%s*(.-)%s*$", "%1")
---         end,
---         on_exit = function(_, exit_code)
---           if exit_code == 0 and url ~= "" then
---             -- Format the URL as Markdown
---             local markdown_url = string.format("![imgur](%s)", url)
---             print("Image uploaded to Imgur: " .. markdown_url)
---             -- Insert formatted Markdown link into buffer at cursor position
---             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
---             vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { markdown_url })
---           else
---             print("Failed to upload image to Imgur.")
---           end
---         end,
---       })
---     end
---     -- Call the upload function
---     upload_to_imgur()
---   end, 100)
--- end, { desc = "[P]Paste image to Imgur" })
-
--- ############################################################################
-
--- HACK: Upload images from Neovim to Imgur
--- https://youtu.be/Lzl_0SzbUBo
---
 -- Open image under cursor in the Preview app (macOS)
 vim.keymap.set("n", "<leader>io", function()
   local function get_image_path()
@@ -1813,33 +1224,6 @@ vim.keymap.set(
   { desc = "[P]Delete newlines in selected text (join)" }
 )
 
--- -- In visual mode, delete all newlines within selected text
--- -- I like keeping my bulletpoints one after the next, sometimes formatting gets
--- -- in the way and they mess up, so this allows me to select all of them and just
--- -- delete newlines in between lamw25wmal
--- vim.keymap.set("v", "<leader>mj", function()
---   -- Get the visual selection range
---   local start_row = vim.fn.line("v")
---   local end_row = vim.fn.line(".")
---   -- Ensure start_row is less than or equal to end_row
---   if start_row > end_row then
---     start_row, end_row = end_row, start_row
---   end
---   -- Loop through each line in the selection
---   local current_row = start_row
---   while current_row <= end_row do
---     local line = vim.api.nvim_buf_get_lines(0, current_row - 1, current_row, false)[1]
---     -- vim.notify("Checking line " .. current_row .. ": " .. (line or ""), vim.log.levels.INFO)
---     -- If the line is empty, delete it and adjust end_row
---     if line == "" then
---       vim.cmd(current_row .. "delete")
---       end_row = end_row - 1
---     else
---       current_row = current_row + 1
---     end
---   end
--- end, { desc = "[P]Delete newlines in selected text (join)" })
-
 -- Toggle bullet point at the beginning of the current line in normal mode
 -- If in a multiline paragraph, make sure the cursor is on the line at the top
 -- "d" is for "dash" lamw25wmal
@@ -2095,34 +1479,6 @@ vim.keymap.set("n", "<M-x>", function()
   vim.cmd("loadview")
 end, { desc = "[P]Toggle task and move it to 'done'" })
 
--- -- Toggle bullet point at the beginning of the current line in normal mode
--- vim.keymap.set("n", "<leader>ml", function()
---   -- Notify that the function is being executed
---   vim.notify("Executing bullet point toggle function", vim.log.levels.INFO)
---   -- Get the current cursor position
---   local cursor_pos = vim.api.nvim_win_get_cursor(0)
---   vim.notify("Cursor position: row " .. cursor_pos[1] .. ", col " .. cursor_pos[2], vim.log.levels.INFO)
---   local current_buffer = vim.api.nvim_get_current_buf()
---   local row = cursor_pos[1] - 1
---   -- Get the current line
---   local line = vim.api.nvim_buf_get_lines(current_buffer, row, row + 1, false)[1]
---   vim.notify("Current line: " .. line, vim.log.levels.INFO)
---   if line:match("^%s*%-") then
---     -- If the line already starts with a bullet point, remove it
---     vim.notify("Bullet point detected, removing it", vim.log.levels.INFO)
---     line = line:gsub("^%s*%-", "", 1)
---     vim.api.nvim_buf_set_lines(current_buffer, row, row + 1, false, { line })
---   else
---     -- Otherwise, delete the line, add a bullet point, and paste the text
---     vim.notify("No bullet point detected, adding it", vim.log.levels.INFO)
---     line = "- " .. line
---     vim.api.nvim_buf_set_lines(current_buffer, row, row + 1, false, { line })
---   end
--- end, { desc = "Toggle bullet point at the beginning of the current line" })
-
--- HACK: neovim spell multiple languages
--- https://youtu.be/uLFAMYFmpkE
---
 -- Keymap to switch spelling language to English lamw25wmal
 -- To save the language settings configured on each buffer, you need to add
 -- "localoptions" to vim.opt.sessionoptions in the `lua/config/options.lua` file
@@ -2339,41 +1695,6 @@ vim.keymap.set("n", "<leader>mb", function()
     vim.notify("Bolded current word", vim.log.levels.INFO)
   end
 end, { desc = "[P]BOLD toggle bold markers" })
-
--- -- Single word/line bold
--- -- In normal mode, bold the current word under the cursor
--- -- If already bold, it will unbold the word under the cursor
--- -- This does NOT unbold multilines
--- vim.keymap.set("n", "<leader>mb", function()
---   local cursor_pos = vim.api.nvim_win_get_cursor(0)
---   -- local row = cursor_pos[1] -- Removed the unused variable
---   local col = cursor_pos[2]
---   local line = vim.api.nvim_get_current_line()
---   -- Check if the cursor is on an asterisk
---   if line:sub(col + 1, col + 1):match("%*") then
---     vim.notify("Cursor is on an asterisk, run inside the bold text", vim.log.levels.WARN)
---     return
---   end
---   -- Check if the cursor is inside surrounded text
---   local before = line:sub(1, col)
---   local after = line:sub(col + 1)
---   local inside_surround = before:match("%*%*[^%*]*$") and after:match("^[^%*]*%*%*")
---   if inside_surround then
---     vim.cmd("normal gsd*.")
---   else
---     vim.cmd("normal viw")
---     vim.cmd("normal 2gsa*")
---   end
--- end, { desc = "[P]BOLD toggle on current word or selection" })
-
--- -- Crate task or checkbox lamw25wmal
--- -- These are marked with <leader>x using bullets.vim
--- vim.keymap.set("n", "<leader>ml", function()
---   vim.cmd("normal! i- [ ]  ")
---   vim.cmd("startinsert")
--- end, { desc = "[P]Toggle checkbox" })
-
--- HACK: Manage Markdown tasks in Neovim similar to Obsidian | Telescope to List Completed and Pending Tasks
 -- https://youtu.be/59hvZl077hM
 --
 -- Crate task or checkbox lamw25wmal
@@ -2393,51 +1714,6 @@ vim.keymap.set({ "n", "i" }, "<M-l>", function()
   vim.api.nvim_put({ "- [ ] " }, "c", true, true)
 end, { desc = "[P]Toggle checkbox" })
 
--- -- This was not as reliable, and is now retired
--- -- replaced with a luasnip snippet `;linkc`
--- -- In visual mode, surround the selected text with markdown link syntax
--- vim.keymap.set("v", "<leader>mll", function()
---   -- Copy what's currently in my clipboard to the register "a lamw25wmal
---   vim.cmd("let @a = getreg('+')")
---   -- delete selected text
---   vim.cmd("normal d")
---   -- Insert the following in insert mode
---   vim.cmd("startinsert")
---   vim.api.nvim_put({ "[]() " }, "c", true, true)
---   -- Move to the left, paste, and then move to the right
---   vim.cmd("normal F[pf(")
---   -- Copy what's on the "a register back to the clipboard
---   vim.cmd("call setreg('+', @a)")
---   -- Paste what's on the clipboard
---   vim.cmd("normal p")
---   -- Leave me in normal mode or command mode
---   vim.cmd("stopinsert")
---   -- Leave me in insert mode to start typing
---   -- vim.cmd("startinsert")
--- end, { desc = "[P]Convert to link" })
---
--- -- This was not as reliable, and is now retired
--- -- replaced with a luasnip snippet `;linkcex`
--- -- In visual mode, surround the selected text with markdown link syntax
--- vim.keymap.set("v", "<leader>mlt", function()
---   -- Copy what's currently in my clipboard to the register "a lamw25wmal
---   vim.cmd("let @a = getreg('+')")
---   -- delete selected text
---   vim.cmd("normal d")
---   -- Insert the following in insert mode
---   vim.cmd("startinsert")
---   vim.api.nvim_put({ '[](){:target="_blank"} ' }, "c", true, true)
---   vim.cmd("normal F[pf(")
---   -- Copy what's on the "a register back to the clipboard
---   vim.cmd("call setreg('+', @a)")
---   -- Paste what's on the clipboard
---   vim.cmd("normal p")
---   -- Leave me in normal mode or command mode
---   vim.cmd("stopinsert")
---   -- Leave me in insert mode to start typing
---   -- vim.cmd("startinsert")
--- end, { desc = "[P]Convert to link (new tab)" })
-
 -- Paste a github link and add it in this format
 -- [folke/noice.nvim](https://github.com/folke/noice.nvim){:target="\_blank"}
 vim.keymap.set({ "n", "v", "i" }, "<M-;>", function()
@@ -2447,34 +1723,6 @@ vim.keymap.set({ "n", "v", "i" }, "<M-;>", function()
   -- Leave me in normal mode or command mode
   vim.cmd("stopinsert")
 end, { desc = "[P]Paste Github link" })
-
--- -- The following are related to indentation with tab, may not work perfectly
--- -- but get the job done
--- -- To indent in insert mode use C-T and C-D and in normal mode >> and <<
--- --
--- -- I disabled these as they interfere when jumpting to different sections of
--- -- my snippets, and probably other stuff, not a good idea
--- -- Maybe look for a different key, but not tab
--- --
--- -- Increase indent with tab in normal mode
--- vim.keymap.set("n", "<Tab>", function()
---   vim.cmd("normal >>")
--- end, { desc = "[P]Increase Indent" })
---
--- -- Decrease indent with tab in normal mode
--- vim.keymap.set("n", "<S-Tab>", function()
---   vim.cmd("normal <<")
--- end, { desc = "[P]Decrease Indent" })
---
--- -- Increase indent with tab in insert mode
--- vim.keymap.set("i", "<Tab>", function()
---   vim.api.nvim_input("<C-T>")
--- end, { desc = "[P]Increase Indent" })
---
--- -- Decrease indent with tab in insert mode
--- vim.keymap.set("i", "<S-Tab>", function()
---   vim.api.nvim_input("<C-D>")
--- end, { desc = "[P]Decrease Indent" })
 
 -------------------------------------------------------------------------------
 --                           Folding section
@@ -2742,24 +1990,6 @@ local function update_markdown_toc(heading2, heading3)
   vim.cmd("edit!") -- Reloads the file to reflect the changes made by markdown-toc
   vim.cmd("silent write") -- Silently save the file
   vim.notify("TOC updated and file saved", vim.log.levels.INFO)
-  -- -- In case a cleanup is needed, leaving this old code here as a reference
-  -- -- I used this code before I implemented the frontmatter check
-  -- -- Moves the cursor to the top of the file
-  -- vim.api.nvim_win_set_cursor(bufnr, { 1, 0 })
-  -- -- Deletes leading blank lines from the top of the file
-  -- while true do
-  --   -- Retrieves the first line of the buffer
-  --   local line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]
-  --   -- Checks if the line is empty
-  --   if line == "" then
-  --     -- Deletes the line if it's empty
-  --     vim.api.nvim_buf_set_lines(bufnr, 0, 1, false, {})
-  --   else
-  --     -- Breaks the loop if the line is not empty, indicating content or TOC marker
-  --     break
-  --   end
-  -- end
-  -- Restore the saved view (including folds)
   vim.cmd("loadview")
 end
 
@@ -2807,87 +2037,6 @@ vim.keymap.set("n", "<leader>mn", function()
   end
 end, { desc = "[P]Return to position before jumping" })
 
--- -- Search UP for a markdown header
--- -- If you have comments inside a codeblock, they can start with `# ` but make
--- -- sure that the line either below or above of the comment is not empty
--- -- Headings are considered the ones that have both an empty line above and also below
--- -- My markdown headings are autoformatted, so I always make sure about that
--- vim.keymap.set("n", "gk", function()
---   local foundHeader = false
---   -- Function to check if the given line number is blank
---   local function isBlankLine(lineNum)
---     return vim.fn.getline(lineNum):match("^%s*$") ~= nil
---   end
---   -- Function to search up for a markdown header
---   local function searchBackwardForHeader()
---     vim.cmd("silent! ?^\\s*#\\+\\s.*$")
---     local currentLineNum = vim.fn.line(".")
---     local aboveIsBlank = isBlankLine(currentLineNum - 1)
---     local belowIsBlank = isBlankLine(currentLineNum + 1)
---     -- Check if both above and below lines are blank, indicating a markdown header
---     if aboveIsBlank and belowIsBlank then
---       foundHeader = true
---     end
---     return currentLineNum
---   end
---   -- Initial search
---   local lastLineNum = searchBackwardForHeader()
---   -- Continue searching if the initial search did not find a header
---   while not foundHeader and vim.fn.line(".") > 1 do
---     local currentLineNum = searchBackwardForHeader()
---     -- Break the loop if the search doesn't change line number to prevent infinite loop
---     if currentLineNum == lastLineNum then
---       break
---     else
---       lastLineNum = currentLineNum
---     end
---   end
---   -- Clear search highlighting after operation
---   vim.cmd("nohlsearch")
--- end, { desc = "[P]Go to previous markdown header" })
---
--- -- Search DOWN for a markdown header
--- -- If you have comments inside a codeblock, they can start with `# ` but make
--- -- sure that the line either below or above of the comment is not empty
--- -- Headings are considered the ones that have both an empty line above and also below
--- -- My markdown headings are autoformatted, so I always make sure about that
--- vim.keymap.set("n", "gj", function()
---   local foundHeader = false
---   -- Function to check if the given line number is blank
---   local function isBlankLine(lineNum)
---     return vim.fn.getline(lineNum):match("^%s*$") ~= nil
---   end
---   -- Function to search down for a markdown header
---   local function searchForwardForHeader()
---     vim.cmd("silent! /^\\s*#\\+\\s.*$")
---     local currentLineNum = vim.fn.line(".")
---     local aboveIsBlank = isBlankLine(currentLineNum - 1)
---     local belowIsBlank = isBlankLine(currentLineNum + 1)
---     -- Check if both above and below lines are blank, indicating a markdown header
---     if aboveIsBlank and belowIsBlank then
---       foundHeader = true
---     end
---     return currentLineNum
---   end
---   -- Initial search
---   local lastLineNum = searchForwardForHeader()
---   -- Continue searching if the initial search did not find a header
---   while not foundHeader and vim.fn.line(".") < vim.fn.line("$") do
---     local currentLineNum = searchForwardForHeader()
---     -- Break the loop if the search doesn't change line number to prevent infinite loop
---     if currentLineNum == lastLineNum then
---       break
---     else
---       lastLineNum = currentLineNum
---     end
---   end
---   -- Clear search highlighting after operation
---   vim.cmd("nohlsearch")
--- end, { desc = "[P]Go to next markdown header" })
-
--- HACK: Jump between markdown headings in lazyvim
--- https://youtu.be/9S7Zli9hzTE
---
 -- Search UP for a markdown header
 -- Make sure to follow proper markdown convention, and you have a single H1
 -- heading at the very top of the file
@@ -3146,38 +2295,6 @@ vim.keymap.set("n", "<leader>mhD", function()
   vim.cmd("nohlsearch")
 end, { desc = "[P]Decrease headings without confirmation" })
 
--- -- This goes 1 heading at a time and asks for **confirmation**
--- -- - keep pressing `n` to NOT increase, but you can see it detects headings
--- --  - `y` (yes): Replace this instance and continue to the next match.
--- --  - `n` (no): Do not replace this instance and continue to the next match.
--- --  - `a` (all): Replace all remaining instances without further prompting.
--- --  - `q` (quit): Quit without making any further replacements.
--- --  - `l` (last): Replace this instance and then quit
--- --  - `^E` (`Ctrl+E`): Scroll the text window down one line
--- --  - `^Y` (`Ctrl+Y`): Scroll the text window up one line
--- vim.keymap.set("n", "<leader>mhi", function()
---   -- Save the current cursor position
---   local cursor_pos = vim.api.nvim_win_get_cursor(0)
---   -- I'm using [[ ]] to escape the special characters in a command
---   vim.cmd([[:g/\(^$\n\s*#\+\s.*\n^$\)/ .+1 s/^#\+\s/#&/c]])
---   -- Restore the cursor position
---   vim.api.nvim_win_set_cursor(0, cursor_pos)
---   -- Clear search highlight
---   vim.cmd("nohlsearch")
--- end, { desc = "[P]Increase headings with confirmation" })
-
--- -- These are similar, but instead of adding an # they remove it
--- vim.keymap.set("n", "<leader>mhd", function()
---   -- Save the current cursor position
---   local cursor_pos = vim.api.nvim_win_get_cursor(0)
---   -- I'm using [[ ]] to escape the special characters in a command
---   vim.cmd([[:g/^\s*#\{2,}\s/ s/^#\(#\+\s.*\)/\1/c]])
---   -- Restore the cursor position
---   vim.api.nvim_win_set_cursor(0, cursor_pos)
---   -- Clear search highlight
---   vim.cmd("nohlsearch")
--- end, { desc = "[P]Decrease headings with confirmation" })
-
 -- ############################################################################
 --                       End of markdown section
 -- ############################################################################
@@ -3373,14 +2490,5 @@ vim.keymap.set("n", "<leader>gP", function()
     }, false, {})
   end
 end, { desc = "[P] execute 400-autoPushGithub.sh" })
-
--- -- From Primeagen's tmux-sessionizer
--- -- ctrl+f in normal mode will silently run a command to create a new tmux window and execute the tmux-sessionizer.
--- -- Allowing quick creation and navigation of tmux sessions directly from the editor.
--- vim.keymap.set(
---   "n",
---   "<C-f>",
---   "<cmd>silent !tmux neww ~/github/dotfiles-latest/tmux/tools/prime/tmux-sessionizer.sh<CR>"
--- )
 
 return M

@@ -25,7 +25,7 @@ vsync = false
 wsl = false
 
 [font]
-normal = [] # Will use the bundled Fira Code Nerd Font by default
+normal = []          # Will use the bundled Fira Code Nerd Font by default
 size = 15.0
-# hinting = "full"
-# edging = "antialias"
+hinting = "full"
+edging = "antialias"

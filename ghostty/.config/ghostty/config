@@ -1,28 +1,3 @@
-# To get the default values
-# ghostty +show-config --default --docs > ~/github/dotfiles-latest/ghostty/config-default
-
-# To get syntax highlighting in neovim, see
-# ~/github/dotfiles-latest/neovim/neobean/lua/plugins/ghostty.lua
-
-# HACK: How to setup the Ghostty terminal, is it just hype? READ PINNED MESSAGE
-# https://youtu.be/rCiq5CyFFhA
-
-# No way of reloading config via command yet, only via keymap cmd+shift+,
-# Created a script to do it so that its reloaded with my colorscheme selector
-
-# Additional configuration files to read. This configuration can be repeated
-# to read multiple configuration files. Configuration files themselves can
-# load more configuration files. Paths are relative to the file containing the
-# `config-file` directive. For command-line arguments, paths are relative to
-# the current working directory.
-# 
-# Prepend a ? character to the file path to suppress errors if the file does
-# not exist. If you want to include a file that begins with a literal ?
-# character, surround the file path in double quotes (").
-# 
-# Cycles are not allowed. If a cycle is detected, an error will be logged and
-# the configuration file will be ignored.
-#
 # config-file = ghostty-theme
 # config-file = solarized_osaka_dark
 theme = "Solarized Dark - Patched"
@@ -77,12 +52,12 @@ window-inherit-working-directory = true
 # font-family = "JetBrainsMono Nerd Font Mono"
 # font-family = "PlemolJP Console NF"
 font-family = "CodeNewRoman Nerd Font Mono"
-font-size = 16
+font-size = 14
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
 font-thicken = true
-font-thicken-strength = 
+# font-thicken-strength = 
 
 # native tansparent tabs hidden
 macos-titlebar-style = hidden 
@@ -95,20 +70,14 @@ quit-after-last-window-closed = true
 quick-terminal-animation-duration = 0.08
 # quick-terminal-animation-duration = 0
 
-# keybind = global:cmd+s=toggle_quick_terminal
-keybind = cmd+s=toggle_quick_terminal
-keybind = super+i=inspector:toggle
-keybind = super+r=reload_config 
-keybind = super+f=toggle_fullscreen
-
-background-opacity = 0.9
-background-blur-radius = 20
-window-height = 60
+background-opacity = 0.8
+background-blur-radius = 30
+window-height = 50
 window-width = 150
 window-colorspace = display-p3
 
 cursor-click-to-move = true
-cursor-opacity = 0.85
+cursor-opacity = 0.8
 cursor-style = block
 cursor-style-blink = false
 
@@ -118,3 +87,61 @@ unfocused-split-opacity = 0.825
 unfocused-split-fill = #5e6576
 
 confirm-close-surface = false
+#
+# Keybinds settings
+#
+# keybind = global:cmd+s=toggle_quick_terminal
+keybind = cmd+s=toggle_quick_terminal
+keybind = super+i=inspector:toggle
+keybind = super+r=reload_config 
+keybind = super+f=toggle_fullscreen
+
+# TMUX integration considering that my leader key is ctrl + a
+# Go to the N window in tmux in tmux it is Ctrl+a+number
+# ctrl + b \x01
+keybind = super+1=text:\x01\x31
+keybind = super+2=text:\x01\x32
+keybind = super+3=text:\x01\x33
+keybind = super+4=text:\x01\x34
+keybind = super+5=text:\x01\x35
+keybind = super+6=text:\x01\x36
+keybind = super+7=text:\x01\x37
+keybind = super+8=text:\x01\x38
+keybind = super+9=text:\x01\x39
+# New tmux window on Cmd+t in tmux it is Ctrl+b+c
+keybind = super+t=text:\x01\x63
+
+# Close tmux pane on Cmd+w in tmux it is Ctrl+b+x (it is using a custom keybind in tmux to kill the pane)
+keybind = super+w=text:\x01\x78
+
+# Switch to a window using tmux-fzf on Cmd+p in tmux it is Ctrl+b+w
+keybind = super+p=text:\x01\x77
+
+# Rename a tmux window on Cmd+, in tmux it is Ctrl+b+,
+keybind = super+,=text:\x01\x2c
+
+# Go to the previous tmux window on Cmd+h in tmux it is Ctrl+b+p
+keybind = super+h=text:\x01\x70
+# Go to te next tmux window on Cmd+l in tmux it is Ctrl+b+n
+keybind = super+l=text:\x01\x6e
+
+# Split the window horizontally on Cmd+minus in tmux it is Ctrl+b+" (For me it is horizontal split but in tmux it is considered vertical split)
+keybind = super+minus=text:\x01\x22
+
+# Split the window vertically on Cmd+backslash in tmux it is Ctrl+b+% (For me it is vertical split but in tmux it is considered horizontal split)
+# TODO: I want to change it Cmd+pipe but looks like ghostty doesn't support that key for now
+keybind = super+backslash=text:\x01\x25
+
+# Toggle pane zoom on Cmd+z in tmux it is Ctrl+b+z
+keybind = super+z=text:\x01\x7a
+
+# Move tmux window to left on Cmd+i in tmux it is M-i (alt+i it is a custom keybind)
+keybind = super+i=text:\x1bi
+
+#Move tmux window to right on Cmd+o in tmux it is M-o (alt+o it is a custom keybind)
+keybind = super+o=text:\x1bo
+
+# Command settings
+#
+command = /opt/homebrew/bin/zsh -c "tmux new -A -s work"
+

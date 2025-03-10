@@ -14,6 +14,7 @@ map("n", "<leader>sn", "<cmd>noautocmd w<CR>", { desc = "Save without formatting
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+map("n", "<Esc>", ":noh<CR>", { desc = "clear search highlight" })
 
 -- increment/decrement numbers
 map("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
@@ -44,8 +45,6 @@ map("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
 -- toggle line wrapping
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "toggle line wrapping" })
 --
--- clear highlights
-map("n", "<Esc>", ":noh<CR>", { desc = "clear search highlight" })
 
 -- Resize with arrows
 map("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
