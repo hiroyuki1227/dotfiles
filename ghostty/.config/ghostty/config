@@ -1,6 +1,8 @@
 # config-file = ghostty-theme
 # config-file = solarized_osaka_dark
 theme = "Solarized Dark - Patched"
+# theme = "tokyonight"
+# theme = "catppuccin-mocha"
 
 # Some shaders can be found in this repo, they're usually uploaded to discord
 # https://github.com/hackrmomo/ghostty-shaders
@@ -40,8 +42,8 @@ custom-shader = shaders/bloom025.glsl
 # custom-shader = shaders/underwater.glsl
 # custom-shader = shaders/water.glsl
 
-window-padding-x = 4,2
-window-padding-y = 6,2
+window-padding-x = 2,2
+window-padding-y = 2,2
 # window-padding-balance = false
 # window-padding-color = background
 window-vsync = true
@@ -49,9 +51,11 @@ window-decoration = true
 window-inherit-working-directory = true
 
 # font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMonoNL Nerd Font Mono"
 # font-family = "JetBrainsMono Nerd Font Mono"
 # font-family = "PlemolJP Console NF"
 font-family = "CodeNewRoman Nerd Font Mono"
+
 font-size = 14
 font-feature = -calt
 font-feature = -dlig
@@ -66,18 +70,18 @@ macos-option-as-alt = right
 quit-after-last-window-closed = true
 # quit-after-last-window-closed-delay = 1s
 
-# quick-terminal-animation-duration = 0.1
-quick-terminal-animation-duration = 0.08
+quick-terminal-animation-duration = 0.1
+# quick-terminal-animation-duration = 0.08
 # quick-terminal-animation-duration = 0
 
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur-radius = 30
 window-height = 50
 window-width = 150
 window-colorspace = display-p3
 
 cursor-click-to-move = true
-cursor-opacity = 0.8
+cursor-opacity = 0.9
 cursor-style = block
 cursor-style-blink = false
 
@@ -98,7 +102,7 @@ keybind = super+f=toggle_fullscreen
 
 # TMUX integration considering that my leader key is ctrl + a
 # Go to the N window in tmux in tmux it is Ctrl+a+number
-# ctrl + b \x01
+# cmd + 1 ~ 9 is the same as ctrl + a + 1 ~ 9
 keybind = super+1=text:\x01\x31
 keybind = super+2=text:\x01\x32
 keybind = super+3=text:\x01\x33
@@ -126,11 +130,11 @@ keybind = super+h=text:\x01\x70
 keybind = super+l=text:\x01\x6e
 
 # Split the window horizontally on Cmd+minus in tmux it is Ctrl+b+" (For me it is horizontal split but in tmux it is considered vertical split)
-keybind = super+minus=text:\x01\x22
+keybind = super+-=text:\x01\x22
 
 # Split the window vertically on Cmd+backslash in tmux it is Ctrl+b+% (For me it is vertical split but in tmux it is considered horizontal split)
 # TODO: I want to change it Cmd+pipe but looks like ghostty doesn't support that key for now
-keybind = super+backslash=text:\x01\x25
+keybind = super+\=text:\x01\x25
 
 # Toggle pane zoom on Cmd+z in tmux it is Ctrl+b+z
 keybind = super+z=text:\x01\x7a
@@ -143,5 +147,5 @@ keybind = super+o=text:\x1bo
 
 # Command settings
 #
-command = /opt/homebrew/bin/zsh -c "tmux new -A -s work"
+# command = /opt/homebrew/bin/zsh -c "tmux new -A -s work"
 

@@ -20,16 +20,13 @@ M.ui = {
   --   Cursor = { bg = "one_bg", fg = "one_fg" },
   -- },
   statusline = {
-    theme = "minimal", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
+    enabled = true,
+    theme = "default", -- default/vscode/vscode_colored/minimal
+    -- theme = "minimal",
     separator_style = "round",
   },
-  -- statusline = {
-  --   enabled = true,
-  --   theme = "minimal",
-  --   separator_style = "round",
-  -- },
   cmp = {
     enabled = true,
     style = "default", -- default/flat_light/flat_dark/atom_colored

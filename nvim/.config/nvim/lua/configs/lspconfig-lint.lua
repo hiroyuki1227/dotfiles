@@ -9,7 +9,8 @@ return {
         eslint = {
           enable = true,
           -- Next.js プロジェクトで使用する場合の設定ファイルのパス
-          configFile = "./.eslintrc.js", -- プロジェクトのルートに置かれている場合
+          configFile = "./eslint.config.mjs",
+          "./.eslintrc.js", -- プロジェクトのルートに置かれている場合
         },
       },
     })

@@ -206,13 +206,13 @@ return {
     end,
   },
 
-  -- {
-  --   "nvimtools/none-ls.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     return require("configs.null-ls")
-  --   end,
-  -- },
+  {
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require("configs.null-ls")
+    end,
+  },
   {
     "smjonas/inc-rename.nvim",
     config = function()
@@ -227,23 +227,23 @@ return {
       position = "right",
     },
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
-    opts = {
-      indent = { char = "│", highlight = "IblChar" },
-      scope = { char = "│", highlight = "IblScopeChar" },
-    },
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "blankline")
-
-      local hooks = require("ibl.hooks")
-      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-      require("ibl").setup(opts)
-
-      dofile(vim.g.base46_cache .. "blankline")
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "User FilePost",
+  --   opts = {
+  --     indent = { char = "│", highlight = "IblChar" },
+  --     scope = { char = "│", highlight = "IblScopeChar" },
+  --   },
+  --   config = function(_, opts)
+  --     dofile(vim.g.base46_cache .. "blankline")
+  --
+  --     local hooks = require("ibl.hooks")
+  --     hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+  --     require("ibl").setup(opts)
+  --
+  --     dofile(vim.g.base46_cache .. "blankline")
+  --   end,
+  -- },
   {
     "tris203/precognition.nvim",
     event = "VeryLazy",
@@ -310,5 +310,18 @@ return {
         pre_hook = ts_context_commentstring.create_pre_hook(),
       })
     end,
+  },
+  {
+    "danymat/neogen",
+    keys = {
+      {
+        "<leader>cc",
+        function()
+          require("neogen").generate({})
+        end,
+        desc = "Neogen Comment",
+      },
+    },
+    opts = { snippet_engine = "luasnip" },
   },
 }

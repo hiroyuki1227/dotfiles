@@ -47,10 +47,10 @@ map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "toggle line wrapping" })
 --
 
 -- Resize with arrows
-map("n", "<Up>", ":resize -2<CR>", { desc = "Resize window up" })
-map("n", "<Down>", ":resize +2<CR>", { desc = "Resize window down" })
-map("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
-map("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
+map("n", "<C-w><up>", "<C-w>+", { desc = "Resize window up" })
+map("n", "<C-w><Down>", "<C-w>-", { desc = "Resize window down" })
+map("n", "<C-w><Left>", "<C-w><", { desc = "Resize window left" })
+map("n", "<C-w><Right>", "<C-w>>", { desc = "Resize window right" })
 
-require("keymaps")
+-- require("keymaps")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

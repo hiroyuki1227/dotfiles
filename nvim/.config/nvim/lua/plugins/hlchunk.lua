@@ -1,6 +1,6 @@
 return {
   "shellRaining/hlchunk.nvim",
-  event = { "UIEnter", "BufReadPre", "BufNewFile" },
+  event = { "UIEnter" },
 
   config = function()
     require("hlchunk").setup({

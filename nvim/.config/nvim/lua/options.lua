@@ -1,5 +1,5 @@
 require("nvchad.options")
-require("options-link")
+-- require("options-link")
 
 local opt = vim.opt
 
@@ -248,22 +248,22 @@ if vim.g.neovide then
   vim.g.neovide_text_contrast = 0.5
 
   -- tokyonight
-  -- vim.g.terminal_color_0 = "#1d202f"
-  -- vim.g.terminal_color_1 = "#f7768e"
-  -- vim.g.terminal_color_2 = "#9ece6a"
-  -- vim.g.terminal_color_3 = "#e0af68"
-  -- vim.g.terminal_color_4 = "#7aa2f7"
-  -- vim.g.terminal_color_5 = "#bb9af7"
-  -- vim.g.terminal_color_6 = "#7dcfff"
-  -- vim.g.terminal_color_7 = "#a9b1d6"
-  -- vim.g.terminal_color_8 = "#414868"
-  -- vim.g.terminal_color_9 = "#ff899d"
-  -- vim.g.terminal_color_10 = "#9fe044"
-  -- vim.g.terminal_color_11 = "#faba4a"
-  -- vim.g.terminal_color_12 = "#8db0ff"
-  -- vim.g.terminal_color_13 = "#c7a9ff"
-  -- vim.g.terminal_color_14 = "#a4daff"
-  -- vim.g.terminal_color_15 = "#c0caf5"
+  vim.g.terminal_color_0 = "#1d202f"
+  vim.g.terminal_color_1 = "#f7768e"
+  vim.g.terminal_color_2 = "#9ece6a"
+  vim.g.terminal_color_3 = "#e0af68"
+  vim.g.terminal_color_4 = "#7aa2f7"
+  vim.g.terminal_color_5 = "#bb9af7"
+  vim.g.terminal_color_6 = "#7dcfff"
+  vim.g.terminal_color_7 = "#a9b1d6"
+  vim.g.terminal_color_8 = "#414868"
+  vim.g.terminal_color_9 = "#ff899d"
+  vim.g.terminal_color_10 = "#9fe044"
+  vim.g.terminal_color_11 = "#faba4a"
+  vim.g.terminal_color_12 = "#8db0ff"
+  vim.g.terminal_color_13 = "#c7a9ff"
+  vim.g.terminal_color_14 = "#a4daff"
+  vim.g.terminal_color_15 = "#c0caf5"
   --
   --   catppuccin-moch
   -- vim.g.terminal_color_0 = "#45475a"
@@ -302,22 +302,22 @@ if vim.g.neovide then
   -- vim.g.terminal_color_15 = "#c0caf5"
 
   -- solazized_osaka_dark
-  vim.g.terminal_color_0 = "#001419"
-  vim.g.terminal_color_1 = "#db302d"
-  vim.g.terminal_color_2 = "#849900"
-  vim.g.terminal_color_3 = "#b28500"
-  vim.g.terminal_color_4 = "#268bd3"
-  vim.g.terminal_color_5 = "#d23681"
-  vim.g.terminal_color_6 = "#29a298"
-  vim.g.terminal_color_7 = "#fdf5e2"
-  vim.g.terminal_color_8 = "#063540"
-  vim.g.terminal_color_9 = "#f55350"
-  vim.g.terminal_color_10 = "#b7f900"
-  vim.g.terminal_color_11 = "#ffbf00"
-  vim.g.terminal_color_12 = "#46acf5"
-  vim.g.terminal_color_13 = "#f254a0"
-  vim.g.terminal_color_14 = "#2aeddd"
-  vim.g.terminal_color_15 = "#ffffff"
+  -- vim.g.terminal_color_0 = "#001419"
+  -- vim.g.terminal_color_1 = "#db302d"
+  -- vim.g.terminal_color_2 = "#849900"
+  -- vim.g.terminal_color_3 = "#b28500"
+  -- vim.g.terminal_color_4 = "#268bd3"
+  -- vim.g.terminal_color_5 = "#d23681"
+  -- vim.g.terminal_color_6 = "#29a298"
+  -- vim.g.terminal_color_7 = "#fdf5e2"
+  -- vim.g.terminal_color_8 = "#063540"
+  -- vim.g.terminal_color_9 = "#f55350"
+  -- vim.g.terminal_color_10 = "#b7f900"
+  -- vim.g.terminal_color_11 = "#ffbf00"
+  -- vim.g.terminal_color_12 = "#46acf5"
+  -- vim.g.terminal_color_13 = "#f254a0"
+  -- vim.g.terminal_color_14 = "#2aeddd"
+  -- vim.g.terminal_color_15 = "#ffffff"
   -- vim.g.neovide_background_color = "#001419"
   -- vim.g.neovide_foreground_color = "#29a298"
 
