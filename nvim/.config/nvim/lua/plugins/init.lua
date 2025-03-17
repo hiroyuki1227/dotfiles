@@ -136,28 +136,27 @@ return {
       ]])
     end,
   },
-  {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "onsails/lspkind.nvim",
-    },
-    config = function()
-      require("configs.cmp")
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   event = { "InsertEnter", "CmdlineEnter" },
+  --   dependencies = {
+  --     "hrsh7th/cmp-nvim-lsp",
+  --     "hrsh7th/cmp-buffer",
+  --     "hrsh7th/cmp-path",
+  --     "saadparwaiz1/cmp_luasnip",
+  --     "hrsh7th/cmp-nvim-lua",
+  --     "onsails/lspkind.nvim",
+  --   },
+  --   config = function()
+  --     require("configs.cmp")
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require("configs.lspconfig")
-      -- require("configs.lspconfig-lint")
     end,
   },
 

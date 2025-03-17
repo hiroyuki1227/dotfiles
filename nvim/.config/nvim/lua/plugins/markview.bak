@@ -1,0 +1,51 @@
+return {
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    branch = "dev",
+    ft = "markdown", -- If you decide to lazy-load anyway
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+
+    config = function()
+      local presets = require("markview.presets")
+      require("markview").setup({
+        markdown = {
+          headings = presets.headings.glow,
+          horizontal_rules = presets.horizontal_rules.thick,
+          tables = presets.tables.rounded,
+        },
+      })
+
+      local colors = require("configs.colors")
+      -- Define color variables
+      local color1_bg = colors["linkarzu_color18"]
+      local color2_bg = colors["linkarzu_color19"]
+      local color3_bg = colors["linkarzu_color20"]
+      local color4_bg = colors["linkarzu_color21"]
+      local color5_bg = colors["linkarzu_color22"]
+      local color6_bg = colors["linkarzu_color23"]
+      local color_fg = colors["linkarzu_color10"]
+      -- local color_sign = "#ebfafa"
+      -- Heading colors (when not hovered over), extends through the entire line
+      vim.cmd(string.format([[highlight MarkviewHeading1 guifg=%s guibg=%s]], color_fg, color1_bg))
+      vim.cmd(string.format([[highlight MarkviewHeading2 guifg=%s guibg=%s]], color_fg, color2_bg))
+      vim.cmd(string.format([[highlight MarkviewHeading3 guifg=%s guibg=%s]], color_fg, color3_bg))
+      vim.cmd(string.format([[highlight MarkviewHeading4 guifg=%s guibg=%s]], color_fg, color4_bg))
+      vim.cmd(string.format([[highlight MarkviewHeading5 guifg=%s guibg=%s]], color_fg, color5_bg))
+      vim.cmd(string.format([[highlight MarkviewHeading6 guifg=%s guibg=%s]], color_fg, color6_bg))
+      vim.cmd([[highlight MarkviewCode guibg=#1e2326]])
+      --
+      -- vim.cmd([[highlight MarkviewHeading1 guibg=#E67E80 guifg=white]])
+      -- vim.cmd([[highlight MarkviewHeading2 guibg=#EB9C5F guifg=white]])
+      -- vim.cmd([[highlight MarkviewHeading3 guibg=#83C092 guifg=white]])
+      -- vim.cmd([[highlight MarkviewHeading4 guibg=#7FBBB3 guifg=white]])
+      -- vim.cmd([[highlight MarkviewHeading5 guibg=#D3C6AA guifg=white]])
+      -- vim.cmd([[highlight MarkviewHeading6 guibg=#384B55 guifg=white]])
+      -- vim.cmd([[highlight MarkviewCode guibg=#1e2326]])
+    end,
+  },
+}

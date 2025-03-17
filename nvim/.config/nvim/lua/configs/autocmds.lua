@@ -219,4 +219,22 @@ vim.api.nvim_create_autocmd("BufRead", {
     end, 100) -- Delay in milliseconds (100ms should be enough)
   end,
 })
--- end
+
+-- Toggle my prompt
+-- By default, avante.nvim provides three different modes to interact with: planning, editing, and suggesting,
+-- followed with three different prompts per mode.
+-- planning: Used with require("avante").toggle() on sidebar
+-- editing: Used with require("avante").edit() on selection codeblock
+-- suggesting: Used with require("avante").get_suggestion():suggest() on Tab flow.
+-- cursor-planning: Used with require("avante").toggle() on Tab flow, but only when cursor planning mode is enabled.
+-- Users can customize the system prompts via Config.system_prompt. We recommend calling this in a custom Autocmds depending on your need:
+--
+vim.api.nvim_create_autocmd("User", {
+  pattern = "ToggleMyPrompt",
+  callback = function()
+    require("avante.config").override({ system_prompt = "MY CUSTOM SYSTEM PROMPT" })
+  end,
+})
+vim.keymap.set("n", "<leader>am", function()
+  vim.api.nvim_exec_autocmds("User", { pattern = "ToggleMyPrompt" })
+end, { desc = "avante: toggle my prompt" })

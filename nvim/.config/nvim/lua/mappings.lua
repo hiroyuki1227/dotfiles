@@ -52,5 +52,5 @@ map("n", "<C-w><Down>", "<C-w>-", { desc = "Resize window down" })
 map("n", "<C-w><Left>", "<C-w><", { desc = "Resize window left" })
 map("n", "<C-w><Right>", "<C-w>>", { desc = "Resize window right" })
 
--- require("keymaps")
+require("keymaps")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

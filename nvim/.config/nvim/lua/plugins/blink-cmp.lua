@@ -70,7 +70,7 @@ return {
           -- suggestions, I want those to show only if there are no path
           -- suggestions
           fallbacks = { "snippets", "buffer" },
-          min_keyword_length = 2,
+          -- min_keyword_length = 2,
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
@@ -105,27 +105,28 @@ return {
           end,
           -- After accepting the completion, delete the trigger_text characters
           -- from the final inserted text
+          -- Modified transform_items function based on suggestion by `synic` so
+          -- that the luasnip source is not reloaded after each transformation
+          -- https://github.com/linkarzu/dotfiles-latest/discussions/7#discussion-7849902
           transform_items = function(_, items)
             local col = vim.api.nvim_win_get_cursor(0)[2]
             local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
             local trigger_pos = before_cursor:find(trigger_text .. "[^" .. trigger_text .. "]*$")
             if trigger_pos then
               for _, item in ipairs(items) do
-                item.textEdit = {
-                  newText = item.insertText or item.label,
-                  range = {
-                    start = { line = vim.fn.line(".") - 1, character = trigger_pos - 1 },
-                    ["end"] = { line = vim.fn.line(".") - 1, character = col },
-                  },
-                }
+                if not item.trigger_text_modified then
+                  ---@diagnostic disable-next-line: inject-field
+                  item.trigger_text_modified = true
+                  item.textEdit = {
+                    newText = item.insertText or item.label,
+                    range = {
+                      start = { line = vim.fn.line(".") - 1, character = trigger_pos - 1 },
+                      ["end"] = { line = vim.fn.line(".") - 1, character = col },
+                    },
+                  }
+                end
               end
             end
-            -- NOTE: After the transformation, I have to reload the luasnip source
-            -- Otherwise really crazy shit happens and I spent way too much time
-            -- figurig this out
-            vim.schedule(function()
-              require("blink.cmp").reload("snippets")
-            end)
             return items
           end,
         },
@@ -166,11 +167,11 @@ return {
             --
             -- Do not specify a file, just the path, and in the path you need to
             -- have your .txt files
-            dictionary_directories = { vim.fn.expand("~/github/dotfiles-latest/dictionaries") },
+            dictionary_directories = { vim.fn.expand("~/dotfiles/dictionaries") },
             -- Notice I'm also adding the words I add to the spell dictionary
             dictionary_files = {
-              vim.fn.expand("~/github/dotfiles-latest/neovim/neobean/spell/en.utf-8.add"),
-              vim.fn.expand("~/github/dotfiles-latest/neovim/neobean/spell/es.utf-8.add"),
+              vim.fn.expand("~/dotfiles/nvim/.config/nvim/spell/en.utf-8.add"),
+              vim.fn.expand("~/dotfiles/nvim/.config/nvim/spell/es.utf-8.add"),
             },
             -- --  NOTE: To disable the definitions uncomment this section below
             --
@@ -198,19 +199,11 @@ return {
           async = true,
         },
       },
-      -- command line completion, thanks to dpetka2001 in reddit
-      -- https://www.reddit.com/r/neovim/comments/1hjjf21/comment/m37fe4d/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-      cmdline = function()
-        local type = vim.fn.getcmdtype()
-        if type == "/" or type == "?" then
-          return { "buffer" }
-        end
-        if type == ":" then
-          return { "cmdline" }
-        end
-        return {}
-      end,
     })
+
+    opts.cmdline = {
+      enabled = true,
+    }
 
     opts.completion = {
       --   keyword = {
@@ -244,23 +237,14 @@ return {
     -- }
 
     opts.snippets = {
-      preset = "luasnip",
-      -- This comes from the luasnip extra, if you don't add it, won't be able to
-      -- jump forward or backward in luasnip snippets
-      -- https://www.lazyvim.org/extras/coding/luasnip#blinkcmp-optional
-      expand = function(snippet)
-        require("luasnip").lsp_expand(snippet)
-      end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require("luasnip").jumpable(filter.direction)
-        end
-        return require("luasnip").in_snippet()
-      end,
-      jump = function(direction)
-        require("luasnip").jump(direction)
-      end,
+      preset = "luasnip", -- Choose LuaSnip as the snippet engine
     }
+
+    -- -- To specify the options for snippets
+    -- opts.sources.providers.snippets.opts = {
+    --   use_show_condition = true, -- Enable filtering of snippets dynamically
+    --   show_autosnippets = true, -- Display autosnippets in the completion menu
+    -- }
 
     -- The default preset used by lazyvim accepts completions with enter
     -- I don't like using enter because if on markdown and typing

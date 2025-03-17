@@ -42,8 +42,9 @@ custom-shader = shaders/bloom025.glsl
 # custom-shader = shaders/underwater.glsl
 # custom-shader = shaders/water.glsl
 
-window-padding-x = 2,2
-window-padding-y = 2,2
+window-padding-x = 4,2
+window-padding-y = 6,0
+window-padding-balance = true
 # window-padding-balance = false
 # window-padding-color = background
 window-vsync = true
@@ -55,8 +56,9 @@ window-inherit-working-directory = true
 # font-family = "JetBrainsMono Nerd Font Mono"
 # font-family = "PlemolJP Console NF"
 font-family = "CodeNewRoman Nerd Font Mono"
+# font-family = "SpaceMono Nerd Font Mono"
 
-font-size = 14
+font-size = 15
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
@@ -66,22 +68,24 @@ font-thicken = true
 # native tansparent tabs hidden
 macos-titlebar-style = hidden 
 macos-option-as-alt = right
+macos-icon = custom-style
+macos-icon-frame = plastic
 
 quit-after-last-window-closed = true
 # quit-after-last-window-closed-delay = 1s
 
-quick-terminal-animation-duration = 0.1
-# quick-terminal-animation-duration = 0.08
+# quick-terminal-animation-duration = 0.1
+quick-terminal-animation-duration = 0.08
 # quick-terminal-animation-duration = 0
 
-background-opacity = 0.9
-background-blur-radius = 30
-window-height = 50
-window-width = 150
+background-opacity = 0.7
+background-blur-radius = 20
+window-height = 59
+window-width = 210
 window-colorspace = display-p3
 
 cursor-click-to-move = true
-cursor-opacity = 0.9
+cursor-opacity = 0.7
 cursor-style = block
 cursor-style-blink = false
 
@@ -147,5 +151,6 @@ keybind = super+o=text:\x1bo
 
 # Command settings
 #
-# command = /opt/homebrew/bin/zsh -c "tmux new -A -s work"
+command = /opt/homebrew/bin/zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+# command = /opt/homebrew/bin/zsh -c /opt/homebrew/bin/zellij
 

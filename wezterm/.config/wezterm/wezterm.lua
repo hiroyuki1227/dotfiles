@@ -7,18 +7,18 @@ local config = wezterm.config_builder()
 config = {
 	term = "wezterm",
 
-	default_prog = {
-		"/opt/homebrew/bin/zsh",
-		"--login",
-		"-c",
-		[[
-    if command -v tmux >/dev/null 2>&1; then
-      tmux attach || tmux new;
-    else
-      exec zsh;
-    fi
-    ]],
-	},
+	-- default_prog = {
+	-- 	"/opt/homebrew/bin/zsh",
+	-- 	"--login",
+	-- 	"-c",
+	-- 	[[
+	--    if command -v tmux >/dev/null 2>&1; then
+	--      tmux attach || tmux new;
+	--    else
+	--      exec zsh;
+	--    fi
+	--    ]],
+	-- },
 
 	window_decorations = "RESIZE",
 	-- color_scheme = "Solarized (dark) (terminal.sexy)",
@@ -66,8 +66,8 @@ config = {
 		-- 	name = "Solarized Osaka",
 		-- },
 	},
-	initial_rows = 50,
-	initial_cols = 120,
+	initial_rows = 60,
+	initial_cols = 200,
 
 	-- font = wezterm.font("CodeNewRoman Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
 
@@ -94,8 +94,8 @@ config = {
 		bottom = 2,
 	},
 
-	window_background_opacity = 0.85,
-	macos_window_background_blur = 30,
+	window_background_opacity = 0.7,
+	macos_window_background_blur = 20,
 	max_fps = 120,
 	prefer_egl = true,
 

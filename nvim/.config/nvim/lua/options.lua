@@ -1,5 +1,5 @@
 require("nvchad.options")
--- require("options-link")
+require("options-link")
 
 local opt = vim.opt
 
@@ -7,6 +7,12 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.spelllang = { "en", "cjk" }
 
+vim.g.mapleader = " "
+vim.opt.timeout = true
+vim.opt.timeoutlen = 1000
+-- vim.g.snacks_animate = false
+-- turn off swapfile
+opt.swapfile = false
 opt.relativenumber = true
 opt.number = true
 vim.opt.title = true
@@ -59,24 +65,16 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 opt.splitkeep = "cursor" -- split horizontal window to the bottom
-
-vim.g.mapleader = " "
-vim.opt.timeout = true
--- Default neovim is 1,000 but lazyvim sets it to 300
-vim.opt.timeoutlen = 1000
--- I find the animations a bit laggy
--- vim.g.snacks_animate = false
--- turn off swapfile
-opt.swapfile = false
-
+--
 -- folding options
 opt.foldenable = true
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = "1"
-opt.foldmethod = "indent"
--- opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+opt.foldmethod = "expr"
+-- opt.foldmethod = "indent"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = ""
 -- Undercurl
@@ -89,15 +87,25 @@ vim.opt.formatoptions:append({ "r" })
 vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
---
 -- カーソル行の背景色を変更
 vim.cmd([[
-   highlight CursorLine guibg= #323449
-   highlight CursorLineNr guibg= guibg=#323449 guifg= #f1fc79
- ]])
+ highlight CursorLine guibg= #323449
+ highlight CursorLineNr guibg= guibg=#323449 guifg= #f1fc79
+ highlight LineNrAbove guifg = #777777
+  " highlight LineNr guifg = white
+ highlight LineNrBelow guifg = #daa520
+ highlight ColorColumn guibg =#323449
+]])
+
+function LineNumberColors()
+  vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
+  -- vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
+  vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FB508F", bold = true })
+end
 
 -- カーソル行の強調表示を有効にする
 opt.cursorline = true
+opt.colorcolumn = "100"
 -- opt.cursorcolumn = true
 opt.ruler = true
 opt.cursorlineopt = "both" -- to enable cursorline!

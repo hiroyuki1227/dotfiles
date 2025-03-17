@@ -1,5 +1,8 @@
 return {
   "neovim/nvim-lspconfig", -- LSP設定用プラグイン
+  dependencies = {
+    "saghen/blink.cmp",
+  },
   config = function()
     -- eslint-lsp 設定
     require("lspconfig").eslint.setup({
