@@ -17,16 +17,16 @@ end
 
 -- Select the hunk under the cursor, excluding trailing blank line
 
-vim.keymap.set("n", "<M-2>", function()
-  -- MiniDiff.textobject()
-  require("mini.diff").textobject()
-  -- Get the current line content
-  local current_line = vim.api.nvim_get_current_line()
-  -- If we're on a blank line, move up
-  if current_line == "" then
-    vim.cmd("normal! k")
-  end
-end, { desc = "[P]Select Current Hunk in Visual Mode" })
+-- vim.keymap.set("n", "<M-2>", function()
+--   -- MiniDiff.textobject()
+--   -- require("mini.diff").textobject()
+--   -- Get the current line content
+--   local current_line = vim.api.nvim_get_current_line()
+--   -- If we're on a blank line, move up
+--   if current_line == "" then
+--     vim.cmd("normal! k")
+--   end
+-- end, { desc = "[P]Select Current Hunk in Visual Mode" })
 
 -- Restart Neovim
 vim.keymap.set({ "n", "v", "i" }, "<M-R>", function()

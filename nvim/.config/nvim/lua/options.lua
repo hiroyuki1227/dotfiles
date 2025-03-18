@@ -105,7 +105,7 @@ end
 
 -- カーソル行の強調表示を有効にする
 opt.cursorline = true
-opt.colorcolumn = "100"
+opt.colorcolumn = "80"
 -- opt.cursorcolumn = true
 opt.ruler = true
 opt.cursorlineopt = "both" -- to enable cursorline!

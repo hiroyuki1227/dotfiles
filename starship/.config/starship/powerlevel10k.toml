@@ -48,7 +48,7 @@ $memory_usage\
 [fill]
 symbol = '─'
 # symbol = ' '
-style = 'fg:cyan'
+style = 'fg:#1C3A5E'
 
 [character]
 # success_symbol = "🚀 "
